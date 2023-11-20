@@ -1,0 +1,34 @@
+﻿{
+	"name": "镜头遥杆测试",
+	"packageName": "01FB212649B648EB455A18854895FDA2",
+	"version": "",
+	"intro": "fsasf",
+	"notes": "fsasf",
+	"editorVersion": "v0.25.0.0",
+	"parentGameIdentity": "",
+	"parentGameId": "",
+	"extra": "{\"attribute\":2,\"IsHorizontal\":true,\"useAvatar\":1}",
+	"devEnv": 4,
+	"needToMgs": 0,
+	"attribute": 2,
+	"autoSubmitAudit": false,
+	"classification": [],
+	"ignore": [
+		"game.desc",
+		"Asset_Data_List"
+	],
+	"files": [
+		{
+			"type": "Game_Thumbnail",
+			"path": "Pictures/Game_Thumbnail.jpg"
+		},
+		{
+			"type": "GameSetting",
+			"path": "Config/GameSetting.ini"
+		},
+		{
+			"type": "Asset_Data_List",
+			"path": "Asset_Data_List"
+		}
+	]
+}

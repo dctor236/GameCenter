@@ -1,0 +1,77 @@
+**************************************************
+--开始检查项目资源
+--项目路径:D:\Editor\editor\027\MetaWorldSaved\Saved\MetaWorld\Project\Edit\mollywoodschool
+**************************************************
+**************************************************
+--项目资源检查结束，耗时:35.655
+**************************************************
+-------------------------------------------
+--存在异常信息：1
+-------------------------------------------
+文件读取异常:D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/ui/commonUI/UIRoot.ts
+-------------------------------------------
+--需要修改的脚本[.ts文件]：58
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Assets.ts]使用到ID[ 20365 ]确定这是资源？可替换=>[ 197206 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Assets.ts]使用到ID[ 20375 ]确定这是资源？可替换=>[ 197193 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Assets.ts]使用到ID[ 20377 ]确定这是资源？可替换=>[ 197449 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Assets.ts]使用到ID[ 20378 ]确定这是资源？可替换=>[ 197457 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Assets.ts]使用到ID[ 20367 ]确定这是资源？可替换=>[ 197201 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Assets.ts]使用到ID[ 20373 ]确定这是资源？可替换=>[ 197203 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Assets.ts]使用到ID[ 21646 ]确定这是资源？可替换=>[ 197471 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Assets.ts]使用到ID[ 21629 ]确定这是资源？可替换=>[ 197464 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Effect.ts]使用到ID[ 7775 ]确定这是资源？可替换=>[ 197181 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Effect.ts]使用到ID[ 20374 ]确定这是资源？可替换=>[ 197204 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Effect.ts]使用到ID[ 20365 ]确定这是资源？可替换=>[ 197206 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Effect.ts]使用到ID[ 20375 ]确定这是资源？可替换=>[ 197193 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Effect.ts]使用到ID[ 20377 ]确定这是资源？可替换=>[ 197449 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Effect.ts]使用到ID[ 20378 ]确定这是资源？可替换=>[ 197457 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Effect.ts]使用到ID[ 20367 ]确定这是资源？可替换=>[ 197201 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Effect.ts]使用到ID[ 20373 ]确定这是资源？可替换=>[ 197203 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Effect.ts]使用到ID[ 20363 ]确定这是资源？可替换=>[ 197211 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Effect.ts]使用到ID[ 25510 ]确定这是资源？可替换=>[ 197977 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Effect.ts]使用到ID[ 25514 ]确定这是资源？可替换=>[ 197487 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Effect.ts]使用到ID[ 21062 ]确定这是资源？可替换=>[ 197884 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Effect.ts]使用到ID[ 8100 ]确定这是资源？可替换=>[ 197210 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Effect.ts]使用到ID[ 21629 ]确定这是资源？可替换=>[ 197464 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Item.ts]使用到ID[ 6666 ]确定这是资源？请修改
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Item.ts]使用到ID[ 6667 ]确定这是资源？可替换=>[ 198173 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Item.ts]使用到ID[ 6668 ]确定这是资源？请修改
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Item.ts]使用到ID[ 6669 ]确定这是资源？请修改
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Item.ts]使用到ID[ 6670 ]确定这是资源？请修改
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Item.ts]使用到ID[ 6671 ]确定这是资源？请修改
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Item.ts]使用到ID[ 6672 ]确定这是资源？请修改
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Item.ts]使用到ID[ 6673 ]确定这是资源？可替换=>[ 176346 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Item.ts]使用到ID[ 6674 ]确定这是资源？请修改
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Item.ts]使用到ID[ 6675 ]确定这是资源？可替换=>[ 175606 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Item.ts]使用到ID[ 6676 ]确定这是资源？可替换=>[ 198184 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Item.ts]使用到ID[ 6677 ]确定这是资源？请修改
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Item.ts]使用到ID[ 6678 ]确定这是资源？请修改
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Item.ts]使用到ID[ 6679 ]确定这是资源？请修改
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Item.ts]使用到ID[ 6680 ]确定这是资源？可替换=>[ 198188 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Item.ts]使用到ID[ 6681 ]确定这是资源？请修改
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Item.ts]使用到ID[ 6682 ]确定这是资源？请修改
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Item.ts]使用到ID[ 6683 ]确定这是资源？可替换=>[ 198347 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Item.ts]使用到ID[ 6684 ]确定这是资源？请修改
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Item.ts]使用到ID[ 6685 ]确定这是资源？可替换=>[ 198345 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Item.ts]使用到ID[ 6686 ]确定这是资源？请修改
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Item.ts]使用到ID[ 6687 ]确定这是资源？可替换=>[ 198344 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Item.ts]使用到ID[ 6688 ]确定这是资源？请修改
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Item.ts]使用到ID[ 6689 ]确定这是资源？可替换=>[ 198346 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Item.ts]使用到ID[ 6690 ]确定这是资源？请修改
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Item.ts]使用到ID[ 6691 ]确定这是资源？请修改
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Item.ts]使用到ID[ 6692 ]确定这是资源？请修改
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/Item.ts]使用到ID[ 6693 ]确定这是资源？可替换=>[ 120276 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/PropAction.ts]使用到ID[ 5399 ]确定这是资源？可替换=>[ 196923 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/PropAction.ts]使用到ID[ 13101 ]确定这是资源？请修改
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/PropFly.ts]使用到ID[ 25510 ]确定这是资源？可替换=>[ 197977 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/PropFly.ts]使用到ID[ 25511 ]确定这是资源？可替换=>[ 197973 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/PropFly.ts]使用到ID[ 5000 ]确定这是资源？请修改
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/SquareLanguage.ts]使用到ID[ 12102 ]确定这是资源？可替换=>[ 198546 ]
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/config/SquareLanguage.ts]使用到ID[ 13101 ]确定这是资源？请修改
+[D:/Editor/editor/027/MetaWorldSaved/Saved/MetaWorld/Project/Edit/mollywoodschool/JavaScripts/const/GlobalConfig.ts]使用到ID[ 21653 ]确定这是资源？可替换=>[ 197460 ]
+=>请修改上述ts文件，如果提示ID不是资源请忽略
+=>如果是配置文件转换的ts文件，请修改对应的配置表
+-------------------------------------------
+=>资源替换26个
+=>还有58个目标需要处理
+=========================================================
