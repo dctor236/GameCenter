@@ -1,7 +1,7 @@
 /**
- * @Author       : 田可成
+ * @Author       : meta
  * @Date         : 2023-04-10 13:08:37
- * @LastEditors  : 田可成
+ * @LastEditors  : meta
  * @LastEditTime : 2023-04-14 11:49:27
  * @FilePath     : \mollywoodschool\JavaScripts\modules\mgsMsg\TriggerMsg.ts
  * @Description  : 

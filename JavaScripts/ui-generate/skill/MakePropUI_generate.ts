@@ -1,14 +1,29 @@
- 
+﻿ 
 
  @UIBind('UI/skill/MakePropUI.ui')
- export default class MakePropUI_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/mScroll/mItemContent')
-    public mItemContent: mw.Canvas=undefined;
-    @UIWidgetBind('RootCanvas/mScroll')
-    public mScroll: mw.ScrollBox=undefined;
-    @UIWidgetBind('RootCanvas/guideButton')
-    public guideButton: mw.Button=undefined;
-    
+ export default class MakePropUI_Generate extends UIScript {
+     	private mItemContent_Internal: mw.Canvas
+	public get mItemContent(): mw.Canvas {
+		if(!this.mItemContent_Internal&&this.uiWidgetBase) {
+			this.mItemContent_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mScroll/mItemContent') as mw.Canvas
+		}
+		return this.mItemContent_Internal
+	}
+	private mScroll_Internal: mw.ScrollBox
+	public get mScroll(): mw.ScrollBox {
+		if(!this.mScroll_Internal&&this.uiWidgetBase) {
+			this.mScroll_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mScroll') as mw.ScrollBox
+		}
+		return this.mScroll_Internal
+	}
+	private guideButton_Internal: mw.Button
+	public get guideButton(): mw.Button {
+		if(!this.guideButton_Internal&&this.uiWidgetBase) {
+			this.guideButton_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/guideButton') as mw.Button
+		}
+		return this.guideButton_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

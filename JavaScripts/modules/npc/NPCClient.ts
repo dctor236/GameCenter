@@ -13,6 +13,7 @@ import { EmTaskState, EventsName } from "../../const/GameEnum";
 import { TaskModuleC } from "../taskModule/TaskModuleC";
 import NPCModule_C from "./NPCModule_C";
 import { MGSMsgHome } from "../mgsMsg/MgsmsgHome";
+import { GlobalModule } from '../../const/GlobalModule';
 
 
 export class NPCClient {
@@ -279,7 +280,6 @@ export class NPCClient {
 			this.onNPCFollow()
 			MGSMsgHome.uploadMGS('ts_action_click', 'NPC跟随的次数', { button: 'npc_follow' })
 			P_NPCPanel.instance.hideEvents()
-			// Event.dispatchToServer(NPC_Events.NPC_On + this.npcGuid);
 			return;
 		} else if (config.state == 3) {
 			P_NPCPanel.instance.hideEvents()
@@ -287,7 +287,6 @@ export class NPCClient {
 			return
 		}
 
-		//MGSMsgHome.setNpc(id, this.config.ID);
 		if (config.ActionGuid) {
 			PlayerManagerExtesion.rpcPlayAnimation(this.npcObj, config.ActionGuid, 1, config.Actiontime);
 			let ani = PlayerManagerExtesion.loadAnimationExtesion(this.npcObj, config.ActionGuid, this.scrpit.isServerNpc)
@@ -318,10 +317,6 @@ export class NPCClient {
 
 		P_NPCPanel.instance.showNpcTalk(this.clicknumber, false, config);
 
-		// const char = Player.localPlayer.character
-		// ModuleService.getModule(DressModuleC).moveCameraToBody(char, CamearScene.NpcTalk)
-		// const loc = char.worldTransform.position.clone().subtract(this.originPos)
-		// const tmpVec = loc.multiply(5)
 		if (!this.firstClick) {
 			Event.dispatchToLocal(EventsName.ShowNpcInterect, -1);
 			const character = Player.localPlayer.character;
@@ -355,7 +350,6 @@ export class NPCClient {
 	private changeNpcState(state: NPCStateC) {
 		if (this.npcState == state) return
 		this.npcState = state;
-		// console.log("changeNpcState", this.npcState)
 	}
 
 
@@ -588,9 +582,11 @@ export class NPCClient {
 			}
 		}
 	}
+	/**npc换装 */
+	onChangeSuit(clothID: number) {
+		GlobalModule.MyPlayerC.Cloth.changeRoleAvatar(clothID, false, this.npcObj)
+	}
 }
-
-
 
 export enum NPCStateC {
 	None,

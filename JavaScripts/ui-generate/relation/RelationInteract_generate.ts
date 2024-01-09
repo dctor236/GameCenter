@@ -1,20 +1,50 @@
- 
+﻿ 
 
  @UIBind('UI/relation/RelationInteract.ui')
- export default class RelationInteract_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/bg_1')
-    public bg_1: mw.Image=undefined;
-    @UIWidgetBind('RootCanvas/bg')
-    public bg: mw.Image=undefined;
-    @UIWidgetBind('RootCanvas/textBg')
-    public textBg: mw.Image=undefined;
-    @UIWidgetBind('RootCanvas/desc')
-    public desc: mw.TextBlock=undefined;
-    @UIWidgetBind('RootCanvas/accept')
-    public accept: mw.StaleButton=undefined;
-    @UIWidgetBind('RootCanvas/refuse')
-    public refuse: mw.StaleButton=undefined;
-    
+ export default class RelationInteract_Generate extends UIScript {
+     	private bg_1_Internal: mw.Image
+	public get bg_1(): mw.Image {
+		if(!this.bg_1_Internal&&this.uiWidgetBase) {
+			this.bg_1_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/bg_1') as mw.Image
+		}
+		return this.bg_1_Internal
+	}
+	private bg_Internal: mw.Image
+	public get bg(): mw.Image {
+		if(!this.bg_Internal&&this.uiWidgetBase) {
+			this.bg_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/bg') as mw.Image
+		}
+		return this.bg_Internal
+	}
+	private textBg_Internal: mw.Image
+	public get textBg(): mw.Image {
+		if(!this.textBg_Internal&&this.uiWidgetBase) {
+			this.textBg_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/textBg') as mw.Image
+		}
+		return this.textBg_Internal
+	}
+	private desc_Internal: mw.TextBlock
+	public get desc(): mw.TextBlock {
+		if(!this.desc_Internal&&this.uiWidgetBase) {
+			this.desc_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/desc') as mw.TextBlock
+		}
+		return this.desc_Internal
+	}
+	private accept_Internal: mw.StaleButton
+	public get accept(): mw.StaleButton {
+		if(!this.accept_Internal&&this.uiWidgetBase) {
+			this.accept_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/accept') as mw.StaleButton
+		}
+		return this.accept_Internal
+	}
+	private refuse_Internal: mw.StaleButton
+	public get refuse(): mw.StaleButton {
+		if(!this.refuse_Internal&&this.uiWidgetBase) {
+			this.refuse_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/refuse') as mw.StaleButton
+		}
+		return this.refuse_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

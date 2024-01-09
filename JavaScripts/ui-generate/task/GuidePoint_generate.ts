@@ -1,10 +1,15 @@
- 
+﻿ 
 
  @UIBind('UI/task/GuidePoint.ui')
- export default class GuidePoint_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/canvas_move')
-    public canvas_move: mw.Canvas=undefined;
-    
+ export default class GuidePoint_Generate extends UIScript {
+     	private canvas_move_Internal: mw.Canvas
+	public get canvas_move(): mw.Canvas {
+		if(!this.canvas_move_Internal&&this.uiWidgetBase) {
+			this.canvas_move_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/canvas_move') as mw.Canvas
+		}
+		return this.canvas_move_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

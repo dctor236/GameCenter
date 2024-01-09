@@ -1,8 +1,8 @@
 import { PlayerManagerExtesion, } from '../../Modified027Editor/ModifiedPlayer';
 /** 
- * @Author       : 陆江帅
+ * @Author       : meta
  * @Date         : 2023-03-05 11:03:27
- * @LastEditors  : xianjie.xia
+ * @LastEditors  : meta
  * @LastEditTime : 2023-06-11 09:46
  * @FilePath     : \magicmanor\JavaScripts\modules\bag\BagModuleC.ts
  * @Description  : 背包客户端模块
@@ -19,12 +19,12 @@ import { BagModuleS } from "./BagModuleS";
 import { BagHub } from "./ui/BagHub";
 import { BagInteraction } from "./ui/BagInteraction";
 import { BagPanel } from "./ui/BagPanel";
-import { TS3 } from "../../ts3/TS3";
 import { GetItem } from "./ui/GetItem";
-// import TaskModuleC from "../task/TaskModuleC";
-// import { TaskType } from "../task/TaskData";
 
 
+/**
+ * 背包客户端模块 用来管理背包中的道具
+ */
 export class BagModuleC extends ModuleC<BagModuleS, BagModuleDataHelper>{
 
     private _allItemCfg: Map<number, IItemElement> = new Map();
@@ -107,21 +107,8 @@ export class BagModuleC extends ModuleC<BagModuleS, BagModuleDataHelper>{
             }
         }
         this.server.net_Login(name, gender);
-        this.getMainItem();
     }
 
-    private async getMainItem() {
-        await TS3.userMgr.dataReady()
-        const items = TS3.userMgr.getItems()
-        if (items) {
-            for (const info of items) {
-                const config = this._allItemCfg.get(info.id);
-                if (!config || info.count < 1)
-                    continue;
-                this.data.addItem(config, info.count);
-            }
-        }
-    }
 
     public net_setName(keys: number[], lens: number[], array: string[]): void {
         let key = 0;
@@ -326,21 +313,10 @@ export class BagModuleC extends ModuleC<BagModuleS, BagModuleDataHelper>{
             return false;
         }
         console.log("addItem: ", id, "数量: ", count);
-        const idList = this.data.addItem(config, count);
-        // ModuleService.getModule(TaskModuleC).changeTaskData(TaskType.CollectItem, id, count)
         if (showUI) {
             UIManager.hide(GetItem)
             let gitfMap = new Map([[id, count]]);
             mw.UIService.show(GetItem, gitfMap, ShowItemType.Get);
-        }
-        if (config.isMain) {
-            TS3.userMgr.addItem(id, count);
-            for (const itemId of idList) {
-                if (isBar && config.isShowInBar) {
-                    this.addShortcutBarItem(itemId, isSelect)
-                }
-            }
-            return false;
         }
         return true
     }
@@ -422,7 +398,6 @@ export class BagModuleC extends ModuleC<BagModuleS, BagModuleDataHelper>{
             this.changEquipItem(id);
         }
         this.onRefreshBar.call();
-        // ModuleService.getModule(TaskModuleC).changeTaskData(TaskType.CollectItem, configID, count)
     }
 
     public net_AddShortcutBarItem(id: string, isSelect: boolean) {
@@ -464,9 +439,6 @@ export class BagModuleC extends ModuleC<BagModuleS, BagModuleDataHelper>{
         if (!item) {
             console.error("背包没有此物品:" + configID);
             return;
-        }
-        if (config.isMain) {
-            TS3.userMgr.costItem(configID, count);
         }
         if (this.tempItem[item.id]) {
             this.useTempItem(item.id, count);

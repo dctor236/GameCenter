@@ -1,19 +1,15 @@
 
-/*
- * @Author: 王嵘 rong.wang@appshahe.com
- * @Date: 2022-12-12 14:11:40
- * @LastEditTime: 2023-06-24 10:21:34
- * @Description: Avatar Creator Development
- */
-
 import { GameConfig } from '../../config/GameConfig';
 import { ITaskElement } from "../../config/Task";
 import { EmTaskState, EmTaskType } from '../../const/GameEnum';
 import { GlobalData } from '../../const/GlobalData';
 import GameUtils from '../../utils/GameUtils';
-import { Actions } from './Actions';
 import { TaskModuleC } from "./TaskModuleC";
 import { TaskData } from './TaskModuleDataHelper';
+
+/**
+ * 任务模块服务器端 玩家接取的任务管理
+ */
 export class TaskModuleS extends ModuleS<TaskModuleC, null>{
 	private _branchTasks: TaskData[] = [];//rpc
 	private _playerAssign: Map<number, TaskData[]> = new Map()
@@ -25,14 +21,9 @@ export class TaskModuleS extends ModuleS<TaskModuleC, null>{
 	private _ranNumList: number[] = []
 
 	protected onStart(): void {
-		// Actions.onTimeChangedS.add(time => {
-		// 	if (time.hour == 8) {
-		// 		this.refreshBranchTask();
-		// 		this.assignAllTasks()
-		// 	}
-		// });
 	}
 
+	/**初始化 */
 	private initTask() {
 		this._taskElems = GameConfig.Task.getAllElement()
 		this._ranNumList.length = 0;
@@ -56,6 +47,11 @@ export class TaskModuleS extends ModuleS<TaskModuleC, null>{
 		this._playerAssign.delete(player.playerId)
 	}
 
+	/**
+	 * 刷新玩家的任务
+	 * @param replace 
+	 * @param pid 
+	 */
 	public net_refreshOnAPlayer(replace: number, pid: number) {
 		let tmpReplace = replace
 		let p: mw.Player = null
@@ -104,6 +100,11 @@ export class TaskModuleS extends ModuleS<TaskModuleC, null>{
 		}
 	}
 
+	/**
+	 * 分配任务
+	 * @param taskID 
+	 * @returns 
+	 */
 	public net_AssignAPlayer(taskID: number) {
 		let index = this._taskElems.findIndex(e => e.id == taskID)
 		if (index == -1) {
@@ -117,33 +118,11 @@ export class TaskModuleS extends ModuleS<TaskModuleC, null>{
 		this.getClient(this.currentPlayer).net_OnAssign(JSON.stringify([task]), true)
 	}
 
-
-	//龙来了
-	private dragonTaskAssign() {
-		let vec: TaskData[] = []
-		for (let i = 0; i < Player.getAllPlayers().length; i++) {
-			const play = Player.getAllPlayers()[i]
-			if (play) {
-				let task = this.createNewTask(this._taskElems.length - 1)
-				vec.push(task)
-				task.taskState = EmTaskState.NoAccept
-				this._playerAssign.set(play.playerId, vec)
-				this.getClient(play).net_OnAssign(JSON.stringify([task]))
-			}
-		}
-	}
-
-	//判断是否接取了屠龙任务
-	public hasDragonTask(pid: number) {
-		if (!this._playerAssign.has(pid)) {
-			return false
-		} else {
-			const tasks = this._playerAssign.get(pid)
-			return tasks.findIndex(e => e.taskType == EmTaskType.Dragon) != -1
-		}
-	}
-
-
+	/**
+	 * 创建新的任务
+	 * @param index 
+	 * @returns 
+	 */
 	private createNewTask(index: number) {
 		const element = this._taskElems[index]
 		let tmpTask: TaskData = this._branchTasks.find(e => e.taskConfig === element.id && e.taskState === EmTaskState.NoFetch)
@@ -194,25 +173,11 @@ export class TaskModuleS extends ModuleS<TaskModuleC, null>{
 	}
 
 	/**
-	 * 刷新在线玩家任务
+	 * 设置任务状态
+	 * @param taskID 
+	 * @param state 
+	 * @returns 
 	 */
-	private assignAllTasks() {
-		let assignTasks = GameUtils.getRandomObjects(this._branchTasks, this._branchTasks.length) as TaskData[];
-		let index: number = 0
-		for (let i = 0; i < Player.getAllPlayers().length; i++) {
-			const play = Player.getAllPlayers()[i]
-			if (play) {
-				let playerTasks: TaskData[] = []
-				for (let j = 0; j < this.InitAssignNum; j++) {
-					let task = assignTasks[index++]
-					task.taskState = EmTaskState.NoAccept
-					playerTasks.push(task)
-				}
-				this.getClient(play).net_OnAssign(JSON.stringify(playerTasks))
-			}
-		}
-	}
-
 	net_setBranchTaskState(taskID: number, state: EmTaskState) {
 		let taskIdnex = this._branchTasks.findIndex(task => task.id == taskID)
 		let task = this._branchTasks[taskIdnex]
@@ -230,11 +195,5 @@ export class TaskModuleS extends ModuleS<TaskModuleC, null>{
 			}
 		}
 
-	}
-	setBranchTaskStateFinish(taskConfig: number, pid: number) {
-		let task = this._branchTasks.find(task => task.taskConfig == taskConfig && task.taskState == EmTaskState.Doing)
-		if (task) {
-			this.getClient(pid).net_finishBranchTask()
-		}
 	}
 }

@@ -1,27 +1,15 @@
 import { PlayerManagerExtesion, } from '../../../Modified027Editor/ModifiedPlayer';
-import { ModifiedCameraSystem, CameraModifid, } from '../../../Modified027Editor/ModifiedCamera';
 import { GameConfig } from "../../../config/GameConfig";
 import { ISkillElement } from "../../../config/Skill";
 import { ISkillLevelElement } from "../../../config/SkillLevel";
 import { EventsName, SkillState } from "../../../const/GameEnum";
 import { Class, GlobalData } from "../../../const/GlobalData";
 import { MyAction, MyAction as MyAction1, Tween } from "../../../ExtensionType";
-import { PlayerMgr } from "../../../ts3/player/PlayerMgr";
-import { TS3 } from "../../../ts3/TS3";
-import BulletTrrigerMgr from "../bullettrriger/BulletTrrigerMgr";
 import { BehaviorType, ISkillEntity, SkillItemType } from "../define/SkillDefine";
 import { SkillRun } from "../runtime/SkillRun";
 import SkillMgr from "../SkillMgr";
 import SkillModule_Client from "../SkillModule_Client";
 
-/**
- * @Author       : 田可成
- * @Date         : 2023-03-03 18:54:53
- * @LastEditors  : 田可成
- * @LastEditTime : 2023-03-19 09:53:46
- * @FilePath     : \fantasymagicschool\JavaScripts\modules\skill\logic\SkillBase.ts
- * @Description  :
- */
 export default class SkillBase {
     private _skill: number = 0;
     public set skill(value: number) {
@@ -50,18 +38,9 @@ export default class SkillBase {
         return this._skillID;
     }
 
-    // private _component: SkillComponent;
-    // protected get component(): SkillComponent {
-    //     if (!this._component) {
-    //         this._component = ComponentSystem.getComponent(SkillComponent, this.host);
-    //     }
-    //     return this._component;
-    // }
-
     constructor(skill: number, host: string) {
         this.host = host;
         this.skill = skill;
-        // this._component = ComponentSystem.getComponent(SkillComponent, host);
         const go = GameObject.findGameObjectById(host);
         if (this.host && PlayerManagerExtesion.isCharacter(go)) this.character = go;
     }
@@ -132,76 +111,7 @@ export default class SkillBase {
             this.character.movementEnabled = false;
             this.character.jumpEnabled = false;
         }
-        /**辅助瞄准 */
         let hitObj: string = "";
-        if (this.skillConfig.IsSupport) {
-            //XXJ 索敌
-            let m = TS3.monsterMgr.getNearMonster(1500, TS3.playerMgr.mainPos);
-            if (m) {
-                TS3.log('辅助瞄准', m.guid)
-                if (!params[0]) params[0] = this.character.worldTransform.position;
-                if (!params[1]) {
-                    const dir = m.pos.subtract(this.character.worldTransform.position).normalize()
-                    params[1] = mw.Quaternion.rotationTo(
-                        mw.Vector.forward,
-                        dir
-                    ).toRotation();
-                    hitObj = m.gameObject.gameObjectId;
-                    new Tween({ x: this.character.worldTransform.rotation })
-                        .to({ x: params[1] }, 150)
-                        .onUpdate(value => {
-                            value.x.x = value.x.y = 0;
-                            this.character.worldTransform.rotation = value.x;
-                        })
-                        .start()
-                        .onStart(() => {
-                            PlayerMgr.Inst.mainCharacter.movementEnabled = PlayerMgr.Inst.mainCharacter.jumpEnabled = false
-                        })
-
-                    setTimeout(() => {
-                        PlayerMgr.Inst.mainCharacter.movementEnabled = PlayerMgr.Inst.mainCharacter.jumpEnabled = true
-                    }, 1000);
-
-                    const camera = Camera.currentCamera
-                    ModifiedCameraSystem.setOverrideCameraRotation(dir.toRotation());//将相机与玩家方向一致
-                    setTimeout(() => {
-                        ModifiedCameraSystem.resetOverrideCameraRotation();
-                    }, 10);
-                }
-            }
-            // const entity = FightManager.instance.getEntityByEnemyOfScope(this.host, 2000);
-            // let enemy: InfoComponent;
-            // if (entity && entity.length > 0) {
-            //     enemy = entity[0][InfoComponent.name] as InfoComponent; //EntityManagerC.instance.getEntityByEnemyOfLate(this.host);
-            // }
-            // if (enemy) {
-            //     if (!params[0]) params[0] = this.character.worldTransform.position;
-            //     if (!params[1])
-            //         params[1] = mw.Quaternion.rotationTo(
-            //             mw.Vector.forward,
-            //             enemy.owner.worldTransform.position.subtract(this.character.worldTransform.position).normalize()
-            //         ).toRotation();
-            //     hitObj = enemy.owner.guid;
-            //     new Tween({ x: this.character.worldTransform.rotation })
-            //         .to({ x: params[1] }, 150)
-            //         .onUpdate(value => {
-            //             value.x.x = value.x.y = 0;
-            //             this.character.worldTransform.rotation = value.x;
-            //         })
-            //         .start();
-            // }
-            // const skillUI = mw.UIService.getUI(SkillUI)
-            // const win = mw.getViewportSize();
-            // const viewPort = mw.WindowUtil.getViewportSize();
-            // const viewPos = mw.Vector2.zero
-            // mw.localToViewport(skillUI.point.tickSpaceGeometry, mw.Vector2.zero, mw.Vector2.zero, viewPos)
-            // viewPos.x *= win.x / viewPort.x;
-            // viewPos.y *= win.y / viewPort.y;
-            // const result = InputUtil.convertScreenLocationToWorldSpace(viewPos.x, viewPos.y)
-            // const pos = result.worldTransform.position.clone().add(result.worldDirection.multiply(1000))
-            // if (!params[0]) params[0] = this.character.worldTransform.position
-            // if (!params[1]) params[1] = mw.Quaternion.rotationTo(mw.Vector.forward, pos.subtract(this.character.worldTransform.position).normalize()).toRotation()
-        }
         if (this.skillConfig["SkillConfig" + (this.State + 1)]) {
             SkillRun.cast(this.character, this.skill * 10 + this.State, { pos: params[0], rot: params[1], diy: [hitObj, this.skillID] });
         }
@@ -235,8 +145,7 @@ export default class SkillBase {
     public onHit(hitObj: string, buffName: string, damage: number, damageRate: number, effect: number, music: number, hitLocation?: mw.Vector): boolean {
         if (this.host && hitObj != "") {
             if (!hitLocation) hitLocation = GameObject.findGameObjectById(hitObj).worldTransform.position
-            // return ComponentSystem.getComponent(SkillComponent, this.host)?.onHit(hitObj, buffName, damage, effect, music, this._skillID, hitLocation);
-            return ModuleService.getModule(SkillModule_Client).onHit(hitObj, buffName, damage, damageRate, effect, music, this.skillID, hitLocation)
+            return true
         }
         return true;
     }
@@ -255,7 +164,6 @@ export default class SkillBase {
             this.cd -= dt;
             if (this.cd <= 0) {
                 this.Charge++;
-                // if (this.Charge != this.maxCharge) this.cd = GameConfig.SkillLevel.getElement(this.skillID).SkillCD
             }
         }
         if (this.runtime > 0) {
@@ -289,24 +197,7 @@ export default class SkillBase {
                 }
                 if (params[0] == SkillItemType.Put || (params[0] == SkillItemType.Effect && entity.value == 1)) {
                     if (config.SkillType != 1) break;
-                    if (character && character.gameObjectId == entity.host.gameObjectId) {
-                        //params[2] 子弹存在时间
-                        //params[1] 子弹obj
-                        BulletTrrigerMgr.instance.createBullet(
-                            params[1],
-                            entity.itemId,
-                            params[2],
-                            this,
-                            config.BuffName ? config.BuffName[0] : "",
-                            config.Damage[0],
-                            config.DamageRate[0],
-                            config.TrrigerConfig
-                        );
-                    } else {
-                        BulletTrrigerMgr.instance.createOtherBullet(params[1], entity.itemId, params[2], this, "", 0, 0, config.TrrigerConfig);
-                    }
                 }
-                // console.log(params[0] as SkillItemType + '模块开始');
                 break;
             case BehaviorType.ItemEnd: //模块执行完成
                 // console.log('模块执行完成')

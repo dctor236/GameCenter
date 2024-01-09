@@ -1,19 +1,3 @@
-import { SpawnManager,SpawnInfo, } from '../../Modified027Editor/ModifiedSpawn';
-﻿/*
- * @Author: 代纯 chun.dai@appshahe.com
- * @Date: 2023-05-20 20:06:03
- * @LastEditors: 代纯 chun.dai@appshahe.com
- * @LastEditTime: 2023-06-18 17:23:40
- * @FilePath: \vine-valley\JavaScripts\modules\taskModule\TaskModuleC.ts
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
-/*
- * @Author: shifu.huang
- * @Date: 2022-12-12 14:11:33
- * @LastEditTime: 2023-05-21 00:05:27
- * @Description: Avatar Creator Development
- */
-
 import { UIManager } from "../../ExtensionType";
 import { GameConfig } from "../../config/GameConfig";
 import { EmTaskState, EmTaskType, EventsName, ShowItemType } from "../../const/GameEnum";
@@ -35,18 +19,18 @@ import FindModuleC, { EGoodsTag } from "../find/FindModuleC";
 import { MGSMsgHome } from "../mgsMsg/MgsmsgHome";
 import { MountType } from "../tour/TourModuleS";
 
+/**
+ *  任务模块客户端 玩家接取的任务管理
+ */
+
 export class TaskModuleC extends ModuleC<TaskModuleS, null>{
     private _branchTasks: TaskData[] = [];
-    // private _dir = Vector.zero;
-    // private _guideEffect: mw.GameObject;
-    // private _rot = Rotation.zero;
     private _curTaskId: number = 0;
 
     /**完成任务需要的时间 */
     protected lifeTime: number = 0
 
     protected onStart(): void {
-        // this._guideEffect = SpawnManager.wornSpawn("16A0B0704DAE794A65FDCF9D3A0BF3FC") as mw.GameObject;
         Event.addLocalListener(EventsName.DoneTask, this.solveBranchTask.bind(this));
         Event.addLocalListener(EventsName.RefreshTask, (replace: number) => {
             this.req_refreshATask(replace)
@@ -74,8 +58,6 @@ export class TaskModuleC extends ModuleC<TaskModuleS, null>{
         }
     }
 
-
-
     onEnterScene(): void {
         this.initTaskTargetTris()
     }
@@ -94,11 +76,19 @@ export class TaskModuleC extends ModuleC<TaskModuleS, null>{
     }
 
 
-
+    /**
+     * 获取当前的任务数据
+     * @returns 
+     */
     public getCurTaskData() {
         return this._branchTasks.find(e => e.id === this._curTaskId)
     }
 
+    /**
+     * 设置npc任务状态
+     * @param npc 
+     * @param isDoing 
+     */
     private setExpressionVisable(npc: mw.Character, isDoing: boolean) {
         const quesionEff = npc.getChildByName("表情1") as mw.Effect
         const exaimEff = npc.getChildByName("表情2") as mw.Effect
@@ -112,7 +102,7 @@ export class TaskModuleC extends ModuleC<TaskModuleS, null>{
     }
 
     /**
-     * 
+     * 分配任务
      * @param str 任务列表
      * @param isAcc 是否自动接取任务
      */
@@ -151,8 +141,6 @@ export class TaskModuleC extends ModuleC<TaskModuleS, null>{
                 this.setExpressionVisable(accNpc.client.npcObj, false)
             })
         })
-        UIManager.getUI(P_GameHUD).mExclam.visibility = mw.SlateVisibility.SelfHitTestInvisible;
-        UIManager.getUI(P_GameHUD).mQuestion.visibility = mw.SlateVisibility.Collapsed;
         //默认引导委托池第一个任务
         this.guideByTask(this._branchTasks[0], true)
         UIManager.getUI(P_GameHUD).refreshBranchTask();
@@ -212,21 +200,12 @@ export class TaskModuleC extends ModuleC<TaskModuleS, null>{
 
             const accNpc = ModuleService.getModule(NPCModule_C).getNpc(data.acceptNpc)
             if (accNpc) {
-                // accNpc.client.setState(0)
                 this.setExpressionVisable(accNpc.client.npcObj, true)
             }
-            const finishNpc = ModuleService.getModule(NPCModule_C).getNpc(data.finishNpc)
-            if (finishNpc) {
-                // finishNpc.client.setState(task.finishTalkState)
-            }
             if (this._curTaskId === data.id) this.guideByTask(data, true);
-            UIManager.getUI(P_GameHUD).mExclam.visibility = mw.SlateVisibility.Hidden;
-            UIManager.getUI(P_GameHUD).mQuestion.visibility = mw.SlateVisibility.SelfHitTestInvisible;
             UIManager.getUI(P_GameHUD).canvas_Task.visibility = mw.SlateVisibility.SelfHitTestInvisible
             UIManager.getUI(P_GameHUD).refreshBranchTask();
         }
-
-
     }
 
     /**
@@ -285,6 +264,11 @@ export class TaskModuleC extends ModuleC<TaskModuleS, null>{
         }
     }
 
+    /**
+     * 设置任务UI显隐
+     * @param visable 
+     * @returns  
+     */
     public setGuidVisable(visable: boolean) {
         const curData = this.getCurTaskData()
         if (!curData) return
@@ -336,7 +320,11 @@ export class TaskModuleC extends ModuleC<TaskModuleS, null>{
         }
     }
 
-
+    /**
+     * 获取任务的位置或者任务所需物品
+     * @param data 
+     * @returns 
+     */
     private getTaskLoc(data: TaskData): Vector[] | mw.GameObject[] {
         let vecList = []
         switch (data.taskType) {
@@ -411,10 +399,6 @@ export class TaskModuleC extends ModuleC<TaskModuleS, null>{
         UIManager.hide(GuidePoint)
         this.isGuide = false
         Event.dispatchToLocal(EventsName.ShowGuide, task.id, false)
-    }
-
-    public net_finishBranchTask() {
-        this.finishBranchTask()
     }
 
     /**获取全部已激活任务数据 */

@@ -1,14 +1,29 @@
- 
+﻿ 
 
  @UIBind('UI/uiTemplate/NPC/NPCHead.ui')
- export default class NPCHead_Generate extends mw.UIScript {
-     @UIWidgetBind('Canvas/nameTxt')
-    public nameTxt: mw.TextBlock=undefined;
-    @UIWidgetBind('Canvas/chat/text')
-    public text: mw.TextBlock=undefined;
-    @UIWidgetBind('Canvas/chat')
-    public chat: mw.Canvas=undefined;
-    
+ export default class NPCHead_Generate extends UIScript {
+     	private nameTxt_Internal: mw.TextBlock
+	public get nameTxt(): mw.TextBlock {
+		if(!this.nameTxt_Internal&&this.uiWidgetBase) {
+			this.nameTxt_Internal = this.uiWidgetBase.findChildByPath('Canvas/nameTxt') as mw.TextBlock
+		}
+		return this.nameTxt_Internal
+	}
+	private text_Internal: mw.TextBlock
+	public get text(): mw.TextBlock {
+		if(!this.text_Internal&&this.uiWidgetBase) {
+			this.text_Internal = this.uiWidgetBase.findChildByPath('Canvas/chat/text') as mw.TextBlock
+		}
+		return this.text_Internal
+	}
+	private chat_Internal: mw.Canvas
+	public get chat(): mw.Canvas {
+		if(!this.chat_Internal&&this.uiWidgetBase) {
+			this.chat_Internal = this.uiWidgetBase.findChildByPath('Canvas/chat') as mw.Canvas
+		}
+		return this.chat_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

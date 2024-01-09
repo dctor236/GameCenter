@@ -1,10 +1,15 @@
- 
+﻿ 
 
  @UIBind('UI/Pets/petschat.ui')
- export default class petschat_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/Chat/mTex')
-    public mTex: mw.TextBlock=undefined;
-    
+ export default class petschat_Generate extends UIScript {
+     	private mTex_Internal: mw.TextBlock
+	public get mTex(): mw.TextBlock {
+		if(!this.mTex_Internal&&this.uiWidgetBase) {
+			this.mTex_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/Chat/mTex') as mw.TextBlock
+		}
+		return this.mTex_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

@@ -1,10 +1,15 @@
- 
+﻿ 
 
  @UIBind('UI/fly/FlyFont.ui')
- export default class FlyFont_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/Canvas/textFont')
-    public textFont: mw.TextBlock=undefined;
-    
+ export default class FlyFont_Generate extends UIScript {
+     	private textFont_Internal: mw.TextBlock
+	public get textFont(): mw.TextBlock {
+		if(!this.textFont_Internal&&this.uiWidgetBase) {
+			this.textFont_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/Canvas/textFont') as mw.TextBlock
+		}
+		return this.textFont_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

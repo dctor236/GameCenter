@@ -7,20 +7,24 @@ import { MGSMsgHome } from "../../mgsMsg/MgsmsgHome";
 import { ModuleBaseC, ModuleBaseS } from "../base/ModuleBase";
 import FacadMainUI from "../ui/cloth/FacadMainUI";
 import FacadTipUI from "../ui/cloth/FacadTipUI";
-import { SoundManager, UIManager } from '../../../ExtensionType';
+import { CloseAllUI, ShowAllUI, SoundManager, UIManager } from '../../../ExtensionType';
 import P_GameHUD from '../../gameModule/P_GameHUD';
 import Tips from '../../../ui/commonUI/P_Tips';
-import ShopDataInfo, { CoinType } from '../../shop/ShopDataInfo';
 import ShopModuleC from '../../shop/ShopModuleC';
+import { CoinType } from '../../shop/ShopDataInfo';
 
 
 /**
- * @Author       : 田可成
+ * @Author       : meta
  * @Date         : 2023-05-08 17:18:52
- * @LastEditors  : 田可成
+ * @LastEditors  : meta
  * @LastEditTime : 2023-05-29 15:43:21
  * @FilePath     : \mollywoodschool\JavaScripts\modules\player\modules\ClothModule.ts
  * @Description  : 
+ */
+
+/**
+ *服装部位 
  */
 export enum EmFacadPart {
     /**套装 */
@@ -38,6 +42,8 @@ export enum EmFacadPart {
     /**鞋子 */
     Shoe,
 }
+
+//所要用到的事件
 export enum ClothEvent {
     net_CreateStaticModel = "net_CreateStaticModel",
     net_ClearModel = "net_ClearModel",
@@ -50,7 +56,9 @@ export enum ClothEvent {
     net_asyncStaticModel = "net_asyncStaticModel"
 }
 
-// @registerModule(RunState.Client)
+/**
+ * 服装模块客户端 用来控制玩家全身的装扮,附件以及特效
+ */
 export class ClothModuleC extends ModuleBaseC {
     private _clothUI: FacadMainUI
     private _defaultEquipGuid: string[] = []
@@ -60,17 +68,18 @@ export class ClothModuleC extends ModuleBaseC {
     public tempEquipData: number[] = []
 
     public isHenShin: boolean = false
-    public async onEnterScene(sceneType: number) {
-        // GameObject.asyncFindGameObjectById("3E97EDEF").then((human) => {
-        //     this._lookHuman = human as mw.Character
-        //     this._lookHuman.displayName = ""
-        //     mw.AccountService.downloadData(this._lookHuman);
-        // })
+    public onEnterScene(sceneType: number) {
+        this.init()
+    }
+
+    /**
+     * 初始化
+     */
+    private async init() {
         this._lookHuman = await GameObject.asyncFindGameObjectById("336D55FD") as mw.Character
         this._lookHuman.displayName = ""
         this._lookHuman.worldTransform.position = Vector.one.multiply(-5555)
         this._lookHuman.complexMovementEnabled = false
-        // this._lookHuman.switchToFlying()
         mw.AccountService.downloadData(this._lookHuman);
         setTimeout(() => {
             this.checkHeight()
@@ -87,16 +96,12 @@ export class ClothModuleC extends ModuleBaseC {
             MGSMsgHome.setBtnClick("dress_btn")
             this.showClothUI()
         });
-        this.eventInit()
-    }
 
-    private eventInit() {
         Event.addServerListener(ClothEvent.net_HenShinOther, async (guid: string) => {
             await GameUtils.downAsset(guid)
             this.henShinSkill(guid, 10)
         })
         Event.addServerListener(ClothEvent.net_asyncStaticModel, async (uid: string, guid: string[]) => {
-            // console.log("jkljlkjkljkl1--" + uid + "--" + guid)
             for (const m of guid) {
                 let mm = await GameObject.asyncFindGameObjectById(m)
                 mm.tag = uid
@@ -104,9 +109,10 @@ export class ClothModuleC extends ModuleBaseC {
         })
     }
 
+    /**
+     * 配置表去改玩家服装
+     */
     public async configChangeCloth() {
-        // const hat = GameConfig.PlayerLevelConfig.getElement(this.data.level).hat
-        // this.buyCurSelect(hat, true, false)
         for (let i = 0; i < this.data.equipID.length; i++) {
             const id = this.data.equipID[i]
             const config = GameConfig.RoleAvatar.getElement(id);
@@ -118,6 +124,10 @@ export class ClothModuleC extends ModuleBaseC {
         this.saveAvatarData()
     }
 
+
+    /**
+    * 服装数组去改玩家服装
+    */
     public meshChangeCloth(meshArr: string[]) {
         const v2 = this.currentPlayer.character
         toolKey.forEach((value, key) => {
@@ -126,21 +136,31 @@ export class ClothModuleC extends ModuleBaseC {
         v2.syncDescription()
     }
 
+    /**
+     * 获取默认的服装配置
+     * @returns 
+     */
     public getDefalutEquipID(): string[] {
         const v2 = this.currentPlayer.character
         toolKey.forEach((value, key) => {
             this._defaultEquipGuid[key] = v2.description.advance[value[0]][value[1]].style
-            v2.description.advance.hair.frontHair
         });
         return this._defaultEquipGuid
     }
 
+    /**
+    * 设置默认的服装配置
+    * @param meshArr 
+    */
     public setDefalutEquipID(meshArr: string[]) {
         this._defaultEquipGuid = meshArr
         this.meshChangeCloth(this._defaultEquipGuid)
     }
 
-    public async resetPlayerCloth() {
+    /**
+    * 将玩家服装还原成233默认
+    */
+    public resetPlayerCloth() {
         if (this.isHenShin) {
             Tips.show("请先解除变身状态")
             return
@@ -160,7 +180,6 @@ export class ClothModuleC extends ModuleBaseC {
         let humanV2 = char.getDescription()
         if (humanV2 && humanV2.advance.bodyFeatures.body.height > 1.05) {
             humanV2.advance.bodyFeatures.body.height = 1.05, false;
-            //char.capsuleCorrectionEnabled = true;
         }
     }
 
@@ -171,6 +190,7 @@ export class ClothModuleC extends ModuleBaseC {
             return;
         }
         if (!this._clothUI.visible) {
+            CloseAllUI();
             UIManager.showUI(this._clothUI)
             this._lookHuman.worldTransform.rotation = mw.Rotation.zero
             ModuleService.getModule(CameraModuleC).facadPlayerRotation(true, this._lookHuman, 160, -130, -20)
@@ -180,6 +200,7 @@ export class ClothModuleC extends ModuleBaseC {
 
     public hideClothUI() {
         UIManager.hideUI(this._clothUI)
+        ShowAllUI();
         ModuleService.getModule(CameraModuleC).facadPlayerRotation(false)
     }
 
@@ -189,12 +210,13 @@ export class ClothModuleC extends ModuleBaseC {
         }
     }
 
+    /**
+     * 玩家是否有这件服装
+     * @param configID 配置表id
+     * @returns 
+     */
     public hasSuit(configID: number): boolean {
         return this.data.allSuit.includes(configID)
-    }
-
-    public hasSelect(configID: number): boolean {
-        return this.tempEquipData.includes(configID)
     }
 
     /**
@@ -203,9 +225,9 @@ export class ClothModuleC extends ModuleBaseC {
      * @param {boolean} isSelect
      * @return {*}
      */
-    public async changeRoleAvatar(id: number, isSelect: boolean = false) {
+    public async changeRoleAvatar(id: number, isSelect: boolean = false, ch: mw.Character = null) {
         if (!id || id == 0) return;
-        const v2 = this._lookHuman
+        const v2 = ch ? ch : this._lookHuman
         const config = GameConfig.RoleAvatar.getElement(id);
         if (config) {
             //如果是套装，就全卸下换套装
@@ -290,6 +312,13 @@ export class ClothModuleC extends ModuleBaseC {
         }
     }
 
+    /**
+     * 购买服装
+     * @param configID 配置id
+     * @param isForce 是否强制
+     * @param uiTip 有无提示UI
+     * @returns 
+     */
     public buyCurSelect(configID: number, isForce: boolean = false, uiTip: boolean = true): boolean {
         if (this.hasSuit(configID)) return false;
         if (configID && configID > 0) {
@@ -300,6 +329,13 @@ export class ClothModuleC extends ModuleBaseC {
                         Tips.show("该物品需要参与活动才能获得")
                         return false;
                     }
+                }
+                if (!isForce) {
+                    if (config.price > ModuleService.getModule(ShopModuleC).getCoin(CoinType.PeaCoin)) {
+                        Tips.show(GameConfig.SquareLanguage.Text_Text_552.Value)
+                        return false;
+                    }
+                    ModuleService.getModule(ShopModuleC).req_addCoin(CoinType.PeaCoin, -config.price)
                 }
                 this.data.buySuit(configID)
                 if (!this._clothUI.visible) UIManager.getUI(P_GameHUD).mNewCloth.visibility = mw.SlateVisibility.SelfHitTestInvisible
@@ -325,21 +361,11 @@ export class ClothModuleC extends ModuleBaseC {
         return { result: bool, notBuyArr: notBuyArr };
     }
 
-
-    // /**
-    //  * @description: 同步到服务器并真人换装
-    //  * @return {*}
-    //  */
-    // public async saveAvatarData() {
-    //     this.data.saveEquips(this.tempEquipData)
-    //     Event.dispatchToServer(ClothEvent.net_SaveFacadIDs, this.tempEquipData, this._defaultEquipGuid)
-    // }
-
     /**
-         * @description: 真人的换装
-         * @param {boolean} isSny 是否同步到233服务器
-         * @return {*}
-         */
+    * @description: 真人的换装
+    * @param {boolean} isSny 是否同步到233服务器
+    * @return {*}
+    */
     public async saveAvatarData(isSny: boolean = true) {
         const v2 = this.currentPlayer.character
         for (let i = 0; i < this.tempEquipData.length; i++) {
@@ -409,11 +435,6 @@ export class ClothModuleC extends ModuleBaseC {
                 }
                 this._effectIDs.set(config.type, { effect: effectID, configID: this.tempEquipData[config.type] })
             }
-            // if (config.changeEffect && isSelect) {
-            //     SoundManager.stopSound("124713");
-            //     SoundManager.playSound("124713");
-            //     ResManager.instance.playEffectOnPlayer(this._lookHuman, config.changeEffect)
-            // }
         }
         v2.syncDescription()
         if (isSny) {
@@ -424,7 +445,6 @@ export class ClothModuleC extends ModuleBaseC {
 
     public henShinSkill(guid: string, henShinTime?: number) {
         this.isHenShin = true;
-        // this.currentPlayer.character.characterType = mw.AppearanceType.HumanoidV1;
         PlayerManagerExtension.changeBaseStanceExtesion(this.currentPlayer.character, "154704")
         let appearance = this.currentPlayer.character.getDescription();
         appearance.base.wholeBody = guid;
@@ -449,8 +469,21 @@ export class ClothModuleC extends ModuleBaseC {
         if (isSny) Event.dispatchToServer(ClothEvent.net_CreateStaticModel, modelIDs, isCloth)
     }
 
+    /**
+     * 销毁模型
+     * @param modelID 
+     */
     public clearModel(modelID: number) {
         Event.dispatchToServer(ClothEvent.net_ClearModel, modelID)
+    }
+
+    /**
+     *摧毁特效 
+     * @param effectID 
+     * @param isSny 
+     */
+    public clearEffect(effectID: number[], isSny: boolean = true) {
+        if (isSny) Event.dispatchToServer(ClothEvent.net_ClearEffect, effectID)
     }
 
     /**创建一个特效 */
@@ -461,48 +494,13 @@ export class ClothModuleC extends ModuleBaseC {
         if (isSny) Event.dispatchToServer(ClothEvent.net_CreateEffect, effectIDs, isCloth)
     }
     protected onUpdate(dt: number): void {
-        if (this.flyRot.equals(Rotation.zero))
-            return
-        // const curSel = Number(ModuleService.getModule(BagModuleC).curEquip)
-        // if (!GlobalData.playerInBattle && Math.floor(curSel / 10) >= 30 && Math.floor(curSel / 10) < 40) {
-        //     if (Math.abs(this.currentPlayer.character.worldTransform.rotation.x - this.flyRot.x) >= 2 ||
-        //         Math.abs(this.currentPlayer.character.worldTransform.rotation.y - this.flyRot.y) >= 2) {
-        //         this.currentPlayer.character.worldTransform.rotation = Rotation.lerp(this.currentPlayer.character.worldTransform.rotation, this.flyRot, dt * 3)
-        //     } else {
-        //         this.flyRot.set(Rotation.zero)
-        //     }
-        // }
     }
-    flyRot: Rotation = Rotation.zero
-    public controlFlyTend(axis: Vector2) {
-        const ch = Player.localPlayer.character
-        const cameraRot = Camera.currentCamera.worldTransform.rotation.clone()
-        // Events.dispatchToServer(ClothEvent.net_controlFlyTend, axis, cameraRot)
-        let xOffset: number = 0
-        let yOffset: number = 0
-        if (axis.x < -0.2) {
-            xOffset = -30
-        } else if (axis.x > 0.2) {
-            xOffset = 30
-        } else {
-            xOffset = 0
-        }
-        if (cameraRot.y < -40) {
-            yOffset = -60
-        } else if (cameraRot.y > 20) {
-            yOffset = 45
-        } else {
-            yOffset = 0
-        }
-        this.flyRot.set(xOffset, yOffset, ch.worldTransform.rotation.z)
-        // ch.worldRotation = new Rotation(xOffset, yOffset, ch.worldRotation.z)
-    }
-    public clearEffect(effectID: number[], isSny: boolean = true) {
-        if (isSny) Event.dispatchToServer(ClothEvent.net_ClearEffect, effectID)
-    }
+
 }
 
-// @registerModule(RunState.Server)
+/**
+ * 服装模块服务器端 用来控制玩家全身的装扮,附件以及特效
+ */
 export class ClothModuleS extends ModuleBaseS {
     /**存储玩家对应的特效ID */
     private _savePlayerEffect: Map<number, { type: number, isCloth: boolean, effectID: number, effect: number }[]> = new Map();
@@ -669,6 +667,13 @@ export class ClothModuleS extends ModuleBaseS {
         }
     }
 
+    /**
+     *创建静态模型 
+     * @param playerID 玩家id
+     * @param modelIDs 模型ids
+     * @param isCloth 是否是衣服
+     * @param type 种类
+     */
     public async net_CreateStaticModel(playerID: number, modelIDs: number[], isCloth: boolean = true, type: number = 0) {
         let char = Player.getPlayer(playerID).character;
         let vec: string[] = []
@@ -687,6 +692,13 @@ export class ClothModuleS extends ModuleBaseS {
         Event.dispatchToAllClient(ClothEvent.net_asyncStaticModel, Player.getPlayer(playerID).userId, vec)
     }
 
+    /**
+     * 创建特效
+     * @param playerId 玩家id
+     * @param effectIDs 特效ids
+     * @param isCloth 是否衣服
+     * @param type 种类
+     */
     public net_CreateEffect(playerId: number, effectIDs: number[], isCloth: boolean = true, type: number = 0) {
         for (const effID of effectIDs) {
             let effectID = ResManager.instance.playEffectOnPlayer(Player.getPlayer(playerId), effID)
@@ -701,6 +713,11 @@ export class ClothModuleS extends ModuleBaseS {
         }
     }
 
+    /**
+     * 清除特效
+     * @param playerId 玩家id
+     * @param effectID 需要清除的特效列表
+     */
     public net_ClearEffect(playerId: number, effectID: number[]) {
         if (this._savePlayerEffect.has(playerId)) {
             const effectArr = this._savePlayerEffect.get(playerId)
@@ -717,6 +734,12 @@ export class ClothModuleS extends ModuleBaseS {
         }
     }
 
+    /**
+     * 清除模型
+     * @param playerId 玩家id 
+     * @param modelID 模型id
+     * @returns 
+     */
     public net_ClearModel(playerId: number, modelID: number) {
         if (this._savePlayerModel.has(playerId)) {
             const modelArr = this._savePlayerModel.get(playerId)

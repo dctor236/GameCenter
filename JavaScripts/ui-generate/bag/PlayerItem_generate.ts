@@ -1,14 +1,29 @@
- 
+﻿ 
 
  @UIBind('UI/bag/PlayerItem.ui')
- export default class PlayerItem_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/mPlayerIcon')
-    public mPlayerIcon: mw.Image=undefined;
-    @UIWidgetBind('RootCanvas/mName')
-    public mName: mw.TextBlock=undefined;
-    @UIWidgetBind('RootCanvas/mBtn')
-    public mBtn: mw.Button=undefined;
-    
+ export default class PlayerItem_Generate extends UIScript {
+     	private mPlayerIcon_Internal: mw.Image
+	public get mPlayerIcon(): mw.Image {
+		if(!this.mPlayerIcon_Internal&&this.uiWidgetBase) {
+			this.mPlayerIcon_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mPlayerIcon') as mw.Image
+		}
+		return this.mPlayerIcon_Internal
+	}
+	private mName_Internal: mw.TextBlock
+	public get mName(): mw.TextBlock {
+		if(!this.mName_Internal&&this.uiWidgetBase) {
+			this.mName_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mName') as mw.TextBlock
+		}
+		return this.mName_Internal
+	}
+	private mBtn_Internal: mw.Button
+	public get mBtn(): mw.Button {
+		if(!this.mBtn_Internal&&this.uiWidgetBase) {
+			this.mBtn_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mBtn') as mw.Button
+		}
+		return this.mBtn_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

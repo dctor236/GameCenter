@@ -1,14 +1,29 @@
- 
+﻿ 
 
  @UIBind('UI/uiTemplate/common/Tips.ui')
- export default class Tips_Generate extends mw.UIScript {
-     @UIWidgetBind('Canvas/mCell1')
-    public mCell1: mw.Canvas=undefined;
-    @UIWidgetBind('Canvas/mCell2')
-    public mCell2: mw.Canvas=undefined;
-    @UIWidgetBind('Canvas/mCell3')
-    public mCell3: mw.Canvas=undefined;
-    
+ export default class Tips_Generate extends UIScript {
+     	private mCell1_Internal: mw.Canvas
+	public get mCell1(): mw.Canvas {
+		if(!this.mCell1_Internal&&this.uiWidgetBase) {
+			this.mCell1_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCell1') as mw.Canvas
+		}
+		return this.mCell1_Internal
+	}
+	private mCell2_Internal: mw.Canvas
+	public get mCell2(): mw.Canvas {
+		if(!this.mCell2_Internal&&this.uiWidgetBase) {
+			this.mCell2_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCell2') as mw.Canvas
+		}
+		return this.mCell2_Internal
+	}
+	private mCell3_Internal: mw.Canvas
+	public get mCell3(): mw.Canvas {
+		if(!this.mCell3_Internal&&this.uiWidgetBase) {
+			this.mCell3_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCell3') as mw.Canvas
+		}
+		return this.mCell3_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

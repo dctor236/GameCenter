@@ -1,21 +1,15 @@
-import { PlayerManagerExtesion, } from '../../Modified027Editor/ModifiedPlayer';
-import { ModifiedCameraSystem, CameraModifid, } from '../../Modified027Editor/ModifiedCamera';
+import { ModifiedCameraSystem } from '../../Modified027Editor/ModifiedCamera';
 import { AddGMCommand } from "module_gm";
 import { GameConfig } from "../../config/GameConfig";
 import { EventsName } from "../../const/GameEnum";
 import { GlobalData } from "../../const/GlobalData";
 import { GlobalModule } from "../../const/GlobalModule";
-import { CloseAllUI, ShowAllUI, UIHide, UIHideClass, UIManager } from "../../ExtensionType";
+import { CloseAllUI, ShowAllUI, UIManager } from "../../ExtensionType";
 import { InputManager } from "../../InputManager";
 import { ResManager } from "../../ResManager";
 import RainBowRaceMgr from "../../SceneScript/RainBowRace";
-import { EMonsterBehaviorState } from "../../ts3/monster/MonsterDefine";
-import { MonsterMgr } from "../../ts3/monster/MonsterMgr";
 import { PlayerMgr } from "../../ts3/player/PlayerMgr";
-import BackSchoolUI from "../../ui/BackSchoolUI";
-import BackSelectUI from "../../ui/BackSelectUI";
 import { CameraType } from "../../ui/cameraUI/CameraMainUI";
-import Tips from "../../ui/commonUI/P_Tips";
 import { SettingUI } from "../../ui/SettingUI";
 import GameUtils from "../../utils/GameUtils";
 import { BagModuleC } from "../bag/BagModuleC";
@@ -26,14 +20,11 @@ import { MGSMsgHome } from "../mgsMsg/MgsmsgHome";
 import { P_NPCPanel } from "../npc/NPCPanel";
 import { PropModuleC } from "../prop/PropModuleC";
 import ShopModuleC from "../shop/ShopModuleC";
-import SkillUI from "../skill/ui/SkillUI";
-import { TaskModuleC } from "../taskModule/TaskModuleC";
 import { GameModuleData } from "./GameData";
 import { IGameModuleS } from "./GameModuleS";
 import P_GameHUD, { UIType } from "./P_GameHUD";
 import { CameraCG } from "module_cameracg";
-import { TS3 } from "../../ts3/TS3";
-import GuideMC from "../guide/GuideMC";
+import { TaskModuleC } from '../taskModule/TaskModuleC';
 
 const MGSEnvirguid = [
 	'0AF4D2A2',//进大门
@@ -52,30 +43,23 @@ const MgsInfo = [
 	'到达藤蔓顶端的次数'
 ]
 export interface IGameModuleC {
-	net_playBattleBGM(): void;
 	net_playHallBGM(): void;
 }
-//客户端
+
+/**
+ *游戏模块 客户端 控制游戏中的全局属性 
+ */
 export class GameModuleC extends ModuleC<IGameModuleS, GameModuleData> implements IGameModuleC {
 	public hudPanel: P_GameHUD;
-	public isInteractive: boolean;
-	// public resetClothPanel: P_ChangeCloth;
-	// private cameraEnterPanel: P_CameraEnter;
-
 	public curBgmID: number = 13;
 
 	private btnExitInteractiveCallback: () => void;
 	private moveExitInteractiveCallback: () => void;
 	private jumpExitInteractiveCallback: () => void;
-	private _returnSchoolTime: number = 0;
 	private _valleyTop: mw.GameObject = null
 
 	onStart() {
-		// this.gameJumpUI = UICreate(TravelWindowUI);
 		this.hudPanel = mw.UIService.create(P_GameHUD);
-		//this.dancePanel = mw.UIService.create(P_DanceUI);
-		// this.cameraEnterPanel = mw.UIService.create(P_CameraEnter);
-		// this.resetClothPanel = mw.UIService.create(P_ChangeCloth);/
 		this.hudPanel.clickResetClothBtnAC.add(() => {
 			MGSMsgHome.setBtnClick("cloth_btn");
 			GlobalModule.MyPlayerC.Cloth.resetPlayerCloth();
@@ -114,12 +98,7 @@ export class GameModuleC extends ModuleC<IGameModuleS, GameModuleData> implement
 		});
 
 
-		let flag: boolean = false
 		let flag2: boolean = false
-		// InputManager.instance.onKeyDown(mw.Keys.F1).add(() => {
-		// 	// this.hudPanel.setAllUIVisible(flag)
-		// 	// flag = !flag
-		// })
 		InputManager.instance.onKeyDown(mw.Keys.F2).add(() => {
 			UIManager.setAllMiddleAndBottomPanelVisible(flag2);
 			flag2 = !flag2
@@ -134,7 +113,6 @@ export class GameModuleC extends ModuleC<IGameModuleS, GameModuleData> implement
 	//进入场景
 	onEnterScene(sceneType: number): void {
 		CG.instance.trainDeparture(() => {
-			this._returnSchoolTime = GlobalData.returnSchoolTime;
 			const char = Player.localPlayer.character
 			char.displayName = ''
 			char.setVisibility(PropertyStatus.On)
@@ -156,17 +134,13 @@ export class GameModuleC extends ModuleC<IGameModuleS, GameModuleData> implement
 			UIManager.showUI(npc);
 			this.loginChoose();
 			this.net_playHallBGM();
-			// setTimeout(() => {
-			// 	ModuleService.getModule(TaskModuleC).req_refreshATask()
-			// }, 2000)
 			ModuleService.getModule(CameraModuleC).resetCameraAttach()
 			RainBowRaceMgr.instance.init()
 			Player.asyncGetLocalPlayer().then(async p => {
 				await CameraCG.instance.init()
-				if (GlobalData.isDragon)
-					ModuleService.getModule(GuideMC).onGuideEnter()
-				else
+				setTimeout(() => {
 					ModuleService.getModule(TaskModuleC).req_refreshATask()
+				}, 3000);
 			})
 		})
 
@@ -186,21 +160,6 @@ export class GameModuleC extends ModuleC<IGameModuleS, GameModuleData> implement
 				}
 			})
 		}
-
-		GameObject.asyncFindGameObjectById('14346135').then(o => {
-			const tri = o as mw.Trigger
-			tri.onEnter.add((actor) => {
-				if (GameUtils.isPlayerCharacter(actor)) {
-					UIManager.show(BackSelectUI)
-				}
-			})
-
-			tri.onLeave.add(actor => {
-				if (GameUtils.isPlayerCharacter(actor)) {
-					UIManager.hide(BackSelectUI)
-				}
-			})
-		})
 
 		//飓风前格子
 		GameObject.asyncFindGameObjectById('2F1E81AC').then(o => {
@@ -247,6 +206,9 @@ export class GameModuleC extends ModuleC<IGameModuleS, GameModuleData> implement
 		});
 	}
 
+	/**
+	 * 重置玩家位置
+	 */
 	public resetPos() {
 		if (this.btnExitInteractiveCallback != null) {
 			this.btnExitInteractiveCallback();
@@ -266,53 +228,9 @@ export class GameModuleC extends ModuleC<IGameModuleS, GameModuleData> implement
 		}, 500);
 	}
 
-	public async changeGame(targetGameId: string) {
-		await this.server.net_ResetPos(GlobalData.globalPos);
-		await mw.TimeUtil.delaySecond(1);
-		mw.RouteService
-			.requestGameId(targetGameId)
-			.then((mwGameId: string) => {
-				console.error("eason===  entergameId  " + mwGameId);
-				mw.RouteService.enterNewGame(mwGameId);
-			});
-	}
-
-	public stopReturnTime() {
-		this._returnSchoolTime = 0
-		this.hudPanel.schoolTime.visibility = mw.SlateVisibility.Hidden
-	}
-
 	protected onUpdate(dt: number): void {
-		// if (this._returnSchoolTime > 0) {
-		// 	if (Math.floor(this._returnSchoolTime) == 3) {
-		// 		this.stopReturnTime()
-		// 		CloseAllUI()
-		// 		UIManager.show(BackSchoolUI, 4)
-		// 	} else {
-		// 		this._returnSchoolTime -= dt;
-		// 		this._returnSchoolTime = Math.max(0, this._returnSchoolTime)
-		// 		this.hudPanel.setSchoolTime(this._returnSchoolTime)
-		// 	}
-		// }
-	}
 
-	/**设置玩家传送，玩家旋转，相机角度 */
-	public playertrasnformRotSysRot(pos: mw.Vector, rot: mw.Rotation, sysRot: mw.Rotation) {
-		const character = this.localPlayer.character;
-		if (pos) {
-			character.worldTransform.position = pos.clone();
-		}
-		if (rot) {
-			character.worldTransform.rotation = rot.clone();
-		}
-		if (sysRot) {
-			ModifiedCameraSystem.setOverrideCameraRotation(sysRot);
-			setTimeout(() => {
-				ModifiedCameraSystem.resetOverrideCameraRotation();
-			}, 32);
-		}
 	}
-
 	private addGM() {
 		let cgActive = false;
 		AddGMCommand("开启CG编辑器", (player: mw.Player, value: string) => {
@@ -396,34 +314,19 @@ export class GameModuleC extends ModuleC<IGameModuleS, GameModuleData> implement
 		this.jumpExitInteractiveCallback = null;
 		this.hudPanel.showExitInteractiveBtn(false);
 	}
-	public quitInterval() {
-		if (this.btnExitInteractiveCallback != null) {
-			this.btnExitInteractiveCallback();
-			this.btnExitInteractiveCallback = null;
-		}
-	}
-	/**
-	 * 设置相机滑动区域可用性
-	 * @param bool
-	 */
-	public setTouchPadEnabled(bool: boolean): void {
-		this.hudPanel.setTouchPadEnabled(bool);
-	}
 
 	public setUIstate(bool: boolean) {
 		if (bool) {
 			GlobalModule.MyPlayerC.Action.changePanelState(true);
 			ModuleService.getModule(PropModuleC).setUIShow();
 			ModuleService.getModule(BagModuleC).setHubVis(true);
-			UIManager.show(SkillUI);
-			this.hudPanel.setUIVisable(true, UIType.Camera, UIType.Dress);
+			this.hudPanel.setUIVisable(true, UIType.Dress);
 			if (!this.hudPanel.visible) UIManager.showUI(this.hudPanel);
 		} else {
 			GlobalModule.MyPlayerC.Action.changePanelState(false);
 			ModuleService.getModule(PropModuleC).setUIHide();
 			ModuleService.getModule(BagModuleC).setHubVis(false);
-			UIManager.hide(SkillUI);
-			this.hudPanel.setUIVisable(false, UIType.Camera, UIType.Dress);
+			this.hudPanel.setUIVisable(false, UIType.Dress);
 		}
 	}
 
@@ -434,25 +337,19 @@ export class GameModuleC extends ModuleC<IGameModuleS, GameModuleData> implement
 			ModuleService.getModule(BagModuleC).setHubVis(false);
 			GlobalModule.MyPlayerC.Action.changePanelState(false);
 			ModuleService.getModule(PropModuleC).setUIHide();
-			ModuleService.getModule(TaskModuleC).setGuidVisable(false)
-			UIManager.hide(SkillUI);
 			this.hudPanel.setUIVisable(false, UIType.Dress, UIType.Bag, UIType.School, UIType.Return, UIType.ClothReset, UIType.Task);
 		} else if (cameraType == CameraType.Null) {
 			this.hudPanel.camera_FP(true);
-			UIManager.show(SkillUI);
-			ModuleService.getModule(TaskModuleC).setGuidVisable(true)
 			ModuleService.getModule(BagModuleC).setHubVis(true);
 			GlobalModule.MyPlayerC.Action.changePanelState(true);
 			ModuleService.getModule(PropModuleC).setUIShow();
-			this.hudPanel.setUIVisable(true, UIType.Camera, UIType.Dress, UIType.Bag, UIType.School, UIType.Return, UIType.ClothReset, UIType.Task);
+			this.hudPanel.setUIVisable(true, UIType.Camera, UIType.Dress, UIType.Card, UIType.Bag, UIType.School, UIType.Return, UIType.ClothReset, UIType.Task);
 		} else {
 			this.hudPanel.camera_FP(true);
 			this.hudPanel.camera_Other(false);
-			ModuleService.getModule(TaskModuleC).setGuidVisable(false)
 			ModuleService.getModule(BagModuleC).setHubVis(false);
 			GlobalModule.MyPlayerC.Action.changePanelState(false);
 			ModuleService.getModule(PropModuleC).setUIHide();
-			UIManager.hide(SkillUI);
 			this.hudPanel.setUIVisable(false, UIType.Dress, UIType.Bag, UIType.School, UIType.Return, UIType.ClothReset, UIType.Task);
 		}
 	}
@@ -464,14 +361,6 @@ export class GameModuleC extends ModuleC<IGameModuleS, GameModuleData> implement
 		this.hudPanel.setUIVisable(false, UIType.Camera);
 		MGSMsgHome.setBtnClick("open");
 		MGSMsgHome.setBtnClick("camera_btn");
-	}
-
-	/**ui游戏时隐藏 */
-	public showCameraEnterBag(isVis: boolean) {
-		ModuleService.getModule(BagModuleC).setHubVis(isVis);
-		// isVis ? UIManager.showUI(this.cameraEnterPanel) : UIHide(this.cameraEnterPanel);
-		this.hudPanel.setUIVisable(isVis, UIType.Camera);
-		this.changeJoyStickState(isVis);
 	}
 
 	public IsTakePhotos(is: boolean) {
@@ -488,11 +377,6 @@ export class GameModuleC extends ModuleC<IGameModuleS, GameModuleData> implement
 		this.hudPanel.setUIVisable(false, UIType.Camera);
 		ModuleService.getModule(CameraModuleC).switchCamera(cameraType);
 	}
-	public getCameraUI() {
-		return this.hudPanel.getCameraUI();
-	}
-
-
 	/**
 	 * 登录设置身份牌
 	 * @param occupation

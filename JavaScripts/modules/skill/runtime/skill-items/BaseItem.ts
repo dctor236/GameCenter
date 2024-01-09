@@ -4,8 +4,8 @@ import { RuntimeConst } from "../Const";
 import { ISkillEntity, ISkillBaseItem as ISkillItem, ISkillTimer } from "../../define/SkillDefine";
 
 /** 
- * @Author       : xianjie.xia
- * @LastEditors  : xianjie.xia
+ * @Author       : meta
+ * @LastEditors  : meta
  * @Date         : 2022-11-16 17:43
  * @LastEditTime : 2023-03-08 16:10
  * @description  : 

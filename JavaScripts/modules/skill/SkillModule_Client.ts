@@ -1,29 +1,18 @@
-import { GeneralManager, } from '../../Modified027Editor/ModifiedStaticAPI';
-/**
-* @Author       : 田可成
-* @Date         : 2023-04-17 14:36:24
-* @LastEditors  : 田可成
-* @LastEditTime : 2023-06-08 09:28:04
-* @FilePath     : \mollywoodschool\JavaScripts\modules\skill\SkillModule_Client.ts
-* @Description  :
-*/
 import { GameConfig } from "../../config/GameConfig";
 import { EventsName, PlayerStateType, SkillState } from "../../const/GameEnum";
 import { GlobalData } from "../../const/GlobalData";
-import { getMyCharacterGuid, UIManager } from "../../ExtensionType";
-import { TS3 } from "../../ts3/TS3";
-import { Attribute } from "../fight/attibute/Attribute";
-import FightMgr from "../fight/FightMgr";
-import ComboUI from "../fight/ui/ComboUI";
+import { UIManager } from "../../ExtensionType";
 import { MGSMsgHome } from "../mgsMsg/MgsmsgHome";
-import BulletTrrigerMgr from "./bullettrriger/BulletTrrigerMgr";
 import SkillBase from "./logic/SkillBase";
 import { SkillData } from "./SkillData";
 import SkillMgr from "./SkillMgr";
 import SkillModule_Server from "./SkillModule_Server";
-import BesomMgr from "./skillObj/BesomMgr";
 import SkillUI from "./ui/SkillUI";
 
+
+/**
+ * 技能模块 客户端 控制非广场物品的技能
+ */
 export default class SkillModule_Client extends ModuleC<SkillModule_Server, SkillData> {
 	private _skillMap: Map<PlayerStateType, SkillBase[]> = new Map()
 	private _callArr: any[] = []
@@ -36,10 +25,6 @@ export default class SkillModule_Client extends ModuleC<SkillModule_Server, Skil
 
 		Event.addLocalListener(EventsName.UseSkill, (itemID: number, skillID: number) => {
 			MGSMsgHome.useSkill(skillID);
-			// let camera = Camera.currentCamera
-			// camera.preset = (mw.CameraPreset.TPSOverShoulderAngle)
-			// camera.cameraLockTarget
-			// this._skillUI.mAim.visibility = mw.SlateVisibility.SelfHitTestInvisible
 		});
 		const guid = this.localPlayer.character.gameObjectId;
 		this.registerSkill();
@@ -61,6 +46,10 @@ export default class SkillModule_Client extends ModuleC<SkillModule_Server, Skil
 		})
 	}
 
+
+	/**
+	 * 注册技能
+	 */
 	private registerSkill() {
 		for (const config of GameConfig.Skill.getAllElement()) {
 			if (!SkillMgr.Inst.skillClassMap.has(config.ID)) {
@@ -69,11 +58,11 @@ export default class SkillModule_Client extends ModuleC<SkillModule_Server, Skil
 		}
 	}
 
-	protected onDetach(): void {
-		this._callArr.length = 0;
-		this._skillMap = new Map()
-	}
-
+	/**
+	 * 通过技能id查找技能
+	 * @param skillID 技能id
+	 * @returns 
+	 */
 	public findSkill(skillID: number): SkillBase {
 		let skillbase: SkillBase = null
 		this._skillMap.forEach(arr => {
@@ -87,6 +76,11 @@ export default class SkillModule_Client extends ModuleC<SkillModule_Server, Skil
 		return skillbase;
 	}
 
+	/**
+	 * 设置技能状态
+	 * @param state 状态
+	 * @param isActive on/off
+	 */
 	public setState(state: PlayerStateType, isActive: boolean) {
 		if (this._skillMap.has(state)) {
 			const arr = this._skillMap.get(state)
@@ -97,61 +91,12 @@ export default class SkillModule_Client extends ModuleC<SkillModule_Server, Skil
 		}
 	}
 
-	//dmage 技能伤害
-	public onHit(
-		hitObj: string,
-		buffName: string,
-		damage: number,
-		damageRate: number,
-		effectId: number,
-		music: number,
-		skillID: number,
-		hitLocation?: mw.Vector
-	): boolean {
-		//XXJ 击中
-		// TS3.log('onHit', hitObj, buffName, damage, effectId, music, skillID, hitLocation)
-		let m = TS3.monsterMgr.getMonster(hitObj);
-		if (m) {
-			let attDamage = FightMgr.instance.calculatePDamage()
-			let skillDamage = (1 + damageRate / 100) * attDamage.data
-			TS3.monsterMgr.onDamage(hitObj, Math.round(skillDamage), attDamage.crit);
-			// 音效
-			const sound = GameConfig.Music.getElement(music);
-			if (sound) {
-				const musicRange = sound.MusicRange;
-				const range = musicRange
-					? {
-						innerRadius: musicRange[0],
-						falloffDistance: musicRange[1],
-					}
-					: undefined;
-				SoundService.play3DSound(sound.MusicGUID, hitLocation, 1, sound.Music, range);
-			}
-			//特效
-			const effect = GameConfig.Effect.getElement(effectId);
-			effect &&
-				GeneralManager.rpcPlayEffectAtLocation(
-					effect.EffectID,
-					hitLocation,
-					effect.EffectTime,
-					effect.EffectRotate.toRotation(),
-					effect.EffectLarge
-				);
-			ComboUI.instance.setCombo(hitObj);
-		}
-		// const entity = this.entity as EntityC;
-		// let key: TagComponent = ComponentSystem.getComponent(TagComponent, hitObj); //= EntityManagerC.instance.getEntityByEnemy(entity, hitObj)
-		// if (key && key.hasAllExact(IdentifierTags.State.Fighting) && buffName != "") {
-		// 	BuffScript.addBuffApply(getMyCharacterGuid(), buffName, damage, hitObj, {});
-		// 	ComponentSystem.getComponent(BuffComponent, getMyCharacterGuid())?.applyBuffToTarget(buffName, damage, hitObj);
-		if (buffName == "") return true;
-		return false;
-	}
-
-	public getSkill(itemID: number) {
-		if (itemID == 0) this.getSkillUI([]);
-		else this.getSkillUI(GameConfig.Item.getElement(itemID).Skills, itemID);
-	}
+	/**
+	 * 使用技能
+	 * @param skills 技能id列表
+	 * @param itemID 物品id
+	 * @param isStart 是否技能start
+	 */
 
 	public getSkillUI(skills: number[], itemID: number = 0, isStart: boolean = false) {
 		if (!skills) {
@@ -183,8 +128,6 @@ export default class SkillModule_Client extends ModuleC<SkillModule_Server, Skil
 	}
 
 	protected onUpdate(dt: number): void {
-		BulletTrrigerMgr.instance.update(dt);
-		BesomMgr.instance.onUpdate(dt);
 		if (GlobalData.skillCD >= 0) {
 			GlobalData.skillCD -= dt;
 		}

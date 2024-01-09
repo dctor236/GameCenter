@@ -1,10 +1,15 @@
- 
+﻿ 
 
  @UIBind('UI/module_cameracg/item/CSTimePointUI.ui')
- export default class CSTimePointUI_Generate extends mw.UIScript {
-     @UIWidgetBind('Canvas/mImgLine')
-    public mImgLine: mw.Image=undefined;
-    
+ export default class CSTimePointUI_Generate extends UIScript {
+     	private mImgLine_Internal: mw.Image
+	public get mImgLine(): mw.Image {
+		if(!this.mImgLine_Internal&&this.uiWidgetBase) {
+			this.mImgLine_Internal = this.uiWidgetBase.findChildByPath('Canvas/mImgLine') as mw.Image
+		}
+		return this.mImgLine_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

@@ -1,8 +1,8 @@
 
 import { TimerState, ISkillEntity, ISkillBaseItem, ISkillTimer, ISkillLine as ISkillTimeLine } from "../define/SkillDefine";
 /** 
- * @Author       : xianjie.xia
- * @LastEditors  : xianjie.xia
+ * @Author       : meta
+ * @LastEditors  : meta
  * @Date         : 2022-12-06 11:24
  * @LastEditTime : 2023-03-08 14:07
  * @description  : 

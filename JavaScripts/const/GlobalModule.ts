@@ -1,10 +1,3 @@
-/** 
- * @Author       : xianjie.xia
- * @LastEditors  : xianjie.xia
- * @Date         : 2023-06-09 11:18
- * @LastEditTime : 2023-06-11 09:50
- * @description  : 
- */
 import PlayerModuleClient from "../modules/player/PlayerModuleClient"
 import PlayerModuleServer from "../modules/player/PlayerModuleServer"
 

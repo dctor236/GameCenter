@@ -1,8 +1,8 @@
 import { GeneralManager, } from '../../../Modified027Editor/ModifiedStaticAPI';
 /**
- * @Author       : 陆江帅
+ * @Author       : meta
  * @Date         : 2023-03-06 10:44:59
- * @LastEditors  : 田可成
+ * @LastEditors  : meta
  * @LastEditTime : 2023-06-06 11:26:24
  * @FilePath     : \mollywoodschool\JavaScripts\modules\bag\ui\BagHub.ts
  * @Description  :
@@ -12,7 +12,6 @@ import { GlobalData } from "../../../const/GlobalData";
 import { Tween, UIManager } from "../../../ExtensionType";
 import BagHub_Generate from "../../../ui-generate/bag/BagHub_generate";
 import { MGSMsgHome } from "../../mgsMsg/MgsmsgHome";
-import SkillModule_Client from "../../skill/SkillModule_Client";
 import { ItemInfo } from "../BagDataHelper";
 import { BagModuleC } from "../BagModuleC";
 import { BagInteraction } from "./BagInteraction";
@@ -101,9 +100,9 @@ export class BagHub extends BagHub_Generate {
         /**刷新快捷栏 */
         this.bagModuleC.onRefreshBar.add(this.refreshShortcutBar, this);
 
-        Event.addLocalListener(EventsName.CreationSkills, (itemID: number, loc: mw.Vector) => {
-            this.creationFly(itemID, loc);
-        });
+        // Event.addLocalListener(EventsName.CreationSkills, (itemID: number, loc: mw.Vector) => {
+        //     this.creationFly(itemID, loc);
+        // });
     }
 
     protected onShow(...params: any[]): void {
@@ -175,14 +174,10 @@ export class BagHub extends BagHub_Generate {
         /**埋点 */
         this._selectTime = Date.now();
         MGSMsgHome.clickBagHub(item.config.ID);
-        // if (item.config.ID !== 11101) {
-        //     CreditEventsC.timekeeper(CreditEvent.RP.Item, 1);
-        // }
         this._selectEquip = item;
         this._selectEquip.mSelect.visibility = mw.SlateVisibility.SelfHitTestInvisible;
         Event.dispatchToServer(EventsName.LoadProp, item.config.Resource);
         Event.dispatchToLocal(EventsName.EquipProp, item.config.ID);
-        ModuleService.getModule(SkillModule_Client).getSkill(item.config.ID);
         if (item.config.isCanGive) {
             UIManager.show(BagInteraction);
         } else {
@@ -190,6 +185,11 @@ export class BagHub extends BagHub_Generate {
         }
     }
 
+    /**
+     * 解除物品
+     * @param item 物品
+     * @param isNull  是否置为空
+     */
     public unloadItem(item: GoodsItem, isNull: boolean = true) {
         let prop = 0;
         const config = item?.config;
@@ -204,57 +204,11 @@ export class BagHub extends BagHub_Generate {
                 this._selectTime && MGSMsgHome.selectItemTime(config.ID, time);
                 this._selectTime = 0;
             }
-            // CreditEventsC.endTimekeeper(CreditEvent.RP.Item, 1);
         }
-        ModuleService.getModule(SkillModule_Client).getSkill(0);
-        // Event.dispatchToLocal(EventsName.EquipProp, 0);
         prop && Event.dispatchToServer(EventsName.UnloadProp, prop);
         if (isNull) {
             this._selectEquip = null;
         }
     }
 
-    private creationFly(itemID: number, loc: mw.Vector) {
-        GeneralManager.modifyProjectWorldLocationToWidgetPosition(Player.localPlayer, loc, creationViewPos, true);
-        creationViewPos.x -= this.mFlyCon.size.x / 2;
-        creationViewPos.y -= this.mFlyCon.size.y / 2;
-        for (const item of this._allSlot) {
-            if (item.config?.ID === itemID) {
-                mw.localToViewport(item.rootCanvas.cachedGeometry, mw.Vector2.zero, outPixelPos, outViewPos);
-                this.mFlyCon.visibility = mw.SlateVisibility.SelfHitTestInvisible;
-                this.mFlyHalo.visibility = mw.SlateVisibility.Collapsed;
-                this.mFly.imageGuid = item.config.Icon;
-                this.mFlyCon.position = creationViewPos;
-                const tempPos = creationViewPos;
-                new Tween({ x: creationViewPos.x, y: creationViewPos.y })
-                    .to({ x: outViewPos.x, y: outViewPos.y }, 500)
-                    .onUpdate(obj => {
-                        tempPos.x = obj.x;
-                        tempPos.y = obj.y;
-                        this.mFlyCon.position = tempPos;
-                    })
-                    .start()
-                    .onComplete(obj => {
-                        this.mFlyHalo.visibility = mw.SlateVisibility.SelfHitTestInvisible;
-                        const scale = this.mFlyHalo.renderScale.clone();
-                        new Tween({ scale: 0, angle: -180 })
-                            .to({ scale: 1, angle: 180 }, 1000)
-                            .yoyo(true)
-                            .repeat(1)
-                            .onUpdate(obj => {
-                                scale.x = obj.scale;
-                                scale.y = obj.scale;
-                                this.mFlyHalo.renderScale = scale;
-                                this.mFlyHalo.renderTransformAngle = obj.angle;
-                            })
-                            .easing(TweenUtil.Easing.Circular.Out)
-                            .start()
-                            .onComplete(obj => {
-                                this.mFlyCon.visibility = mw.SlateVisibility.Collapsed;
-                            });
-                    });
-                break;
-            }
-        }
-    }
 }

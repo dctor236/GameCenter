@@ -1,10 +1,15 @@
- 
+﻿ 
 
  @UIBind('UI/tour/MountHead.ui')
- export default class MountHead_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/mName')
-    public mName: mw.TextBlock=undefined;
-    
+ export default class MountHead_Generate extends UIScript {
+     	private mName_Internal: mw.TextBlock
+	public get mName(): mw.TextBlock {
+		if(!this.mName_Internal&&this.uiWidgetBase) {
+			this.mName_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mName') as mw.TextBlock
+		}
+		return this.mName_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

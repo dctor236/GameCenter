@@ -1,16 +1,36 @@
- 
+﻿ 
 
  @UIBind('UI/bag/GiftItem.ui')
- export default class GiftItem_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/button')
-    public button: mw.Button=undefined;
-    @UIWidgetBind('RootCanvas/imageIcon')
-    public imageIcon: mw.Image=undefined;
-    @UIWidgetBind('RootCanvas/textName')
-    public textName: mw.TextBlock=undefined;
-    @UIWidgetBind('RootCanvas/textNum')
-    public textNum: mw.TextBlock=undefined;
-    
+ export default class GiftItem_Generate extends UIScript {
+     	private button_Internal: mw.Button
+	public get button(): mw.Button {
+		if(!this.button_Internal&&this.uiWidgetBase) {
+			this.button_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/button') as mw.Button
+		}
+		return this.button_Internal
+	}
+	private imageIcon_Internal: mw.Image
+	public get imageIcon(): mw.Image {
+		if(!this.imageIcon_Internal&&this.uiWidgetBase) {
+			this.imageIcon_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/imageIcon') as mw.Image
+		}
+		return this.imageIcon_Internal
+	}
+	private textName_Internal: mw.TextBlock
+	public get textName(): mw.TextBlock {
+		if(!this.textName_Internal&&this.uiWidgetBase) {
+			this.textName_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/textName') as mw.TextBlock
+		}
+		return this.textName_Internal
+	}
+	private textNum_Internal: mw.TextBlock
+	public get textNum(): mw.TextBlock {
+		if(!this.textNum_Internal&&this.uiWidgetBase) {
+			this.textNum_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/textNum') as mw.TextBlock
+		}
+		return this.textNum_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

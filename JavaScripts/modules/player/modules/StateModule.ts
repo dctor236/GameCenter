@@ -6,12 +6,16 @@ enum StateEvent {
     net_SetPlayerState = "net_SetPlayerState"
 }
 /**
- * @Author       : 田可成
+ * @Author       : meta
  * @Date         : 2023-05-08 19:03:16
- * @LastEditors  : 田可成
+ * @LastEditors  : meta
  * @LastEditTime : 2023-05-09 14:26:45
  * @FilePath     : \mollywoodschool\JavaScripts\modules\player\modules\StateModule.ts
  * @Description  : 
+ */
+
+/**
+ * 玩家状态管理 客户端 控制玩家所处状态
  */
 export class StateModuleC extends ModuleBaseC {
     private _myState: number[] = [];
@@ -31,6 +35,12 @@ export class StateModuleC extends ModuleBaseC {
         return this._myState.length > 0;
     }
 
+    /**
+     * 设置状态
+     * @param stateType 
+     * @param active 
+     * @param isSync 
+     */
     public setMyState(stateType: PlayerStateType, active: boolean, isSync: boolean = true) {
         if (stateType == PlayerStateType.Interaction) {
             ModuleService.getModule(PropModuleC).setFlyState(!active);
@@ -54,6 +64,9 @@ export class StateModuleC extends ModuleBaseC {
     }
 }
 
+/**
+ * 玩家状态管理 服务器端 控制玩家所处状态
+ */
 export class StateModuleS extends ModuleBaseS {
     private playerStateMap: Map<number, number[]> = new Map();//玩家当前的行为类型
 

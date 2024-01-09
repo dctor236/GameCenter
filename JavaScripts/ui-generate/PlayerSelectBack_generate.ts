@@ -1,14 +1,29 @@
- 
+﻿ 
 
  @UIBind('UI/PlayerSelectBack.ui')
- export default class PlayerSelectBack_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/mYes')
-    public mYes: mw.Button=undefined;
-    @UIWidgetBind('RootCanvas/mNo')
-    public mNo: mw.Button=undefined;
-    @UIWidgetBind('RootCanvas/mContent')
-    public mContent: mw.TextBlock=undefined;
-    
+ export default class PlayerSelectBack_Generate extends UIScript {
+     	private mYes_Internal: mw.Button
+	public get mYes(): mw.Button {
+		if(!this.mYes_Internal&&this.uiWidgetBase) {
+			this.mYes_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mYes') as mw.Button
+		}
+		return this.mYes_Internal
+	}
+	private mNo_Internal: mw.Button
+	public get mNo(): mw.Button {
+		if(!this.mNo_Internal&&this.uiWidgetBase) {
+			this.mNo_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mNo') as mw.Button
+		}
+		return this.mNo_Internal
+	}
+	private mContent_Internal: mw.TextBlock
+	public get mContent(): mw.TextBlock {
+		if(!this.mContent_Internal&&this.uiWidgetBase) {
+			this.mContent_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mContent') as mw.TextBlock
+		}
+		return this.mContent_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

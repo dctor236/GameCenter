@@ -8,6 +8,9 @@ import { PropBaseModuleS } from "../squareBase/PropBase/PropBaseModule";
 import { Prefab } from "./Prefab";
 import { PropModuleC } from "./PropModuleC";
 
+/**
+ * 背包模块 服务器端 设置
+ */
 export class PropModuleS extends PropBaseModuleS<PropModuleC, null>{
     private _effectMap: Map<number, number> = new Map();
     private _soundMap: Map<number, number> = new Map();

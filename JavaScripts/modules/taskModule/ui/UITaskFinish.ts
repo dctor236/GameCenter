@@ -1,15 +1,11 @@
-/*
- * @Author: 王嵘 rong.wang@appshahe.com
- * @Date: 2022-12-13 10:41:12
- * @LastEditTime: 2023-05-21 01:07:52
- * @Description: Avatar Creator Development
- */
 
 import { Tween } from "../../../ExtensionType";
 import TaskFinish_Generate from "../../../ui-generate/task/TaskFinish_generate";
 
+/**
+ * 任务完成UI
+ */
 export default class UITaskFinish extends TaskFinish_Generate {
-
     private _iconAni: Tween<{ x }>;
     private _scaleAni: Tween<{ scale }>;
     private _textAni: Tween<{ x }>;

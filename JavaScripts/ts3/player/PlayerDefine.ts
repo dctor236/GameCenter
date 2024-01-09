@@ -1,10 +1,3 @@
-/** 
- * @Author       : xianjie.xia
- * @LastEditors  : xianjie.xia
- * @Date         : 2023-05-24 11:06
- * @LastEditTime : 2023-06-27 17:40
- * @description  : 
- */
 
 import PlayerHeadUI from "./PlayerHeadUI";
 

@@ -1,7 +1,7 @@
- 
+﻿ 
 
  @UIBind('UI/tour/back.ui')
- export default class back_Generate extends mw.UIScript {
+ export default class back_Generate extends UIScript {
      
 
      protected onAwake() {

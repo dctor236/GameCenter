@@ -1,9 +1,3 @@
-/*
- * @Author: 王嵘 rong.wang@appshahe.com
- * @Date: 2022-12-12 11:37:45
- * @LastEditTime: 2023-05-27 19:44:27
- * @Description: Avatar Creator Development
- */
 
 import { GameConfig } from "../../../config/GameConfig";
 import { EmTaskType, EmTaskState, EventsName } from "../../../const/GameEnum";

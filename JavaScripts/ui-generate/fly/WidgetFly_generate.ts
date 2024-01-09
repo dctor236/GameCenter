@@ -1,7 +1,7 @@
- 
+﻿ 
 
  @UIBind('UI/fly/WidgetFly.ui')
- export default class WidgetFly_Generate extends mw.UIScript {
+ export default class WidgetFly_Generate extends UIScript {
      
 
      protected onAwake() {

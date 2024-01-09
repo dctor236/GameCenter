@@ -1,6 +1,4 @@
-import { Class } from "./const/GlobalData";
 import P_GameHUD from "./modules/gameModule/P_GameHUD";
-import { BulletTrrigerBase } from "./modules/skill/bullettrriger/BulletTrrigerBase";
 
 export class MyAction extends mw.Action { };
 export class MyAction1<T> extends mw.Action1<T>{ };
@@ -249,4 +247,3 @@ export enum UILayer {
     /**错误 */
     Error = 7
 }
-export let bulletClass: Map<string, Class<BulletTrrigerBase>> = new Map()

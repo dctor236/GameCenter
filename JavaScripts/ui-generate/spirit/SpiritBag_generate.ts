@@ -1,7 +1,7 @@
- 
+﻿ 
 
  @UIBind('UI/spirit/SpiritBag.ui')
- export default class SpiritBag_Generate extends mw.UIScript {
+ export default class SpiritBag_Generate extends UIScript {
      
 
      protected onAwake() {

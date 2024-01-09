@@ -1,32 +1,92 @@
- 
+﻿ 
 
  @UIBind('UI/beautybattle/battleui.ui')
- export default class battleui_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/characterModel')
-    public characterModel: mw.Image=undefined;
-    @UIWidgetBind('RootCanvas/ClothSelectCanvas/barItem1')
-    public barItem1: mw.StaleButton=undefined;
-    @UIWidgetBind('RootCanvas/ClothSelectCanvas/barItem2')
-    public barItem2: mw.StaleButton=undefined;
-    @UIWidgetBind('RootCanvas/ClothSelectCanvas/barItem3')
-    public barItem3: mw.StaleButton=undefined;
-    @UIWidgetBind('RootCanvas/ClothSelectCanvas/barItem4')
-    public barItem4: mw.StaleButton=undefined;
-    @UIWidgetBind('RootCanvas/ClothSelectCanvas/barItem5')
-    public barItem5: mw.StaleButton=undefined;
-    @UIWidgetBind('RootCanvas/ClothSelectCanvas/barItem6')
-    public barItem6: mw.StaleButton=undefined;
-    @UIWidgetBind('RootCanvas/ClothSelectCanvas/mScroll/mContent')
-    public mContent: mw.Canvas=undefined;
-    @UIWidgetBind('RootCanvas/ClothSelectCanvas/mScroll')
-    public mScroll: mw.ScrollBox=undefined;
-    @UIWidgetBind('RootCanvas/ClothSelectCanvas/mClose')
-    public mClose: mw.Button=undefined;
-    @UIWidgetBind('RootCanvas/ClothSelectCanvas/accept')
-    public accept: mw.StaleButton=undefined;
-    @UIWidgetBind('RootCanvas/ClothSelectCanvas/reset')
-    public reset: mw.StaleButton=undefined;
-    
+ export default class battleui_Generate extends UIScript {
+     	private characterModel_Internal: mw.Image
+	public get characterModel(): mw.Image {
+		if(!this.characterModel_Internal&&this.uiWidgetBase) {
+			this.characterModel_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/characterModel') as mw.Image
+		}
+		return this.characterModel_Internal
+	}
+	private barItem1_Internal: mw.StaleButton
+	public get barItem1(): mw.StaleButton {
+		if(!this.barItem1_Internal&&this.uiWidgetBase) {
+			this.barItem1_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/ClothSelectCanvas/barItem1') as mw.StaleButton
+		}
+		return this.barItem1_Internal
+	}
+	private barItem2_Internal: mw.StaleButton
+	public get barItem2(): mw.StaleButton {
+		if(!this.barItem2_Internal&&this.uiWidgetBase) {
+			this.barItem2_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/ClothSelectCanvas/barItem2') as mw.StaleButton
+		}
+		return this.barItem2_Internal
+	}
+	private barItem3_Internal: mw.StaleButton
+	public get barItem3(): mw.StaleButton {
+		if(!this.barItem3_Internal&&this.uiWidgetBase) {
+			this.barItem3_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/ClothSelectCanvas/barItem3') as mw.StaleButton
+		}
+		return this.barItem3_Internal
+	}
+	private barItem4_Internal: mw.StaleButton
+	public get barItem4(): mw.StaleButton {
+		if(!this.barItem4_Internal&&this.uiWidgetBase) {
+			this.barItem4_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/ClothSelectCanvas/barItem4') as mw.StaleButton
+		}
+		return this.barItem4_Internal
+	}
+	private barItem5_Internal: mw.StaleButton
+	public get barItem5(): mw.StaleButton {
+		if(!this.barItem5_Internal&&this.uiWidgetBase) {
+			this.barItem5_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/ClothSelectCanvas/barItem5') as mw.StaleButton
+		}
+		return this.barItem5_Internal
+	}
+	private barItem6_Internal: mw.StaleButton
+	public get barItem6(): mw.StaleButton {
+		if(!this.barItem6_Internal&&this.uiWidgetBase) {
+			this.barItem6_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/ClothSelectCanvas/barItem6') as mw.StaleButton
+		}
+		return this.barItem6_Internal
+	}
+	private mContent_Internal: mw.Canvas
+	public get mContent(): mw.Canvas {
+		if(!this.mContent_Internal&&this.uiWidgetBase) {
+			this.mContent_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/ClothSelectCanvas/mScroll/mContent') as mw.Canvas
+		}
+		return this.mContent_Internal
+	}
+	private mScroll_Internal: mw.ScrollBox
+	public get mScroll(): mw.ScrollBox {
+		if(!this.mScroll_Internal&&this.uiWidgetBase) {
+			this.mScroll_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/ClothSelectCanvas/mScroll') as mw.ScrollBox
+		}
+		return this.mScroll_Internal
+	}
+	private mClose_Internal: mw.Button
+	public get mClose(): mw.Button {
+		if(!this.mClose_Internal&&this.uiWidgetBase) {
+			this.mClose_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/ClothSelectCanvas/mClose') as mw.Button
+		}
+		return this.mClose_Internal
+	}
+	private accept_Internal: mw.StaleButton
+	public get accept(): mw.StaleButton {
+		if(!this.accept_Internal&&this.uiWidgetBase) {
+			this.accept_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/ClothSelectCanvas/accept') as mw.StaleButton
+		}
+		return this.accept_Internal
+	}
+	private reset_Internal: mw.StaleButton
+	public get reset(): mw.StaleButton {
+		if(!this.reset_Internal&&this.uiWidgetBase) {
+			this.reset_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/ClothSelectCanvas/reset') as mw.StaleButton
+		}
+		return this.reset_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

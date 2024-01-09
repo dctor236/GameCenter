@@ -3,18 +3,9 @@ import { LogMgr } from "../com/LogMgr";
 import HeadUI from "./PlayerHeadUI";
 import { PlayerDefine, GamePlayerState } from "./PlayerDefine";
 import { PlayerMgr } from "./PlayerMgr";
-import { Attribute } from "../../modules/fight/attibute/Attribute";
-import { EnumDamageType } from "../../modules/fight/FightDefine";
 import { EventsName } from "../../const/GameEnum";
 import { GameConfig } from "../../config/GameConfig";
-import { HitMgr } from '../../modules/fight/ui/HitMgr';
-/** 
- * @Author       : xianjie.xia
- * @LastEditors  : xianjie.xia
- * @Date         : 2023-04-02 14:18
- * @LastEditTime : 2023-06-11 13:17
- * @description  : 玩家脚本
- */
+
 @Component
 export default class TsPlayer extends mw.Script {
     public userId: string;
@@ -171,53 +162,6 @@ export default class TsPlayer extends mw.Script {
         return !this.mwPlayer || !this.mwPlayer.userId;
     }
 
-    public setAtt(type: Attribute.EAttType, val: number) {
-        switch (type) {
-            case Attribute.EAttType.atk:
-                this.setAtk(val)
-                break
-            case Attribute.EAttType.defense:
-                this.setDefence(val)
-                break
-            case Attribute.EAttType.crit:
-                this.setCritRate(val)
-                break
-            case Attribute.EAttType.critDamage:
-                this.setCriteDamageRate(val)
-                break
-            case Attribute.EAttType.hp:
-                this.setHp(val)
-                break
-            case Attribute.EAttType.maxHp:
-                this.setHpMax(val)
-                break
-        }
-    }
-
-    public getAtt(type: Attribute.EAttType) {
-        let val: number = 0
-        switch (type) {
-            case Attribute.EAttType.atk:
-                val = this.atk
-                break
-            case Attribute.EAttType.defense:
-                val = this.defense
-                break
-            case Attribute.EAttType.crit:
-                val = this.critRate
-                break
-            case Attribute.EAttType.critDamage:
-                val = this.critDamgeRate
-                break
-            case Attribute.EAttType.hp:
-                val = this.hp
-                break
-            case Attribute.EAttType.maxHp:
-                val = this.hpMax
-                break
-        }
-        return val
-    }
 
     /*****属性操作 */
     public setHp(num: number) {
@@ -301,11 +245,7 @@ export default class TsPlayer extends mw.Script {
     }
     public showHp(damage: number = 0) {
         if (PlayerMgr.Inst.isMainPlayer(this)) {
-            // this.onHpChangeCb.call(this.hp)
             Event.dispatchToLocal(EventsName.OnPlayerHpChange, this.hp / this.hpMax * 100)
-            if (damage > 0)
-                HitMgr.inst.show2DHurt(damage, false, this.character.worldTransform.position)
-            // DamageDigit.showDamage(this.character.worldTransform.position, `-${damage}`, EnumDamageType.playerInjure);
         }
         if (this.headUI && PlayerMgr.Inst.getPlayer(this.userId)) {
             this.headUI.showHp(this.hp, this.hpMax);
@@ -323,15 +263,10 @@ export default class TsPlayer extends mw.Script {
 
     public onDamage(num: number) {
         let hp = this.hp - num;
-        // if (SystemUtil.isServer()) {
-        //     ModuleService.getModule(FightModuleS).reducePlayerAttr(this.userId,
-        //         Attribute.EAttType.hp, num)
-        // }
         this.setHp(hp);
     }
 
     onTitleChanged() {
-        console.log('onTitleChanged')
         this.showTitle(this.titleType, this.title);
     }
 

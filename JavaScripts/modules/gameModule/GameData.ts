@@ -2,7 +2,4 @@
 //this.DataInfo就是上面定义的数据对象
 export class GameModuleData extends Subdata {
 
-
-   
-
 }

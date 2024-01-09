@@ -1,42 +1,127 @@
- 
+﻿ 
 
  @UIBind('UI/SettingUI.ui')
- export default class SettingUI_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/Canvas/mBtn_NameCard')
-    public mBtn_NameCard: mw.Button=undefined;
-    @UIWidgetBind('RootCanvas/Canvas/mBtn_Graphics')
-    public mBtn_Graphics: mw.Button=undefined;
-    @UIWidgetBind('RootCanvas/Canvas/mBtn_Sound')
-    public mBtn_Sound: mw.Button=undefined;
-    @UIWidgetBind('RootCanvas/mCanvasNameCard/mInput_Title')
-    public mInput_Title: mw.InputBox=undefined;
-    @UIWidgetBind('RootCanvas/mCanvasNameCard/mBtn_ResetTitle')
-    public mBtn_ResetTitle: mw.Button=undefined;
-    @UIWidgetBind('RootCanvas/mCanvasNameCard/mBtn_EnterTitle')
-    public mBtn_EnterTitle: mw.Button=undefined;
-    @UIWidgetBind('RootCanvas/mCanvasNameCard')
-    public mCanvasNameCard: mw.Canvas=undefined;
-    @UIWidgetBind('RootCanvas/mCanvasSound/mBar_Music')
-    public mBar_Music: mw.ProgressBar=undefined;
-    @UIWidgetBind('RootCanvas/mCanvasSound/mBar_Sound')
-    public mBar_Sound: mw.ProgressBar=undefined;
-    @UIWidgetBind('RootCanvas/mCanvasSound')
-    public mCanvasSound: mw.Canvas=undefined;
-    @UIWidgetBind('RootCanvas/mBtn_Exit')
-    public mBtn_Exit: mw.Button=undefined;
-    @UIWidgetBind('RootCanvas/mCanvasGraphics/CanvasGraphics/mBar_GraphicsLev')
-    public mBar_GraphicsLev: mw.ProgressBar=undefined;
-    @UIWidgetBind('RootCanvas/mCanvasGraphics/CanvasGraphics/mBtn_GrapReset')
-    public mBtn_GrapReset: mw.StaleButton=undefined;
-    @UIWidgetBind('RootCanvas/mCanvasGraphics/CanvasGraphics/mBtn_GrapCancel')
-    public mBtn_GrapCancel: mw.StaleButton=undefined;
-    @UIWidgetBind('RootCanvas/mCanvasGraphics/CanvasGraphics/mBtn_GrapEnter')
-    public mBtn_GrapEnter: mw.StaleButton=undefined;
-    @UIWidgetBind('RootCanvas/mCanvasGraphics/CanvasGraphics/mTxt_GrapLevNum')
-    public mTxt_GrapLevNum: mw.TextBlock=undefined;
-    @UIWidgetBind('RootCanvas/mCanvasGraphics')
-    public mCanvasGraphics: mw.Canvas=undefined;
-    
+ export default class SettingUI_Generate extends UIScript {
+     	private mBtn_NameCard_Internal: mw.Button
+	public get mBtn_NameCard(): mw.Button {
+		if(!this.mBtn_NameCard_Internal&&this.uiWidgetBase) {
+			this.mBtn_NameCard_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/Canvas/mBtn_NameCard') as mw.Button
+		}
+		return this.mBtn_NameCard_Internal
+	}
+	private mBtn_Graphics_Internal: mw.Button
+	public get mBtn_Graphics(): mw.Button {
+		if(!this.mBtn_Graphics_Internal&&this.uiWidgetBase) {
+			this.mBtn_Graphics_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/Canvas/mBtn_Graphics') as mw.Button
+		}
+		return this.mBtn_Graphics_Internal
+	}
+	private mBtn_Sound_Internal: mw.Button
+	public get mBtn_Sound(): mw.Button {
+		if(!this.mBtn_Sound_Internal&&this.uiWidgetBase) {
+			this.mBtn_Sound_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/Canvas/mBtn_Sound') as mw.Button
+		}
+		return this.mBtn_Sound_Internal
+	}
+	private mInput_Title_Internal: mw.InputBox
+	public get mInput_Title(): mw.InputBox {
+		if(!this.mInput_Title_Internal&&this.uiWidgetBase) {
+			this.mInput_Title_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvasNameCard/mInput_Title') as mw.InputBox
+		}
+		return this.mInput_Title_Internal
+	}
+	private mBtn_ResetTitle_Internal: mw.Button
+	public get mBtn_ResetTitle(): mw.Button {
+		if(!this.mBtn_ResetTitle_Internal&&this.uiWidgetBase) {
+			this.mBtn_ResetTitle_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvasNameCard/mBtn_ResetTitle') as mw.Button
+		}
+		return this.mBtn_ResetTitle_Internal
+	}
+	private mBtn_EnterTitle_Internal: mw.Button
+	public get mBtn_EnterTitle(): mw.Button {
+		if(!this.mBtn_EnterTitle_Internal&&this.uiWidgetBase) {
+			this.mBtn_EnterTitle_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvasNameCard/mBtn_EnterTitle') as mw.Button
+		}
+		return this.mBtn_EnterTitle_Internal
+	}
+	private mCanvasNameCard_Internal: mw.Canvas
+	public get mCanvasNameCard(): mw.Canvas {
+		if(!this.mCanvasNameCard_Internal&&this.uiWidgetBase) {
+			this.mCanvasNameCard_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvasNameCard') as mw.Canvas
+		}
+		return this.mCanvasNameCard_Internal
+	}
+	private mBar_Music_Internal: mw.ProgressBar
+	public get mBar_Music(): mw.ProgressBar {
+		if(!this.mBar_Music_Internal&&this.uiWidgetBase) {
+			this.mBar_Music_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvasSound/mBar_Music') as mw.ProgressBar
+		}
+		return this.mBar_Music_Internal
+	}
+	private mBar_Sound_Internal: mw.ProgressBar
+	public get mBar_Sound(): mw.ProgressBar {
+		if(!this.mBar_Sound_Internal&&this.uiWidgetBase) {
+			this.mBar_Sound_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvasSound/mBar_Sound') as mw.ProgressBar
+		}
+		return this.mBar_Sound_Internal
+	}
+	private mCanvasSound_Internal: mw.Canvas
+	public get mCanvasSound(): mw.Canvas {
+		if(!this.mCanvasSound_Internal&&this.uiWidgetBase) {
+			this.mCanvasSound_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvasSound') as mw.Canvas
+		}
+		return this.mCanvasSound_Internal
+	}
+	private mBtn_Exit_Internal: mw.Button
+	public get mBtn_Exit(): mw.Button {
+		if(!this.mBtn_Exit_Internal&&this.uiWidgetBase) {
+			this.mBtn_Exit_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mBtn_Exit') as mw.Button
+		}
+		return this.mBtn_Exit_Internal
+	}
+	private mBar_GraphicsLev_Internal: mw.ProgressBar
+	public get mBar_GraphicsLev(): mw.ProgressBar {
+		if(!this.mBar_GraphicsLev_Internal&&this.uiWidgetBase) {
+			this.mBar_GraphicsLev_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvasGraphics/CanvasGraphics/mBar_GraphicsLev') as mw.ProgressBar
+		}
+		return this.mBar_GraphicsLev_Internal
+	}
+	private mBtn_GrapReset_Internal: mw.StaleButton
+	public get mBtn_GrapReset(): mw.StaleButton {
+		if(!this.mBtn_GrapReset_Internal&&this.uiWidgetBase) {
+			this.mBtn_GrapReset_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvasGraphics/CanvasGraphics/mBtn_GrapReset') as mw.StaleButton
+		}
+		return this.mBtn_GrapReset_Internal
+	}
+	private mBtn_GrapCancel_Internal: mw.StaleButton
+	public get mBtn_GrapCancel(): mw.StaleButton {
+		if(!this.mBtn_GrapCancel_Internal&&this.uiWidgetBase) {
+			this.mBtn_GrapCancel_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvasGraphics/CanvasGraphics/mBtn_GrapCancel') as mw.StaleButton
+		}
+		return this.mBtn_GrapCancel_Internal
+	}
+	private mBtn_GrapEnter_Internal: mw.StaleButton
+	public get mBtn_GrapEnter(): mw.StaleButton {
+		if(!this.mBtn_GrapEnter_Internal&&this.uiWidgetBase) {
+			this.mBtn_GrapEnter_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvasGraphics/CanvasGraphics/mBtn_GrapEnter') as mw.StaleButton
+		}
+		return this.mBtn_GrapEnter_Internal
+	}
+	private mTxt_GrapLevNum_Internal: mw.TextBlock
+	public get mTxt_GrapLevNum(): mw.TextBlock {
+		if(!this.mTxt_GrapLevNum_Internal&&this.uiWidgetBase) {
+			this.mTxt_GrapLevNum_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvasGraphics/CanvasGraphics/mTxt_GrapLevNum') as mw.TextBlock
+		}
+		return this.mTxt_GrapLevNum_Internal
+	}
+	private mCanvasGraphics_Internal: mw.Canvas
+	public get mCanvasGraphics(): mw.Canvas {
+		if(!this.mCanvasGraphics_Internal&&this.uiWidgetBase) {
+			this.mCanvasGraphics_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvasGraphics') as mw.Canvas
+		}
+		return this.mCanvasGraphics_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

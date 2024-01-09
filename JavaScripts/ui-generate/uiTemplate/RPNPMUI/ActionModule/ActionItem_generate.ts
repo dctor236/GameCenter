@@ -1,12 +1,22 @@
- 
+﻿ 
 
  @UIBind('UI/uiTemplate/RPNPMUI/ActionModule/ActionItem.ui')
- export default class ActionItem_Generate extends mw.UIScript {
-     @UIWidgetBind('Canvas/mBg')
-    public mBg: mw.Image=undefined;
-    @UIWidgetBind('Canvas/name')
-    public name: mw.TextBlock=undefined;
-    
+ export default class ActionItem_Generate extends UIScript {
+     	private mBg_Internal: mw.Image
+	public get mBg(): mw.Image {
+		if(!this.mBg_Internal&&this.uiWidgetBase) {
+			this.mBg_Internal = this.uiWidgetBase.findChildByPath('Canvas/mBg') as mw.Image
+		}
+		return this.mBg_Internal
+	}
+	private name_Internal: mw.TextBlock
+	public get name(): mw.TextBlock {
+		if(!this.name_Internal&&this.uiWidgetBase) {
+			this.name_Internal = this.uiWidgetBase.findChildByPath('Canvas/name') as mw.TextBlock
+		}
+		return this.name_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

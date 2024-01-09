@@ -9,6 +9,10 @@ export enum EGoodsTag {
 
 const FindRoot = '360392FF'
 
+
+/**
+ * 寻找模块 客户端 
+ */
 export default class FindModuleC extends ModuleC<FindModuleS, null> {
 
     protected allGoods: Map<string, { ranIndex: number, triGroup: mw.Trigger[] }> = new Map()
@@ -66,7 +70,6 @@ export default class FindModuleC extends ModuleC<FindModuleS, null> {
                 state ? e.setVisibility(mw.PropertyStatus.On, true) :
                     e.setVisibility(mw.PropertyStatus.Off, true);
                 e.enabled = (state)
-                // console.log('setVisableAndCollsion', e.name, state, tag)
             })
         }
     }

@@ -1,10 +1,3 @@
-/** 
- * @Author       : xianjie.xia
- * @LastEditors  : xianjie.xia
- * @Date         : 2023-04-24 14:39
- * @LastEditTime : 2023-06-11 11:24
- * @description  : 日志控制
- */
 
 export class LogMgr {
 

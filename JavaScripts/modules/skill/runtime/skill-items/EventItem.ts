@@ -3,8 +3,8 @@
 import { BehaviorType, ISkillEntity, ISkillItemParam, ISkillLine, ISkillTimer, SkillItemType } from "../../define/SkillDefine";
 import { SkillBaseItem } from "./BaseItem";
 /** 
- * @Author       : xianjie.xia
- * @LastEditors  : 田可成
+ * @Author       : meta
+ * @LastEditors  : meta
  * @Date         : 2022-12-06 11:24
  * @LastEditTime : 2023-03-08 16:37:23
  * @description  : 

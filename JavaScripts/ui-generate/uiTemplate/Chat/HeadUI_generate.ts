@@ -1,16 +1,36 @@
- 
+﻿ 
 
  @UIBind('UI/uiTemplate/Chat/HeadUI.ui')
- export default class HeadUI_Generate extends mw.UIScript {
-     @UIWidgetBind('Canvas/styleCanvas/styleLeft')
-    public styleLeft: mw.Image=undefined;
-    @UIWidgetBind('Canvas/styleCanvas/styleCenter')
-    public styleCenter: mw.Image=undefined;
-    @UIWidgetBind('Canvas/styleCanvas/styleRight')
-    public styleRight: mw.Image=undefined;
-    @UIWidgetBind('Canvas/styleCanvas')
-    public styleCanvas: mw.Canvas=undefined;
-    
+ export default class HeadUI_Generate extends UIScript {
+     	private styleLeft_Internal: mw.Image
+	public get styleLeft(): mw.Image {
+		if(!this.styleLeft_Internal&&this.uiWidgetBase) {
+			this.styleLeft_Internal = this.uiWidgetBase.findChildByPath('Canvas/styleCanvas/styleLeft') as mw.Image
+		}
+		return this.styleLeft_Internal
+	}
+	private styleCenter_Internal: mw.Image
+	public get styleCenter(): mw.Image {
+		if(!this.styleCenter_Internal&&this.uiWidgetBase) {
+			this.styleCenter_Internal = this.uiWidgetBase.findChildByPath('Canvas/styleCanvas/styleCenter') as mw.Image
+		}
+		return this.styleCenter_Internal
+	}
+	private styleRight_Internal: mw.Image
+	public get styleRight(): mw.Image {
+		if(!this.styleRight_Internal&&this.uiWidgetBase) {
+			this.styleRight_Internal = this.uiWidgetBase.findChildByPath('Canvas/styleCanvas/styleRight') as mw.Image
+		}
+		return this.styleRight_Internal
+	}
+	private styleCanvas_Internal: mw.Canvas
+	public get styleCanvas(): mw.Canvas {
+		if(!this.styleCanvas_Internal&&this.uiWidgetBase) {
+			this.styleCanvas_Internal = this.uiWidgetBase.findChildByPath('Canvas/styleCanvas') as mw.Canvas
+		}
+		return this.styleCanvas_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

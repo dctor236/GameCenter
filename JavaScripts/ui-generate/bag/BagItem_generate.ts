@@ -1,30 +1,85 @@
- 
+﻿ 
 
  @UIBind('UI/bag/BagItem.ui')
- export default class BagItem_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/mBg')
-    public mBg: mw.Image=undefined;
-    @UIWidgetBind('RootCanvas/mBtn')
-    public mBtn: mw.StaleButton=undefined;
-    @UIWidgetBind('RootCanvas/mIcon')
-    public mIcon: mw.Image=undefined;
-    @UIWidgetBind('RootCanvas/mTips')
-    public mTips: mw.Button=undefined;
-    @UIWidgetBind('RootCanvas/mSelect')
-    public mSelect: mw.Image=undefined;
-    @UIWidgetBind('RootCanvas/mRemove')
-    public mRemove: mw.Button=undefined;
-    @UIWidgetBind('RootCanvas/mInfoCon/mBottom')
-    public mBottom: mw.Image=undefined;
-    @UIWidgetBind('RootCanvas/mInfoCon/durProgress')
-    public durProgress: mw.ProgressBar=undefined;
-    @UIWidgetBind('RootCanvas/mInfoCon/mItemInfo')
-    public mItemInfo: mw.TextBlock=undefined;
-    @UIWidgetBind('RootCanvas/mInfoCon')
-    public mInfoCon: mw.Canvas=undefined;
-    @UIWidgetBind('RootCanvas/mName')
-    public mName: mw.TextBlock=undefined;
-    
+ export default class BagItem_Generate extends UIScript {
+     	private mBg_Internal: mw.Image
+	public get mBg(): mw.Image {
+		if(!this.mBg_Internal&&this.uiWidgetBase) {
+			this.mBg_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mBg') as mw.Image
+		}
+		return this.mBg_Internal
+	}
+	private mBtn_Internal: mw.StaleButton
+	public get mBtn(): mw.StaleButton {
+		if(!this.mBtn_Internal&&this.uiWidgetBase) {
+			this.mBtn_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mBtn') as mw.StaleButton
+		}
+		return this.mBtn_Internal
+	}
+	private mIcon_Internal: mw.Image
+	public get mIcon(): mw.Image {
+		if(!this.mIcon_Internal&&this.uiWidgetBase) {
+			this.mIcon_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mIcon') as mw.Image
+		}
+		return this.mIcon_Internal
+	}
+	private mTips_Internal: mw.Button
+	public get mTips(): mw.Button {
+		if(!this.mTips_Internal&&this.uiWidgetBase) {
+			this.mTips_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mTips') as mw.Button
+		}
+		return this.mTips_Internal
+	}
+	private mSelect_Internal: mw.Image
+	public get mSelect(): mw.Image {
+		if(!this.mSelect_Internal&&this.uiWidgetBase) {
+			this.mSelect_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mSelect') as mw.Image
+		}
+		return this.mSelect_Internal
+	}
+	private mRemove_Internal: mw.Button
+	public get mRemove(): mw.Button {
+		if(!this.mRemove_Internal&&this.uiWidgetBase) {
+			this.mRemove_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mRemove') as mw.Button
+		}
+		return this.mRemove_Internal
+	}
+	private mBottom_Internal: mw.Image
+	public get mBottom(): mw.Image {
+		if(!this.mBottom_Internal&&this.uiWidgetBase) {
+			this.mBottom_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mInfoCon/mBottom') as mw.Image
+		}
+		return this.mBottom_Internal
+	}
+	private durProgress_Internal: mw.ProgressBar
+	public get durProgress(): mw.ProgressBar {
+		if(!this.durProgress_Internal&&this.uiWidgetBase) {
+			this.durProgress_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mInfoCon/durProgress') as mw.ProgressBar
+		}
+		return this.durProgress_Internal
+	}
+	private mItemInfo_Internal: mw.TextBlock
+	public get mItemInfo(): mw.TextBlock {
+		if(!this.mItemInfo_Internal&&this.uiWidgetBase) {
+			this.mItemInfo_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mInfoCon/mItemInfo') as mw.TextBlock
+		}
+		return this.mItemInfo_Internal
+	}
+	private mInfoCon_Internal: mw.Canvas
+	public get mInfoCon(): mw.Canvas {
+		if(!this.mInfoCon_Internal&&this.uiWidgetBase) {
+			this.mInfoCon_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mInfoCon') as mw.Canvas
+		}
+		return this.mInfoCon_Internal
+	}
+	private mName_Internal: mw.TextBlock
+	public get mName(): mw.TextBlock {
+		if(!this.mName_Internal&&this.uiWidgetBase) {
+			this.mName_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mName') as mw.TextBlock
+		}
+		return this.mName_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

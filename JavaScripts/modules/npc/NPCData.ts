@@ -1,7 +1,7 @@
 /**
- * @Author       : songxing
+ * @Author       : meta
  * @Date         : 2023-02-05 17:11:37
- * @LastEditors  : songxing
+ * @LastEditors  : meta
  * @LastEditTime : 2023-04-24 10:54:09
  * @FilePath     : \mollywoodschool\JavaScripts\modules\NPC\NPCData.ts
  * @Description  : 
@@ -71,8 +71,4 @@ export class NPCDataHelper extends Subdata {
         let npc = this.infoArray.find(i => i.id == id)
         return npc && npc.RewardEvenID.includes(eventid);
     }
-
-   
-
-
 }

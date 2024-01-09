@@ -1,7 +1,7 @@
 /*
- * @Author: 代纯 chun.dai@appshahe.com
+ * @Author: meta chun.dai@appshahe.com
  * @Date: 2023-06-10 10:54:51
- * @LastEditors: 代纯 chun.dai@appshahe.com
+ * @LastEditors: meta chun.dai@appshahe.com
  * @LastEditTime: 2023-06-17 15:33:51
  * @FilePath: \vine-valley\JavaScripts\modules\shop\ShopUI.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
@@ -20,6 +20,9 @@ import FacadMainUI from "../player/ui/cloth/FacadMainUI";
 import ShopDataInfo, { CoinType } from "./ShopDataInfo";
 import ShopModuleC from "./ShopModuleC";
 
+/**
+ * 商店的ui
+ */
 export default class ShopUI extends ShopCityBasePanel_Generate {
     protected shopElem: IShopElement
     protected itemElem: IItemElement

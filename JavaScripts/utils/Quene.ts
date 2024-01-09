@@ -1,15 +1,3 @@
-/*
- * @Autor: Dejia
- * @Date: 2022-07-05 16:38:07
- * @LastEditors: Dejia
- * @LastEditTime: 2022-07-05 16:38:07
- */
-/*
- * @Author: yfl
- * @Date: 2022-03-10 11:35:59
- * @LastEditTime: 2022-03-10 13:43:36
- * @FilePath: \JavaScripts\common\Queue.ts
- */
 
 export class Queue<T>{
 

@@ -1,38 +1,113 @@
- 
+﻿ 
 
  @UIBind('UI/facadModule/FacadItem.ui')
- export default class FacadItem_Generate extends mw.UIScript {
-     @UIWidgetBind('MWCanvas_2147482460/mBtnSelect')
-    public mBtnSelect: mw.StaleButton=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/mImgBG')
-    public mImgBG: mw.Image=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/mIconStroke')
-    public mIconStroke: mw.Image=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/mQuality')
-    public mQuality: mw.Image=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/mImgIcon')
-    public mImgIcon: mw.Image=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/mItemName')
-    public mItemName: mw.TextBlock=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/mTextDesc')
-    public mTextDesc: mw.TextBlock=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/mSelect')
-    public mSelect: mw.Image=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/mBuyCon/mbtnUse')
-    public mbtnUse: mw.StaleButton=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/mBuyCon/mPrice')
-    public mPrice: mw.TextBlock=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/mBuyCon/mImgGold')
-    public mImgGold: mw.Image=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/mBuyCon/mYHDtxt')
-    public mYHDtxt: mw.TextBlock=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/mBuyCon/mHDHDtxt')
-    public mHDHDtxt: mw.TextBlock=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/mBuyCon/mWHHD')
-    public mWHHD: mw.TextBlock=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/mBuyCon')
-    public mBuyCon: mw.Canvas=undefined;
-    
+ export default class FacadItem_Generate extends UIScript {
+     	private mBtnSelect_Internal: mw.StaleButton
+	public get mBtnSelect(): mw.StaleButton {
+		if(!this.mBtnSelect_Internal&&this.uiWidgetBase) {
+			this.mBtnSelect_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/mBtnSelect') as mw.StaleButton
+		}
+		return this.mBtnSelect_Internal
+	}
+	private mImgBG_Internal: mw.Image
+	public get mImgBG(): mw.Image {
+		if(!this.mImgBG_Internal&&this.uiWidgetBase) {
+			this.mImgBG_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/mImgBG') as mw.Image
+		}
+		return this.mImgBG_Internal
+	}
+	private mIconStroke_Internal: mw.Image
+	public get mIconStroke(): mw.Image {
+		if(!this.mIconStroke_Internal&&this.uiWidgetBase) {
+			this.mIconStroke_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/mIconStroke') as mw.Image
+		}
+		return this.mIconStroke_Internal
+	}
+	private mQuality_Internal: mw.Image
+	public get mQuality(): mw.Image {
+		if(!this.mQuality_Internal&&this.uiWidgetBase) {
+			this.mQuality_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/mQuality') as mw.Image
+		}
+		return this.mQuality_Internal
+	}
+	private mImgIcon_Internal: mw.Image
+	public get mImgIcon(): mw.Image {
+		if(!this.mImgIcon_Internal&&this.uiWidgetBase) {
+			this.mImgIcon_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/mImgIcon') as mw.Image
+		}
+		return this.mImgIcon_Internal
+	}
+	private mItemName_Internal: mw.TextBlock
+	public get mItemName(): mw.TextBlock {
+		if(!this.mItemName_Internal&&this.uiWidgetBase) {
+			this.mItemName_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/mItemName') as mw.TextBlock
+		}
+		return this.mItemName_Internal
+	}
+	private mTextDesc_Internal: mw.TextBlock
+	public get mTextDesc(): mw.TextBlock {
+		if(!this.mTextDesc_Internal&&this.uiWidgetBase) {
+			this.mTextDesc_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/mTextDesc') as mw.TextBlock
+		}
+		return this.mTextDesc_Internal
+	}
+	private mSelect_Internal: mw.Image
+	public get mSelect(): mw.Image {
+		if(!this.mSelect_Internal&&this.uiWidgetBase) {
+			this.mSelect_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/mSelect') as mw.Image
+		}
+		return this.mSelect_Internal
+	}
+	private mbtnUse_Internal: mw.StaleButton
+	public get mbtnUse(): mw.StaleButton {
+		if(!this.mbtnUse_Internal&&this.uiWidgetBase) {
+			this.mbtnUse_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/mBuyCon/mbtnUse') as mw.StaleButton
+		}
+		return this.mbtnUse_Internal
+	}
+	private mPrice_Internal: mw.TextBlock
+	public get mPrice(): mw.TextBlock {
+		if(!this.mPrice_Internal&&this.uiWidgetBase) {
+			this.mPrice_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/mBuyCon/mPrice') as mw.TextBlock
+		}
+		return this.mPrice_Internal
+	}
+	private mImgGold_Internal: mw.Image
+	public get mImgGold(): mw.Image {
+		if(!this.mImgGold_Internal&&this.uiWidgetBase) {
+			this.mImgGold_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/mBuyCon/mImgGold') as mw.Image
+		}
+		return this.mImgGold_Internal
+	}
+	private mYHDtxt_Internal: mw.TextBlock
+	public get mYHDtxt(): mw.TextBlock {
+		if(!this.mYHDtxt_Internal&&this.uiWidgetBase) {
+			this.mYHDtxt_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/mBuyCon/mYHDtxt') as mw.TextBlock
+		}
+		return this.mYHDtxt_Internal
+	}
+	private mHDHDtxt_Internal: mw.TextBlock
+	public get mHDHDtxt(): mw.TextBlock {
+		if(!this.mHDHDtxt_Internal&&this.uiWidgetBase) {
+			this.mHDHDtxt_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/mBuyCon/mHDHDtxt') as mw.TextBlock
+		}
+		return this.mHDHDtxt_Internal
+	}
+	private mWHHD_Internal: mw.TextBlock
+	public get mWHHD(): mw.TextBlock {
+		if(!this.mWHHD_Internal&&this.uiWidgetBase) {
+			this.mWHHD_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/mBuyCon/mWHHD') as mw.TextBlock
+		}
+		return this.mWHHD_Internal
+	}
+	private mBuyCon_Internal: mw.Canvas
+	public get mBuyCon(): mw.Canvas {
+		if(!this.mBuyCon_Internal&&this.uiWidgetBase) {
+			this.mBuyCon_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/mBuyCon') as mw.Canvas
+		}
+		return this.mBuyCon_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

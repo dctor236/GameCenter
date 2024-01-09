@@ -1,7 +1,7 @@
 /**
- * @Author       : 田可成
+ * @Author       : meta
  * @Date         : 2023-05-25 15:35:17
- * @LastEditors  : 田可成
+ * @LastEditors  : meta
  * @LastEditTime : 2023-06-02 18:37:32
  * @FilePath     : \mollywoodschool\JavaScripts\modules\player\ui\cloth\FacadMainUI.ts
  * @Description  : 
@@ -22,6 +22,10 @@ import FacadItemUI, { FacadSelectEvent } from "./FacadItemUI";
 import FacadTipUI from "./FacadTipUI";
 import { Enums, TouchScript } from "./TouchScript";
 
+
+/**
+ * 服装主界面
+ */
 export default class FacadMainUI extends FacadMain_Generate {
     private get module() {
         return GlobalModule.MyPlayerC.Cloth
@@ -183,6 +187,11 @@ export default class FacadMainUI extends FacadMain_Generate {
         this.canUpdate = true
     }
 
+    /**
+     *筛选单一种类的服装,并且显示在scroll上 
+     * @param i 索引
+     * @returns 
+     */
     private showItemsbyType(i: number) {
         if (this._curType == i) {
             return
@@ -195,6 +204,10 @@ export default class FacadMainUI extends FacadMain_Generate {
         this.onlyShowIsHave(this._isCheck)
     }
 
+    /**
+     * 筛选当前种类衣服是否是玩家已拥有
+     * @param bool 是否
+     */
     private onlyShowIsHave(bool: boolean) {
         if (bool) {
             this._curConfigIds = this._curConfigIds.filter(config => {

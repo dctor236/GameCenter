@@ -1,15 +1,15 @@
 /*
- * @Author: 代纯 chun.dai@appshahe.com
+ * @Author: meta chun.dai@appshahe.com
  * @Date: 2023-06-10 10:54:51
- * @LastEditors: 代纯 chun.dai@appshahe.com
+ * @LastEditors: meta chun.dai@appshahe.com
  * @LastEditTime: 2023-06-10 19:51:41
  * @FilePath: \vine-valley\JavaScripts\modules\player\ui\cloth\FacadTipUI.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 /**
- * @Author       : 田可成
+ * @Author       : meta
  * @Date         : 2023-05-29 09:37:47
- * @LastEditors  : 田可成
+ * @LastEditors  : meta
  * @LastEditTime : 2023-05-31 18:16:22
  * @FilePath     : \mollywoodschool\JavaScripts\modules\player\ui\cloth\FacadTipUI.ts
  * @Description  : 
@@ -23,6 +23,9 @@ import GameUtils from "../../../../utils/GameUtils";
 import { MGSMsgHome } from "../../../mgsMsg/MgsmsgHome";
 import FacadMainUI from "./FacadMainUI";
 
+/**
+ * 服装的tip UI
+ */
 export default class FacadTipUI extends FacadTip_Generate {
     private _curSelect: number = -1;
     private _notBuyArr: number[] = [];

@@ -1,22 +1,57 @@
- 
+﻿ 
 
  @UIBind('UI/task/TaskMain.ui')
- export default class TaskMain_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/Canvas/mPanel2/mScrollFinish/mContentFinish')
-    public mContentFinish: mw.Canvas=undefined;
-    @UIWidgetBind('RootCanvas/Canvas/mPanel2/mScrollFinish')
-    public mScrollFinish: mw.ScrollBox=undefined;
-    @UIWidgetBind('RootCanvas/Canvas/mPanel2')
-    public mPanel2: mw.Canvas=undefined;
-    @UIWidgetBind('RootCanvas/Canvas/mPanel1/mScrollUnAccept/mContentUnAcc')
-    public mContentUnAcc: mw.Canvas=undefined;
-    @UIWidgetBind('RootCanvas/Canvas/mPanel1/mScrollUnAccept')
-    public mScrollUnAccept: mw.ScrollBox=undefined;
-    @UIWidgetBind('RootCanvas/Canvas/mPanel1')
-    public mPanel1: mw.Canvas=undefined;
-    @UIWidgetBind('RootCanvas/Canvas/btn_Close')
-    public btn_Close: mw.Button=undefined;
-    
+ export default class TaskMain_Generate extends UIScript {
+     	private mContentFinish_Internal: mw.Canvas
+	public get mContentFinish(): mw.Canvas {
+		if(!this.mContentFinish_Internal&&this.uiWidgetBase) {
+			this.mContentFinish_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/Canvas/mPanel2/mScrollFinish/mContentFinish') as mw.Canvas
+		}
+		return this.mContentFinish_Internal
+	}
+	private mScrollFinish_Internal: mw.ScrollBox
+	public get mScrollFinish(): mw.ScrollBox {
+		if(!this.mScrollFinish_Internal&&this.uiWidgetBase) {
+			this.mScrollFinish_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/Canvas/mPanel2/mScrollFinish') as mw.ScrollBox
+		}
+		return this.mScrollFinish_Internal
+	}
+	private mPanel2_Internal: mw.Canvas
+	public get mPanel2(): mw.Canvas {
+		if(!this.mPanel2_Internal&&this.uiWidgetBase) {
+			this.mPanel2_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/Canvas/mPanel2') as mw.Canvas
+		}
+		return this.mPanel2_Internal
+	}
+	private mContentUnAcc_Internal: mw.Canvas
+	public get mContentUnAcc(): mw.Canvas {
+		if(!this.mContentUnAcc_Internal&&this.uiWidgetBase) {
+			this.mContentUnAcc_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/Canvas/mPanel1/mScrollUnAccept/mContentUnAcc') as mw.Canvas
+		}
+		return this.mContentUnAcc_Internal
+	}
+	private mScrollUnAccept_Internal: mw.ScrollBox
+	public get mScrollUnAccept(): mw.ScrollBox {
+		if(!this.mScrollUnAccept_Internal&&this.uiWidgetBase) {
+			this.mScrollUnAccept_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/Canvas/mPanel1/mScrollUnAccept') as mw.ScrollBox
+		}
+		return this.mScrollUnAccept_Internal
+	}
+	private mPanel1_Internal: mw.Canvas
+	public get mPanel1(): mw.Canvas {
+		if(!this.mPanel1_Internal&&this.uiWidgetBase) {
+			this.mPanel1_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/Canvas/mPanel1') as mw.Canvas
+		}
+		return this.mPanel1_Internal
+	}
+	private btn_Close_Internal: mw.Button
+	public get btn_Close(): mw.Button {
+		if(!this.btn_Close_Internal&&this.uiWidgetBase) {
+			this.btn_Close_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/Canvas/btn_Close') as mw.Button
+		}
+		return this.btn_Close_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

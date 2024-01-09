@@ -1,6 +1,5 @@
 import { InputManager } from "../../InputManager";
 import { GameModuleC } from "../../modules/gameModule/GameModuleC";
-import GuideMC from "../../modules/guide/GuideMC";
 import { MGSMsgHome } from "../../modules/mgsMsg/MgsmsgHome";
 import GameUtils from "../../utils/GameUtils";
 import { PlayerData } from "./PlayerData";
@@ -8,14 +7,6 @@ import { PlayerDefine } from "./PlayerDefine";
 import { PlayerModuleS } from "./PlayerModuleS";
 import TsPlayer from "./TsPlayer";
 
-
-/** 
- * @Author       : xianjie.xia
- * @LastEditors  : xianjie.xia
- * @Date         : 2023-04-02 14:04
- * @LastEditTime : 2023-06-19 15:12
- * @description  : 
- */
 
 export class PlayerModuleC extends ModuleC<PlayerModuleS, null> {
     public mPlayer: TsPlayer = null;
@@ -144,7 +135,6 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, null> {
         // 死亡动画
         this.playerDead = true
         MGSMsgHome.uploadMGS('ts_game_result', '玩家每次死亡打一个点', { record: 'player_dead' })
-        ModuleService.getModule(GuideMC).startGuide(21)
 
     }
 
@@ -155,17 +145,6 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, null> {
         // this.onPlayerResurgenceEvent.call()
     }
 
-
-    public onDamage(damage: number, uid?: string) {
-        uid = uid ? uid : this.mUserId
-        let obj = this.dataInfo.onDamage(uid, damage);
-        if (!obj)
-            return;
-        let dmg = this.damageList.get(uid);
-        dmg = dmg ? dmg + damage : damage;
-        this.damageList.set(uid, dmg);
-        this.needUpDamage = true;
-    }
 
     private upDamage() {
         if (!this.needUpDamage)
@@ -179,7 +158,6 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, null> {
             dmgs.push(v);
         }
         this.damageList.clear();
-        this.server.net_damage(ids, dmgs);
         this.needUpDamage = false;
     }
     private userOpenId(): string {

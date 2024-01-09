@@ -1,14 +1,29 @@
- 
+﻿ 
 
  @UIBind('UI/uiTemplate/Camera/CameraTips.ui')
- export default class CameraTips_Generate extends mw.UIScript {
-     @UIWidgetBind('Canvas/mCanvas_1/mText_1')
-    public mText_1: mw.TextBlock=undefined;
-    @UIWidgetBind('Canvas/mCanvas_1')
-    public mCanvas_1: mw.Canvas=undefined;
-    @UIWidgetBind('Canvas/mStaleButton_1')
-    public mStaleButton_1: mw.StaleButton=undefined;
-    
+ export default class CameraTips_Generate extends UIScript {
+     	private mText_1_Internal: mw.TextBlock
+	public get mText_1(): mw.TextBlock {
+		if(!this.mText_1_Internal&&this.uiWidgetBase) {
+			this.mText_1_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCanvas_1/mText_1') as mw.TextBlock
+		}
+		return this.mText_1_Internal
+	}
+	private mCanvas_1_Internal: mw.Canvas
+	public get mCanvas_1(): mw.Canvas {
+		if(!this.mCanvas_1_Internal&&this.uiWidgetBase) {
+			this.mCanvas_1_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCanvas_1') as mw.Canvas
+		}
+		return this.mCanvas_1_Internal
+	}
+	private mStaleButton_1_Internal: mw.StaleButton
+	public get mStaleButton_1(): mw.StaleButton {
+		if(!this.mStaleButton_1_Internal&&this.uiWidgetBase) {
+			this.mStaleButton_1_Internal = this.uiWidgetBase.findChildByPath('Canvas/mStaleButton_1') as mw.StaleButton
+		}
+		return this.mStaleButton_1_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

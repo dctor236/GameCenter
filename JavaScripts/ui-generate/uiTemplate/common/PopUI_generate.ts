@@ -1,18 +1,43 @@
- 
+﻿ 
 
  @UIBind('UI/uiTemplate/common/PopUI.ui')
- export default class PopUI_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/btnClose')
-    public btnClose: mw.Button=undefined;
-    @UIWidgetBind('RootCanvas/mContent')
-    public mContent: mw.TextBlock=undefined;
-    @UIWidgetBind('RootCanvas/btnLeft')
-    public btnLeft: mw.StaleButton=undefined;
-    @UIWidgetBind('RootCanvas/btnMid')
-    public btnMid: mw.StaleButton=undefined;
-    @UIWidgetBind('RootCanvas/btnRight')
-    public btnRight: mw.StaleButton=undefined;
-    
+ export default class PopUI_Generate extends UIScript {
+     	private btnClose_Internal: mw.Button
+	public get btnClose(): mw.Button {
+		if(!this.btnClose_Internal&&this.uiWidgetBase) {
+			this.btnClose_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/btnClose') as mw.Button
+		}
+		return this.btnClose_Internal
+	}
+	private mContent_Internal: mw.TextBlock
+	public get mContent(): mw.TextBlock {
+		if(!this.mContent_Internal&&this.uiWidgetBase) {
+			this.mContent_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mContent') as mw.TextBlock
+		}
+		return this.mContent_Internal
+	}
+	private btnLeft_Internal: mw.StaleButton
+	public get btnLeft(): mw.StaleButton {
+		if(!this.btnLeft_Internal&&this.uiWidgetBase) {
+			this.btnLeft_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/btnLeft') as mw.StaleButton
+		}
+		return this.btnLeft_Internal
+	}
+	private btnMid_Internal: mw.StaleButton
+	public get btnMid(): mw.StaleButton {
+		if(!this.btnMid_Internal&&this.uiWidgetBase) {
+			this.btnMid_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/btnMid') as mw.StaleButton
+		}
+		return this.btnMid_Internal
+	}
+	private btnRight_Internal: mw.StaleButton
+	public get btnRight(): mw.StaleButton {
+		if(!this.btnRight_Internal&&this.uiWidgetBase) {
+			this.btnRight_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/btnRight') as mw.StaleButton
+		}
+		return this.btnRight_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

@@ -2,9 +2,9 @@ import { GeneralManager, } from '../../../Modified027Editor/ModifiedStaticAPI';
 import { SpawnManager, SpawnInfo, } from '../../../Modified027Editor/ModifiedSpawn';
 import { PlayerManagerExtesion, } from '../../../Modified027Editor/ModifiedPlayer';
 /**
-* @Author       : songxing
+* @Author       : meta
 * @Date         : 2023-05-29 09:48:15
-* @LastEditors  : songxing
+* @LastEditors  : meta
 * @LastEditTime : 2023-05-29 17:42:46
 * @FilePath     : \mollywoodschool\JavaScripts\modules\player\modules\ActionModule.ts
 * @Description  : 
@@ -115,11 +115,6 @@ export class ActionLuanguage {
     public static desc1: string = "";
     /**发起描述2 */
     public static desc2: string = "";
-    /**接受按钮图标 */
-    // public static acceptGuid: string = "";
-    /**动作Item背景图 */
-    // public static itemBg: string = "";
-    /**与交互物互斥提示 */
     public static interactiveTips: string = "";
     /**与道具互斥提示 */
     public static itemType: string = "";
@@ -133,8 +128,6 @@ export class ActionLuanguage {
     public static leave: string = "";
     /**动作按钮文字 */
     public static action: string = "";
-    /**脱离按钮图标 */
-    // public static leaveIcon: string = "";
     /**页签1 */
     public static tab1: string = "";
     /**页签2 */
@@ -195,8 +188,6 @@ export class ActionModuleC extends ModuleBaseC {
         ActionLuanguage.refuseText = GameConfig.SquareLanguage.Danmu_Content_1074.Value;
         ActionLuanguage.desc1 = GameConfig.SquareLanguage.Danmu_Content_1075.Value;
         ActionLuanguage.desc2 = GameConfig.SquareLanguage.Danmu_Content_1076.Value;
-        // ActionLuanguage.acceptGuid = GameConfig.SquareLanguage[95788].Value;
-        // ActionLuanguage.itemBg = GameConfig.SquareLanguage.getElement(86723).Value;
         ActionLuanguage.interactiveTips = GameConfig.SquareLanguage.Danmu_Content_1065.Value;
         ActionLuanguage.itemType = GameConfig.SquareLanguage.Danmu_Content_1064.Value;
         ActionLuanguage.actionTips = GameConfig.SquareLanguage.Danmu_Content_1060.Value;
@@ -204,10 +195,8 @@ export class ActionModuleC extends ModuleBaseC {
         ActionLuanguage.fail = GameConfig.SquareLanguage.Danmu_Content_1072.Value;
         ActionLuanguage.leave = GameConfig.SquareLanguage.Danmu_Content_1054.Value;
         ActionLuanguage.action = GameConfig.SquareLanguage.Text_Text_589.Value;
-        // ActionLuanguage.leaveIcon = GameConfig.SquareLanguage[94427].Value;
         ActionLuanguage.tab1 = GameConfig.SquareLanguage.Danmu_Content_1001.Value;
         ActionLuanguage.tab2 = GameConfig.SquareLanguage.Danmu_Content_1002.Value;
-        // ActionLuanguage.tabBg = GameConfig.SquareLanguage.getElement(86265).Value;
         ActionLuanguage.toolong = GameConfig.SquareLanguage.Danmu_Content_1069.Value;
         ActionLuanguage.ing = GameConfig.SquareLanguage.Danmu_Content_1070.Value;
         ActionLuanguage.pleaseLeave = GameConfig.SquareLanguage.Danmu_Content_1053.Value;

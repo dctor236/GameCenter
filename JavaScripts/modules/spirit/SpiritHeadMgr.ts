@@ -1,14 +1,4 @@
 import { SpawnManager,SpawnInfo, } from '../../Modified027Editor/ModifiedSpawn';
-﻿/*
- * @Author: 代纯 chun.dai@appshahe.com
- * @Date: 2023-06-10 10:54:50
- * @LastEditors: 代纯 chun.dai@appshahe.com
- * @LastEditTime: 2023-06-18 17:38:28
- * @FilePath: \vine-valley\JavaScripts\modules\spirit\SpiritHeadMgr.ts
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
-import { UIManager } from "../../ExtensionType";
-import { NPCHead } from "../npc/NPCHead";
 
 export default class SpiritHeadMgr {
     private static _instance: SpiritHeadMgr;

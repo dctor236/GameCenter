@@ -1,50 +1,155 @@
- 
+﻿ 
 
  @UIBind('UI/uiTemplate/Camera/CameraMain.ui')
- export default class CameraMain_Generate extends mw.UIScript {
-     @UIWidgetBind('Canvas/mTouchPad')
-    public mTouchPad: mw.TouchPad=undefined;
-    @UIWidgetBind('Canvas/mCanvas_Setting/mCanvas_Filter/mButton_Filter')
-    public mButton_Filter: mw.Button=undefined;
-    @UIWidgetBind('Canvas/mCanvas_Setting/mCanvas_Filter')
-    public mCanvas_Filter: mw.Canvas=undefined;
-    @UIWidgetBind('Canvas/mCanvas_Setting/mCanvas_Action/mButton_Action')
-    public mButton_Action: mw.Button=undefined;
-    @UIWidgetBind('Canvas/mCanvas_Setting/mCanvas_Action')
-    public mCanvas_Action: mw.Canvas=undefined;
-    @UIWidgetBind('Canvas/mCanvas_Setting')
-    public mCanvas_Setting: mw.Canvas=undefined;
-    @UIWidgetBind('Canvas/mCanvas_LR/mProgressBar_LR')
-    public mProgressBar_LR: mw.ProgressBar=undefined;
-    @UIWidgetBind('Canvas/mCanvas_LR')
-    public mCanvas_LR: mw.Canvas=undefined;
-    @UIWidgetBind('Canvas/mCanvas_Camera/mButton_Camera')
-    public mButton_Camera: mw.Button=undefined;
-    @UIWidgetBind('Canvas/mCanvas_Camera')
-    public mCanvas_Camera: mw.Canvas=undefined;
-    @UIWidgetBind('Canvas/mCanvas_Distance/mProgressBar_Distance')
-    public mProgressBar_Distance: mw.ProgressBar=undefined;
-    @UIWidgetBind('Canvas/mCanvas_Distance')
-    public mCanvas_Distance: mw.Canvas=undefined;
-    @UIWidgetBind('Canvas/mCanvas_Switch/mButton_Switch')
-    public mButton_Switch: mw.Button=undefined;
-    @UIWidgetBind('Canvas/mCanvas_Switch')
-    public mCanvas_Switch: mw.Canvas=undefined;
-    @UIWidgetBind('Canvas/mCanvas_Move/mButton_Left')
-    public mButton_Left: mw.Button=undefined;
-    @UIWidgetBind('Canvas/mCanvas_Move/mButton_Right')
-    public mButton_Right: mw.Button=undefined;
-    @UIWidgetBind('Canvas/mCanvas_Move/mButton_UP')
-    public mButton_UP: mw.Button=undefined;
-    @UIWidgetBind('Canvas/mCanvas_Move/mButton_Down')
-    public mButton_Down: mw.Button=undefined;
-    @UIWidgetBind('Canvas/mCanvas_Move')
-    public mCanvas_Move: mw.Canvas=undefined;
-    @UIWidgetBind('Canvas/mCanvas_Close/mButton_Close')
-    public mButton_Close: mw.Button=undefined;
-    @UIWidgetBind('Canvas/mCanvas_Close')
-    public mCanvas_Close: mw.Canvas=undefined;
-    
+ export default class CameraMain_Generate extends UIScript {
+     	private mTouchPad_Internal: mw.TouchPad
+	public get mTouchPad(): mw.TouchPad {
+		if(!this.mTouchPad_Internal&&this.uiWidgetBase) {
+			this.mTouchPad_Internal = this.uiWidgetBase.findChildByPath('Canvas/mTouchPad') as mw.TouchPad
+		}
+		return this.mTouchPad_Internal
+	}
+	private mButton_Filter_Internal: mw.Button
+	public get mButton_Filter(): mw.Button {
+		if(!this.mButton_Filter_Internal&&this.uiWidgetBase) {
+			this.mButton_Filter_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCanvas_Setting/mCanvas_Filter/mButton_Filter') as mw.Button
+		}
+		return this.mButton_Filter_Internal
+	}
+	private mCanvas_Filter_Internal: mw.Canvas
+	public get mCanvas_Filter(): mw.Canvas {
+		if(!this.mCanvas_Filter_Internal&&this.uiWidgetBase) {
+			this.mCanvas_Filter_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCanvas_Setting/mCanvas_Filter') as mw.Canvas
+		}
+		return this.mCanvas_Filter_Internal
+	}
+	private mButton_Action_Internal: mw.Button
+	public get mButton_Action(): mw.Button {
+		if(!this.mButton_Action_Internal&&this.uiWidgetBase) {
+			this.mButton_Action_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCanvas_Setting/mCanvas_Action/mButton_Action') as mw.Button
+		}
+		return this.mButton_Action_Internal
+	}
+	private mCanvas_Action_Internal: mw.Canvas
+	public get mCanvas_Action(): mw.Canvas {
+		if(!this.mCanvas_Action_Internal&&this.uiWidgetBase) {
+			this.mCanvas_Action_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCanvas_Setting/mCanvas_Action') as mw.Canvas
+		}
+		return this.mCanvas_Action_Internal
+	}
+	private mCanvas_Setting_Internal: mw.Canvas
+	public get mCanvas_Setting(): mw.Canvas {
+		if(!this.mCanvas_Setting_Internal&&this.uiWidgetBase) {
+			this.mCanvas_Setting_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCanvas_Setting') as mw.Canvas
+		}
+		return this.mCanvas_Setting_Internal
+	}
+	private mProgressBar_LR_Internal: mw.ProgressBar
+	public get mProgressBar_LR(): mw.ProgressBar {
+		if(!this.mProgressBar_LR_Internal&&this.uiWidgetBase) {
+			this.mProgressBar_LR_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCanvas_LR/mProgressBar_LR') as mw.ProgressBar
+		}
+		return this.mProgressBar_LR_Internal
+	}
+	private mCanvas_LR_Internal: mw.Canvas
+	public get mCanvas_LR(): mw.Canvas {
+		if(!this.mCanvas_LR_Internal&&this.uiWidgetBase) {
+			this.mCanvas_LR_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCanvas_LR') as mw.Canvas
+		}
+		return this.mCanvas_LR_Internal
+	}
+	private mButton_Camera_Internal: mw.Button
+	public get mButton_Camera(): mw.Button {
+		if(!this.mButton_Camera_Internal&&this.uiWidgetBase) {
+			this.mButton_Camera_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCanvas_Camera/mButton_Camera') as mw.Button
+		}
+		return this.mButton_Camera_Internal
+	}
+	private mCanvas_Camera_Internal: mw.Canvas
+	public get mCanvas_Camera(): mw.Canvas {
+		if(!this.mCanvas_Camera_Internal&&this.uiWidgetBase) {
+			this.mCanvas_Camera_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCanvas_Camera') as mw.Canvas
+		}
+		return this.mCanvas_Camera_Internal
+	}
+	private mProgressBar_Distance_Internal: mw.ProgressBar
+	public get mProgressBar_Distance(): mw.ProgressBar {
+		if(!this.mProgressBar_Distance_Internal&&this.uiWidgetBase) {
+			this.mProgressBar_Distance_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCanvas_Distance/mProgressBar_Distance') as mw.ProgressBar
+		}
+		return this.mProgressBar_Distance_Internal
+	}
+	private mCanvas_Distance_Internal: mw.Canvas
+	public get mCanvas_Distance(): mw.Canvas {
+		if(!this.mCanvas_Distance_Internal&&this.uiWidgetBase) {
+			this.mCanvas_Distance_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCanvas_Distance') as mw.Canvas
+		}
+		return this.mCanvas_Distance_Internal
+	}
+	private mButton_Switch_Internal: mw.Button
+	public get mButton_Switch(): mw.Button {
+		if(!this.mButton_Switch_Internal&&this.uiWidgetBase) {
+			this.mButton_Switch_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCanvas_Switch/mButton_Switch') as mw.Button
+		}
+		return this.mButton_Switch_Internal
+	}
+	private mCanvas_Switch_Internal: mw.Canvas
+	public get mCanvas_Switch(): mw.Canvas {
+		if(!this.mCanvas_Switch_Internal&&this.uiWidgetBase) {
+			this.mCanvas_Switch_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCanvas_Switch') as mw.Canvas
+		}
+		return this.mCanvas_Switch_Internal
+	}
+	private mButton_Left_Internal: mw.Button
+	public get mButton_Left(): mw.Button {
+		if(!this.mButton_Left_Internal&&this.uiWidgetBase) {
+			this.mButton_Left_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCanvas_Move/mButton_Left') as mw.Button
+		}
+		return this.mButton_Left_Internal
+	}
+	private mButton_Right_Internal: mw.Button
+	public get mButton_Right(): mw.Button {
+		if(!this.mButton_Right_Internal&&this.uiWidgetBase) {
+			this.mButton_Right_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCanvas_Move/mButton_Right') as mw.Button
+		}
+		return this.mButton_Right_Internal
+	}
+	private mButton_UP_Internal: mw.Button
+	public get mButton_UP(): mw.Button {
+		if(!this.mButton_UP_Internal&&this.uiWidgetBase) {
+			this.mButton_UP_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCanvas_Move/mButton_UP') as mw.Button
+		}
+		return this.mButton_UP_Internal
+	}
+	private mButton_Down_Internal: mw.Button
+	public get mButton_Down(): mw.Button {
+		if(!this.mButton_Down_Internal&&this.uiWidgetBase) {
+			this.mButton_Down_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCanvas_Move/mButton_Down') as mw.Button
+		}
+		return this.mButton_Down_Internal
+	}
+	private mCanvas_Move_Internal: mw.Canvas
+	public get mCanvas_Move(): mw.Canvas {
+		if(!this.mCanvas_Move_Internal&&this.uiWidgetBase) {
+			this.mCanvas_Move_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCanvas_Move') as mw.Canvas
+		}
+		return this.mCanvas_Move_Internal
+	}
+	private mButton_Close_Internal: mw.Button
+	public get mButton_Close(): mw.Button {
+		if(!this.mButton_Close_Internal&&this.uiWidgetBase) {
+			this.mButton_Close_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCanvas_Close/mButton_Close') as mw.Button
+		}
+		return this.mButton_Close_Internal
+	}
+	private mCanvas_Close_Internal: mw.Canvas
+	public get mCanvas_Close(): mw.Canvas {
+		if(!this.mCanvas_Close_Internal&&this.uiWidgetBase) {
+			this.mCanvas_Close_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCanvas_Close') as mw.Canvas
+		}
+		return this.mCanvas_Close_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

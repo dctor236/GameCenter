@@ -28,13 +28,11 @@ export class InputManager {
             this.keyDownEventListener = null;
         }
     }
-
     private _onTouch: mw.Action1<Array<mw.HitResult>>;
     private touchInput: mw.TouchInput;
     private keyDownActionMap: Map<mw.Keys, Action1<mw.Keys>>;
     private keyDownEventListener: mw.EventListener;
 
-    private _ontouchEnd: mw.Action1<Array<mw.HitResult>>;
     private touchTime = 0;
     private lastTouch = 0;
     private linePos = new mw.Vector();
@@ -53,14 +51,6 @@ export class InputManager {
         }
         return this._onTouch;
     }
-
-    // public get onTouchEnd(): Action1<Array<mw.HitResult>> {
-    //     if (this._ontouchEnd == null) {
-    //         this._ontouchEnd = new Action1();
-    //         this.initTouch();
-    //     }
-    //     return this._ontouchEnd;
-    // }
 
     /**
      * 按下键盘事件(增加了重复监听的判断，还可以移除监听方法)
@@ -110,42 +100,15 @@ export class InputManager {
                 mw.Vector.multiply(pos.worldDirection.normalize(), 2000, this.linePos);
                 mw.Vector.add(pos.worldPosition, this.linePos, this.linePos);
                 arr = QueryUtil.lineTrace(pos.worldPosition, this.linePos, true, false);
-                //arr = ScreenUtil.getGameObjectByScreenPosition(location.x, location.y, 2000, true, false);
             }
             catch (e) {
                 console.info('getClickGameObjectByScene error');
             }
-            //this.log(list);
-            // for (let i = 0; list != null && i < list.length; i++) {
-            //     if (arr.includes(list[i])) continue;
-            //     arr.push(list[i]);
-            // }
         }
         this.onTouch.call(arr);
     }
 
     private touchHandler(index: number, location: mw.Vector2, state): void {
         this.touchTime = TimeUtil.elapsedTime();
-        // console.log("TouchHandler:  index=" + index + "  location_x=" + location.x + " location_y=" + location.y);
-        // if (this.onTouch.count == 0) return;
-        // location = this.touchInput.getTouchVectorArray()[0];//手机上传进来的location是个{}所以先这么用
-        // let list: Array<mw.HitResult> = ScreenUtil.getGameObjectByScreenPosition(location.x, location.y, 50000, true, false);
-        // //this.log(list);
-        // let arr: Array<mw.HitResult> = [];
-        // for (let i = 0; list != null && i < list.length; i++) {
-        //     if (arr.includes(list[i])) continue;
-        //     arr.push(list[i]);
-        // }
-        // if (list.length > 0) {
-        //     this.onTouch.call(arr);
-        // }
-    }
-    private log(list: Array<mw.HitResult>) {
-        for (let i = 0; list != null && i < list.length; i++) {
-        }
-    }
-    public getTouchPos(index: number): mw.Vector2 {
-        let pos = this.touchInput.getTouchVectorArray()[index];
-        return new mw.Vector2(pos.x, pos.y);
     }
 }

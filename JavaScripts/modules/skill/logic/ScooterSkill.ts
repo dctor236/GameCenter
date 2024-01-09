@@ -1,8 +1,8 @@
 import { PlayerManagerExtesion, } from '../../../Modified027Editor/ModifiedPlayer';
 /**
- * @Author       : 田可成
+ * @Author       : meta
  * @Date         : 2023-04-25 14:43:17
- * @LastEditors  : 田可成
+ * @LastEditors  : meta
  * @LastEditTime : 2023-05-29 14:50:59
  * @FilePath     : \mollywoodschool\JavaScripts\modules\skill\logic\ScooterSkill.ts
  * @Description  : 

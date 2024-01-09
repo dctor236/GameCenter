@@ -1,14 +1,29 @@
- 
+﻿ 
 
  @UIBind('UI/skill/PropItem.ui')
- export default class PropItem_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/mIcon')
-    public mIcon: mw.Image=undefined;
-    @UIWidgetBind('RootCanvas/mName')
-    public mName: mw.TextBlock=undefined;
-    @UIWidgetBind('RootCanvas/mBtn')
-    public mBtn: mw.Button=undefined;
-    
+ export default class PropItem_Generate extends UIScript {
+     	private mIcon_Internal: mw.Image
+	public get mIcon(): mw.Image {
+		if(!this.mIcon_Internal&&this.uiWidgetBase) {
+			this.mIcon_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mIcon') as mw.Image
+		}
+		return this.mIcon_Internal
+	}
+	private mName_Internal: mw.TextBlock
+	public get mName(): mw.TextBlock {
+		if(!this.mName_Internal&&this.uiWidgetBase) {
+			this.mName_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mName') as mw.TextBlock
+		}
+		return this.mName_Internal
+	}
+	private mBtn_Internal: mw.Button
+	public get mBtn(): mw.Button {
+		if(!this.mBtn_Internal&&this.uiWidgetBase) {
+			this.mBtn_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mBtn') as mw.Button
+		}
+		return this.mBtn_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

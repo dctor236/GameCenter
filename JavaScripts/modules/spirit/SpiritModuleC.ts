@@ -2,9 +2,10 @@ import { InputManager } from "../../InputManager";
 import { GameConfig } from "../../config/GameConfig";
 import Spirit, { ESpiritState, SpiritType } from "./Spirit";
 import SpiritModuleS from "./SpiritModuleS";
-import { updater } from "../fight/utils/Updater";
-import { EventsName } from "../../const/GameEnum";
 
+/**
+ * 精灵模块客户端 控制精灵的行为 
+ */
 export default class SpiritModuleC extends ModuleC<SpiritModuleS, null>{
 
     private spiritMap: Map<number, Spirit[]> = new Map()
@@ -24,29 +25,24 @@ export default class SpiritModuleC extends ModuleC<SpiritModuleS, null>{
         })
     }
 
-    public net_setBattle(state: boolean) {
-        this.curFollows().forEach(e => {
-            if (state) {
-                e.onAttack()
-            } else {
-                e.onFollow()
-            }
-        })
-    }
-
+    /**
+    * 获取当前的跟随精灵数量
+    * @param tmpID 
+    * @returns 
+    */
     public getCurFollowNum() {
         let vec = this.curFollows()
         return vec ? vec.length : 0
     }
 
+    /**
+     * 通过配置id找到精灵
+     * @param tmpID 
+     * @returns 
+     */
     public getSpiritById(tmpID: number) {
         return this.spiritMap.get(this.localPlayerId).find(e => e.id == tmpID)
     }
-
-    public getSpiritByGuid(tmpID: string) {
-        return this.spiritMap.get(this.localPlayerId).find(e => e.obj.gameObjectId === tmpID)
-    }
-
 
     private curFollows() {
         return this.spiritMap.get(this.localPlayerId).filter(e => e.curState() == ESpiritState.Follow || e.curState() == ESpiritState.Attack)
@@ -78,6 +74,9 @@ export default class SpiritModuleC extends ModuleC<SpiritModuleS, null>{
         }, 5000)
     }
 
+    /**
+     * 请求同步精灵列表
+     */
     public req_asyncFollowList() {
         let vec = this.spiritMap.get(this.localPlayerId)
         const lastList = this._curFollowList
@@ -103,6 +102,11 @@ export default class SpiritModuleC extends ModuleC<SpiritModuleS, null>{
         }
     }
 
+    /**
+     * 同步所有玩家的精灵
+     * @param str 
+     * @param hostId 
+     */
     public async net_onAsyncFollow(str: string, hostId: number) {
         const list: string[] = JSON.parse(str)
         if (!this.spiritMap.has(hostId)) {
@@ -137,7 +141,6 @@ export default class SpiritModuleC extends ModuleC<SpiritModuleS, null>{
         this.spiritMap.set(hostId, vec)
     }
 
-    @updater.updateByFrameInterval(20)
     protected onUpdate(dt: number): void {
         this.spiritMap.forEach(list => {
             list.forEach(e => {
@@ -145,7 +148,6 @@ export default class SpiritModuleC extends ModuleC<SpiritModuleS, null>{
             })
         })
     }
-
     protected onDestroy(): void {
         clearInterval(this._asyncTime)
         this._asyncTime = null

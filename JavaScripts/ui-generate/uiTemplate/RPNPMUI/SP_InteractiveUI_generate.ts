@@ -1,7 +1,7 @@
- 
+﻿ 
 
  @UIBind('UI/uiTemplate/RPNPMUI/SP_InteractiveUI.ui')
- export default class SP_InteractiveUI_Generate extends mw.UIScript {
+ export default class SP_InteractiveUI_Generate extends UIScript {
      
 
      protected onAwake() {

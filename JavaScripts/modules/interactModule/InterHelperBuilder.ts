@@ -79,18 +79,6 @@ export class InterHelperBuild {
 	 */
 	public static onPlayerAction(playerId: number, active: boolean, param: string): boolean {
 		console.log(`外部关联 playerId=${playerId} active=${active}  param=${param} `);
-
-		let arr = param.split(':');
-		let type: string = arr[0];
-		let value = arr[1];
-		if (SystemUtil.isClient()) {
-			switch (type) {
-				case "studyHall": {
-					Event.dispatchToLocal(EventsName.StudyHallSit, active)
-				}
-			}
-		}
-
 		return true
 	}
 	//设置一个玩家的交互状态(服务端)

@@ -1,16 +1,36 @@
- 
+﻿ 
 
  @UIBind('UI/uiTemplate/NPC/NPCItem.ui')
- export default class NPCItem_Generate extends mw.UIScript {
-     @UIWidgetBind('Canvas/btn')
-    public btn: mw.StaleButton=undefined;
-    @UIWidgetBind('Canvas/icon')
-    public icon: mw.Image=undefined;
-    @UIWidgetBind('Canvas/select')
-    public select: mw.Image=undefined;
-    @UIWidgetBind('Canvas/des')
-    public des: mw.TextBlock=undefined;
-    
+ export default class NPCItem_Generate extends UIScript {
+     	private btn_Internal: mw.StaleButton
+	public get btn(): mw.StaleButton {
+		if(!this.btn_Internal&&this.uiWidgetBase) {
+			this.btn_Internal = this.uiWidgetBase.findChildByPath('Canvas/btn') as mw.StaleButton
+		}
+		return this.btn_Internal
+	}
+	private icon_Internal: mw.Image
+	public get icon(): mw.Image {
+		if(!this.icon_Internal&&this.uiWidgetBase) {
+			this.icon_Internal = this.uiWidgetBase.findChildByPath('Canvas/icon') as mw.Image
+		}
+		return this.icon_Internal
+	}
+	private select_Internal: mw.Image
+	public get select(): mw.Image {
+		if(!this.select_Internal&&this.uiWidgetBase) {
+			this.select_Internal = this.uiWidgetBase.findChildByPath('Canvas/select') as mw.Image
+		}
+		return this.select_Internal
+	}
+	private des_Internal: mw.TextBlock
+	public get des(): mw.TextBlock {
+		if(!this.des_Internal&&this.uiWidgetBase) {
+			this.des_Internal = this.uiWidgetBase.findChildByPath('Canvas/des') as mw.TextBlock
+		}
+		return this.des_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

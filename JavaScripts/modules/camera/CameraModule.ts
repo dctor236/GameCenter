@@ -354,8 +354,8 @@ export class CameraModuleC extends ModuleC<CameraModuleS, null> {
 		this.setFilter(filterDefID); //初始化滤镜
 		this.gameModuleC.changeHUDState(0);
 		this.curCameraType = CameraType.Null;
-		this.camera.positionLagEnabled = true;
-		this.camera.rotationLagEnabled = true;
+		// this.camera.positionLagEnabled = true;
+		// this.camera.rotationLagEnabled = true;
 		ModuleService.getModule(BagModuleC).setHubVis(true);
 		InteractPlayerMsg.removePlayer(this.localPlayer); // 开启交互物按钮
 		this.cameraFilterWeather.refreshFilterUI(); //重置滤镜天气按钮状态

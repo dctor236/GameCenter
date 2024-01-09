@@ -7,7 +7,6 @@ export default class NPCItem extends NPCItem_Generate {
 
     private data: ITalkEventElement = null;
 
-
     onStart() {
         this.select.visibility = mw.SlateVisibility.Hidden;
         this.btn.onClicked.add(this.onClicked.bind(this));

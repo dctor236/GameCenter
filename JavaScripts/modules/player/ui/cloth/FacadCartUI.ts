@@ -7,6 +7,9 @@ import FacadMainUI from "./FacadMainUI";
 import FacadTipUI from "./FacadTipUI";
 import WearItemUI from "./WearItemUI";
 
+/**
+ * 服装购买的二级确认弹窗
+ */
 export default class FacadCartUI extends FacadCart_Generate {
     private _itemPool: WearItemUI[] = []
     private _itemArr: WearItemUI[] = []

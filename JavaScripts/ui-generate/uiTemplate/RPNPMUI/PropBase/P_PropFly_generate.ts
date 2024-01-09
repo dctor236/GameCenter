@@ -1,16 +1,36 @@
- 
+﻿ 
 
  @UIBind('UI/uiTemplate/RPNPMUI/PropBase/P_PropFly.ui')
- export default class P_PropFly_Generate extends mw.UIScript {
-     @UIWidgetBind('Canvas/mBtn')
-    public mBtn: mw.StaleButton=undefined;
-    @UIWidgetBind('Canvas/mBtn2')
-    public mBtn2: mw.StaleButton=undefined;
-    @UIWidgetBind('Canvas/mBtn3')
-    public mBtn3: mw.StaleButton=undefined;
-    @UIWidgetBind('Canvas/forbidden')
-    public forbidden: mw.Image=undefined;
-    
+ export default class P_PropFly_Generate extends UIScript {
+     	private mBtn_Internal: mw.StaleButton
+	public get mBtn(): mw.StaleButton {
+		if(!this.mBtn_Internal&&this.uiWidgetBase) {
+			this.mBtn_Internal = this.uiWidgetBase.findChildByPath('Canvas/mBtn') as mw.StaleButton
+		}
+		return this.mBtn_Internal
+	}
+	private mBtn2_Internal: mw.StaleButton
+	public get mBtn2(): mw.StaleButton {
+		if(!this.mBtn2_Internal&&this.uiWidgetBase) {
+			this.mBtn2_Internal = this.uiWidgetBase.findChildByPath('Canvas/mBtn2') as mw.StaleButton
+		}
+		return this.mBtn2_Internal
+	}
+	private mBtn3_Internal: mw.StaleButton
+	public get mBtn3(): mw.StaleButton {
+		if(!this.mBtn3_Internal&&this.uiWidgetBase) {
+			this.mBtn3_Internal = this.uiWidgetBase.findChildByPath('Canvas/mBtn3') as mw.StaleButton
+		}
+		return this.mBtn3_Internal
+	}
+	private forbidden_Internal: mw.Image
+	public get forbidden(): mw.Image {
+		if(!this.forbidden_Internal&&this.uiWidgetBase) {
+			this.forbidden_Internal = this.uiWidgetBase.findChildByPath('Canvas/forbidden') as mw.Image
+		}
+		return this.forbidden_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

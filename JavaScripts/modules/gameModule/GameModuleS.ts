@@ -6,21 +6,16 @@ export interface IGameModuleS {
     net_ResetPos(pos: mw.Vector): void;
     net_PlayerLogin(nickName: string): void;
 }
-//服务端
+
+/**
+ *游戏模块 服务器端 控制游戏中的全局属性 
+ */
 export class GameModuleS extends ModuleS<IGameModuleC, GameModuleData> implements IGameModuleS {
     private jumpNum: number = 0;
     private playerNickNameMap: Map<number, string>;
 
     onStart() {
         this.playerNickNameMap = new Map<number, string>();
-        Event.addLocalListener(EventsName.PlayerBattle, (pid: number, sate: boolean) => {
-            if (!Player.getPlayer(pid)) return
-            if (sate) {
-                this.getClient(pid)?.net_playBattleBGM()
-            } else {
-                this.getClient(pid)?.net_playHallBGM()
-            }
-        })
     }
 
     onUpdate(dt: number) {

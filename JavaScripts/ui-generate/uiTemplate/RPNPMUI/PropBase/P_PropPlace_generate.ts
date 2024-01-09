@@ -1,14 +1,29 @@
- 
+﻿ 
 
  @UIBind('UI/uiTemplate/RPNPMUI/PropBase/P_PropPlace.ui')
- export default class P_PropPlace_Generate extends mw.UIScript {
-     @UIWidgetBind('Canvas/mBtn')
-    public mBtn: mw.StaleButton=undefined;
-    @UIWidgetBind('Canvas/mImg')
-    public mImg: mw.Image=undefined;
-    @UIWidgetBind('Canvas/mText')
-    public mText: mw.TextBlock=undefined;
-    
+ export default class P_PropPlace_Generate extends UIScript {
+     	private mBtn_Internal: mw.StaleButton
+	public get mBtn(): mw.StaleButton {
+		if(!this.mBtn_Internal&&this.uiWidgetBase) {
+			this.mBtn_Internal = this.uiWidgetBase.findChildByPath('Canvas/mBtn') as mw.StaleButton
+		}
+		return this.mBtn_Internal
+	}
+	private mImg_Internal: mw.Image
+	public get mImg(): mw.Image {
+		if(!this.mImg_Internal&&this.uiWidgetBase) {
+			this.mImg_Internal = this.uiWidgetBase.findChildByPath('Canvas/mImg') as mw.Image
+		}
+		return this.mImg_Internal
+	}
+	private mText_Internal: mw.TextBlock
+	public get mText(): mw.TextBlock {
+		if(!this.mText_Internal&&this.uiWidgetBase) {
+			this.mText_Internal = this.uiWidgetBase.findChildByPath('Canvas/mText') as mw.TextBlock
+		}
+		return this.mText_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

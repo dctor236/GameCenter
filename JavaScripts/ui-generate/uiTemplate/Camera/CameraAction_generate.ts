@@ -1,22 +1,57 @@
- 
+﻿ 
 
  @UIBind('UI/uiTemplate/Camera/CameraAction.ui')
- export default class CameraAction_Generate extends mw.UIScript {
-     @UIWidgetBind('Canvas/mCanvas/mCanvas_1/mScrollBox_1')
-    public mScrollBox_1: mw.ScrollBox=undefined;
-    @UIWidgetBind('Canvas/mCanvas/mCanvas_1/mText_1')
-    public mText_1: mw.TextBlock=undefined;
-    @UIWidgetBind('Canvas/mCanvas/mCanvas_1')
-    public mCanvas_1: mw.Canvas=undefined;
-    @UIWidgetBind('Canvas/mCanvas/mCanvas_2/mScrollBox_2')
-    public mScrollBox_2: mw.ScrollBox=undefined;
-    @UIWidgetBind('Canvas/mCanvas/mCanvas_2/mText_2')
-    public mText_2: mw.TextBlock=undefined;
-    @UIWidgetBind('Canvas/mCanvas/mCanvas_2')
-    public mCanvas_2: mw.Canvas=undefined;
-    @UIWidgetBind('Canvas/mCanvas')
-    public mCanvas: mw.Canvas=undefined;
-    
+ export default class CameraAction_Generate extends UIScript {
+     	private mScrollBox_1_Internal: mw.ScrollBox
+	public get mScrollBox_1(): mw.ScrollBox {
+		if(!this.mScrollBox_1_Internal&&this.uiWidgetBase) {
+			this.mScrollBox_1_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCanvas/mCanvas_1/mScrollBox_1') as mw.ScrollBox
+		}
+		return this.mScrollBox_1_Internal
+	}
+	private mText_1_Internal: mw.TextBlock
+	public get mText_1(): mw.TextBlock {
+		if(!this.mText_1_Internal&&this.uiWidgetBase) {
+			this.mText_1_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCanvas/mCanvas_1/mText_1') as mw.TextBlock
+		}
+		return this.mText_1_Internal
+	}
+	private mCanvas_1_Internal: mw.Canvas
+	public get mCanvas_1(): mw.Canvas {
+		if(!this.mCanvas_1_Internal&&this.uiWidgetBase) {
+			this.mCanvas_1_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCanvas/mCanvas_1') as mw.Canvas
+		}
+		return this.mCanvas_1_Internal
+	}
+	private mScrollBox_2_Internal: mw.ScrollBox
+	public get mScrollBox_2(): mw.ScrollBox {
+		if(!this.mScrollBox_2_Internal&&this.uiWidgetBase) {
+			this.mScrollBox_2_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCanvas/mCanvas_2/mScrollBox_2') as mw.ScrollBox
+		}
+		return this.mScrollBox_2_Internal
+	}
+	private mText_2_Internal: mw.TextBlock
+	public get mText_2(): mw.TextBlock {
+		if(!this.mText_2_Internal&&this.uiWidgetBase) {
+			this.mText_2_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCanvas/mCanvas_2/mText_2') as mw.TextBlock
+		}
+		return this.mText_2_Internal
+	}
+	private mCanvas_2_Internal: mw.Canvas
+	public get mCanvas_2(): mw.Canvas {
+		if(!this.mCanvas_2_Internal&&this.uiWidgetBase) {
+			this.mCanvas_2_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCanvas/mCanvas_2') as mw.Canvas
+		}
+		return this.mCanvas_2_Internal
+	}
+	private mCanvas_Internal: mw.Canvas
+	public get mCanvas(): mw.Canvas {
+		if(!this.mCanvas_Internal&&this.uiWidgetBase) {
+			this.mCanvas_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCanvas') as mw.Canvas
+		}
+		return this.mCanvas_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

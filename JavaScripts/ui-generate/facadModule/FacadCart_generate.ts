@@ -1,26 +1,71 @@
- 
+﻿ 
 
  @UIBind('UI/facadModule/FacadCart.ui')
- export default class FacadCart_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/mGetTxt')
-    public mGetTxt: mw.TextBlock=undefined;
-    @UIWidgetBind('RootCanvas/mPriceView/mGoldIcon')
-    public mGoldIcon: mw.Image=undefined;
-    @UIWidgetBind('RootCanvas/mPriceView/mTotalPrice')
-    public mTotalPrice: mw.TextBlock=undefined;
-    @UIWidgetBind('RootCanvas/mPriceView')
-    public mPriceView: mw.Canvas=undefined;
-    @UIWidgetBind('RootCanvas/mScroll/mWearCanvas')
-    public mWearCanvas: mw.Canvas=undefined;
-    @UIWidgetBind('RootCanvas/mScroll')
-    public mScroll: mw.ScrollBox=undefined;
-    @UIWidgetBind('RootCanvas/mBuyBtn')
-    public mBuyBtn: mw.StaleButton=undefined;
-    @UIWidgetBind('RootCanvas/mCloseBtn')
-    public mCloseBtn: mw.StaleButton=undefined;
-    @UIWidgetBind('RootCanvas/dividingline_up')
-    public dividingline_up: mw.Image=undefined;
-    
+ export default class FacadCart_Generate extends UIScript {
+     	private mGetTxt_Internal: mw.TextBlock
+	public get mGetTxt(): mw.TextBlock {
+		if(!this.mGetTxt_Internal&&this.uiWidgetBase) {
+			this.mGetTxt_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mGetTxt') as mw.TextBlock
+		}
+		return this.mGetTxt_Internal
+	}
+	private mGoldIcon_Internal: mw.Image
+	public get mGoldIcon(): mw.Image {
+		if(!this.mGoldIcon_Internal&&this.uiWidgetBase) {
+			this.mGoldIcon_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mPriceView/mGoldIcon') as mw.Image
+		}
+		return this.mGoldIcon_Internal
+	}
+	private mTotalPrice_Internal: mw.TextBlock
+	public get mTotalPrice(): mw.TextBlock {
+		if(!this.mTotalPrice_Internal&&this.uiWidgetBase) {
+			this.mTotalPrice_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mPriceView/mTotalPrice') as mw.TextBlock
+		}
+		return this.mTotalPrice_Internal
+	}
+	private mPriceView_Internal: mw.Canvas
+	public get mPriceView(): mw.Canvas {
+		if(!this.mPriceView_Internal&&this.uiWidgetBase) {
+			this.mPriceView_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mPriceView') as mw.Canvas
+		}
+		return this.mPriceView_Internal
+	}
+	private mWearCanvas_Internal: mw.Canvas
+	public get mWearCanvas(): mw.Canvas {
+		if(!this.mWearCanvas_Internal&&this.uiWidgetBase) {
+			this.mWearCanvas_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mScroll/mWearCanvas') as mw.Canvas
+		}
+		return this.mWearCanvas_Internal
+	}
+	private mScroll_Internal: mw.ScrollBox
+	public get mScroll(): mw.ScrollBox {
+		if(!this.mScroll_Internal&&this.uiWidgetBase) {
+			this.mScroll_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mScroll') as mw.ScrollBox
+		}
+		return this.mScroll_Internal
+	}
+	private mBuyBtn_Internal: mw.StaleButton
+	public get mBuyBtn(): mw.StaleButton {
+		if(!this.mBuyBtn_Internal&&this.uiWidgetBase) {
+			this.mBuyBtn_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mBuyBtn') as mw.StaleButton
+		}
+		return this.mBuyBtn_Internal
+	}
+	private mCloseBtn_Internal: mw.StaleButton
+	public get mCloseBtn(): mw.StaleButton {
+		if(!this.mCloseBtn_Internal&&this.uiWidgetBase) {
+			this.mCloseBtn_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCloseBtn') as mw.StaleButton
+		}
+		return this.mCloseBtn_Internal
+	}
+	private dividingline_up_Internal: mw.Image
+	public get dividingline_up(): mw.Image {
+		if(!this.dividingline_up_Internal&&this.uiWidgetBase) {
+			this.dividingline_up_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/dividingline_up') as mw.Image
+		}
+		return this.dividingline_up_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

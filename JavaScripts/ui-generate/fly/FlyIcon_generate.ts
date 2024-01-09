@@ -1,14 +1,29 @@
- 
+﻿ 
 
  @UIBind('UI/fly/FlyIcon.ui')
- export default class FlyIcon_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/canvasIcon/imgBg')
-    public imgBg: mw.Image=undefined;
-    @UIWidgetBind('RootCanvas/canvasIcon/textFont')
-    public textFont: mw.TextBlock=undefined;
-    @UIWidgetBind('RootCanvas/canvasIcon')
-    public canvasIcon: mw.Canvas=undefined;
-    
+ export default class FlyIcon_Generate extends UIScript {
+     	private imgBg_Internal: mw.Image
+	public get imgBg(): mw.Image {
+		if(!this.imgBg_Internal&&this.uiWidgetBase) {
+			this.imgBg_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/canvasIcon/imgBg') as mw.Image
+		}
+		return this.imgBg_Internal
+	}
+	private textFont_Internal: mw.TextBlock
+	public get textFont(): mw.TextBlock {
+		if(!this.textFont_Internal&&this.uiWidgetBase) {
+			this.textFont_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/canvasIcon/textFont') as mw.TextBlock
+		}
+		return this.textFont_Internal
+	}
+	private canvasIcon_Internal: mw.Canvas
+	public get canvasIcon(): mw.Canvas {
+		if(!this.canvasIcon_Internal&&this.uiWidgetBase) {
+			this.canvasIcon_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/canvasIcon') as mw.Canvas
+		}
+		return this.canvasIcon_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

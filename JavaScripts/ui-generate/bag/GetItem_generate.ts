@@ -1,16 +1,36 @@
- 
+﻿ 
 
  @UIBind('UI/bag/GetItem.ui')
- export default class GetItem_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/mName_1')
-    public mName_1: mw.TextBlock=undefined;
-    @UIWidgetBind('RootCanvas/mDesc')
-    public mDesc: mw.TextBlock=undefined;
-    @UIWidgetBind('RootCanvas/mAccept')
-    public mAccept: mw.Button=undefined;
-    @UIWidgetBind('RootCanvas/ScrollBox/canvasItems')
-    public canvasItems: mw.Canvas=undefined;
-    
+ export default class GetItem_Generate extends UIScript {
+     	private mName_1_Internal: mw.TextBlock
+	public get mName_1(): mw.TextBlock {
+		if(!this.mName_1_Internal&&this.uiWidgetBase) {
+			this.mName_1_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mName_1') as mw.TextBlock
+		}
+		return this.mName_1_Internal
+	}
+	private mDesc_Internal: mw.TextBlock
+	public get mDesc(): mw.TextBlock {
+		if(!this.mDesc_Internal&&this.uiWidgetBase) {
+			this.mDesc_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mDesc') as mw.TextBlock
+		}
+		return this.mDesc_Internal
+	}
+	private mAccept_Internal: mw.Button
+	public get mAccept(): mw.Button {
+		if(!this.mAccept_Internal&&this.uiWidgetBase) {
+			this.mAccept_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mAccept') as mw.Button
+		}
+		return this.mAccept_Internal
+	}
+	private canvasItems_Internal: mw.Canvas
+	public get canvasItems(): mw.Canvas {
+		if(!this.canvasItems_Internal&&this.uiWidgetBase) {
+			this.canvasItems_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/ScrollBox/canvasItems') as mw.Canvas
+		}
+		return this.canvasItems_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

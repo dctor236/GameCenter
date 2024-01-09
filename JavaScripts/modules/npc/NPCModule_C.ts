@@ -32,6 +32,18 @@ export default class NPCModule_C extends ModuleC<NPCModule_S, NPCDataHelper> {
             return this._npcMap.get(id);
     }
 
+    getNpcByGuid(guid: string) {
+        let res: SP_NPC = null
+        for (const [k, v] of this._npcMap) {
+            if (v.client.npcObj.gameObjectId == guid) {
+                res = v
+                break
+            }
+        }
+        return res
+    }
+
+
     public registFollowNPC(npcID: number) {
         if (this._followNpc.indexOf(npcID) == -1) {
             this._followNpc.push(npcID)
@@ -58,15 +70,6 @@ export default class NPCModule_C extends ModuleC<NPCModule_S, NPCDataHelper> {
     /**玩家完成了对话 给予道具 */
     public async getBagItem(npcid: number, eventConfig: INPCTalkElement, missionID: number) {
         if (this.data.getNpcEventReward(npcid, missionID)) return
-        // for (let i = 0; i < eventConfig.rewarID.length; i++) {
-        //     let rewardId = eventConfig.rewarID[i]
-        //     const bagModuleC = ModuleService.getModule(BagModuleC)
-        //     bagModuleC.addItem(rewardId)
-        //     bagModuleC.addSquareItem(rewardId)
-        //     MGSMsgHome.setNpcGetItem(rewardId);
-        //     Tips.show(GameConfig.SquareLanguage.Danmu_Content_1370.Value + GameConfig.ItemTestConfig.getElement(rewardId).Name)
-        //     await TimeUtil.delaySecond(1);   //避免连续拿出道具卡住
-        // }
         this.server.net_setNpcReward(npcid, eventConfig.rewarID, missionID)
     }
 }

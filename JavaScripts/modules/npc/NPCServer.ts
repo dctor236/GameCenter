@@ -78,7 +78,6 @@ export class NPCServer {
         this.init()
     }
 
-
     private setNpcAppearanceType() {
         // this.npc.animationMode = mw.AnimationMode.Custom;
         // this.npc.characterType = mw.AppearanceType.FourFootStandard;

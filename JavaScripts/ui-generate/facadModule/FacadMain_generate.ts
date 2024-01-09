@@ -1,58 +1,183 @@
- 
+﻿ 
 
  @UIBind('UI/facadModule/FacadMain.ui')
- export default class FacadMain_Generate extends mw.UIScript {
-     @UIWidgetBind('MWCanvas_2147482460/MWCanvas_4/basepicture')
-    public basepicture: mw.Image=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/MWCanvas_4/MWCanvas_2/MWCanvas_1/btn0')
-    public btn0: mw.StaleButton=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/MWCanvas_4/MWCanvas_2/MWCanvas_1/btn1')
-    public btn1: mw.StaleButton=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/MWCanvas_4/MWCanvas_2/MWCanvas_1/btn2')
-    public btn2: mw.StaleButton=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/MWCanvas_4/MWCanvas_2/MWCanvas_1/btn3')
-    public btn3: mw.StaleButton=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/MWCanvas_4/MWCanvas_2/MWCanvas_1/btn4')
-    public btn4: mw.StaleButton=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/MWCanvas_4/MWCanvas_2/MWCanvas_1/btn5')
-    public btn5: mw.StaleButton=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/MWCanvas_4/MWCanvas_2/MWCanvas_1/btn6')
-    public btn6: mw.StaleButton=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/MWCanvas_4/MWCanvas_2/MWCanvas_1/btn7')
-    public btn7: mw.StaleButton=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/MWCanvas_4/MWCanvas_2/dividingline_up')
-    public dividingline_up: mw.Image=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/MWCanvas_4/MWCanvas_2/mCheckBoxImg')
-    public mCheckBoxImg: mw.Image=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/MWCanvas_4/MWCanvas_2/mCheckBox')
-    public mCheckBox: mw.Button=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/MWCanvas_4/MWCanvas_2/mScrollBox/mContent')
-    public mContent: mw.Canvas=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/MWCanvas_4/MWCanvas_2/mScrollBox')
-    public mScrollBox: mw.ScrollBox=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/MWCanvas_4/dividingline_down')
-    public dividingline_down: mw.Image=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/MWCanvas_4/MWCanvas_2147482460/mBtnSave')
-    public mBtnSave: mw.StaleButton=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/MWCanvas_4/MWCanvas_2147482460/mBtnClose')
-    public mBtnClose: mw.StaleButton=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/MWCanvas_5/mTouch')
-    public mTouch: mw.Image=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/MWCanvas_5/MWCanvas_3/btnLeft')
-    public btnLeft: mw.StaleButton=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/MWCanvas_5/MWCanvas_3/btnRight')
-    public btnRight: mw.StaleButton=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/MWCanvas_5/MWCanvas_3/btnReset')
-    public btnReset: mw.StaleButton=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/MWCanvas_5/MWCanvas_3/mBtnBuy')
-    public mBtnBuy: mw.StaleButton=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/MWCanvas_5/MWCanvas_3/mBtnView')
-    public mBtnView: mw.StaleButton=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/MWCanvas_5/MWCanvas_3/mPos')
-    public mPos: mw.Image=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/MWCanvas_5/mGold')
-    public mGold: mw.TextBlock=undefined;
-    
+ export default class FacadMain_Generate extends UIScript {
+     	private basepicture_Internal: mw.Image
+	public get basepicture(): mw.Image {
+		if(!this.basepicture_Internal&&this.uiWidgetBase) {
+			this.basepicture_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/MWCanvas_4/basepicture') as mw.Image
+		}
+		return this.basepicture_Internal
+	}
+	private btn0_Internal: mw.StaleButton
+	public get btn0(): mw.StaleButton {
+		if(!this.btn0_Internal&&this.uiWidgetBase) {
+			this.btn0_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/MWCanvas_4/MWCanvas_2/MWCanvas_1/btn0') as mw.StaleButton
+		}
+		return this.btn0_Internal
+	}
+	private btn1_Internal: mw.StaleButton
+	public get btn1(): mw.StaleButton {
+		if(!this.btn1_Internal&&this.uiWidgetBase) {
+			this.btn1_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/MWCanvas_4/MWCanvas_2/MWCanvas_1/btn1') as mw.StaleButton
+		}
+		return this.btn1_Internal
+	}
+	private btn2_Internal: mw.StaleButton
+	public get btn2(): mw.StaleButton {
+		if(!this.btn2_Internal&&this.uiWidgetBase) {
+			this.btn2_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/MWCanvas_4/MWCanvas_2/MWCanvas_1/btn2') as mw.StaleButton
+		}
+		return this.btn2_Internal
+	}
+	private btn3_Internal: mw.StaleButton
+	public get btn3(): mw.StaleButton {
+		if(!this.btn3_Internal&&this.uiWidgetBase) {
+			this.btn3_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/MWCanvas_4/MWCanvas_2/MWCanvas_1/btn3') as mw.StaleButton
+		}
+		return this.btn3_Internal
+	}
+	private btn4_Internal: mw.StaleButton
+	public get btn4(): mw.StaleButton {
+		if(!this.btn4_Internal&&this.uiWidgetBase) {
+			this.btn4_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/MWCanvas_4/MWCanvas_2/MWCanvas_1/btn4') as mw.StaleButton
+		}
+		return this.btn4_Internal
+	}
+	private btn5_Internal: mw.StaleButton
+	public get btn5(): mw.StaleButton {
+		if(!this.btn5_Internal&&this.uiWidgetBase) {
+			this.btn5_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/MWCanvas_4/MWCanvas_2/MWCanvas_1/btn5') as mw.StaleButton
+		}
+		return this.btn5_Internal
+	}
+	private btn6_Internal: mw.StaleButton
+	public get btn6(): mw.StaleButton {
+		if(!this.btn6_Internal&&this.uiWidgetBase) {
+			this.btn6_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/MWCanvas_4/MWCanvas_2/MWCanvas_1/btn6') as mw.StaleButton
+		}
+		return this.btn6_Internal
+	}
+	private btn7_Internal: mw.StaleButton
+	public get btn7(): mw.StaleButton {
+		if(!this.btn7_Internal&&this.uiWidgetBase) {
+			this.btn7_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/MWCanvas_4/MWCanvas_2/MWCanvas_1/btn7') as mw.StaleButton
+		}
+		return this.btn7_Internal
+	}
+	private dividingline_up_Internal: mw.Image
+	public get dividingline_up(): mw.Image {
+		if(!this.dividingline_up_Internal&&this.uiWidgetBase) {
+			this.dividingline_up_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/MWCanvas_4/MWCanvas_2/dividingline_up') as mw.Image
+		}
+		return this.dividingline_up_Internal
+	}
+	private mCheckBoxImg_Internal: mw.Image
+	public get mCheckBoxImg(): mw.Image {
+		if(!this.mCheckBoxImg_Internal&&this.uiWidgetBase) {
+			this.mCheckBoxImg_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/MWCanvas_4/MWCanvas_2/mCheckBoxImg') as mw.Image
+		}
+		return this.mCheckBoxImg_Internal
+	}
+	private mCheckBox_Internal: mw.Button
+	public get mCheckBox(): mw.Button {
+		if(!this.mCheckBox_Internal&&this.uiWidgetBase) {
+			this.mCheckBox_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/MWCanvas_4/MWCanvas_2/mCheckBox') as mw.Button
+		}
+		return this.mCheckBox_Internal
+	}
+	private mContent_Internal: mw.Canvas
+	public get mContent(): mw.Canvas {
+		if(!this.mContent_Internal&&this.uiWidgetBase) {
+			this.mContent_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/MWCanvas_4/MWCanvas_2/mScrollBox/mContent') as mw.Canvas
+		}
+		return this.mContent_Internal
+	}
+	private mScrollBox_Internal: mw.ScrollBox
+	public get mScrollBox(): mw.ScrollBox {
+		if(!this.mScrollBox_Internal&&this.uiWidgetBase) {
+			this.mScrollBox_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/MWCanvas_4/MWCanvas_2/mScrollBox') as mw.ScrollBox
+		}
+		return this.mScrollBox_Internal
+	}
+	private dividingline_down_Internal: mw.Image
+	public get dividingline_down(): mw.Image {
+		if(!this.dividingline_down_Internal&&this.uiWidgetBase) {
+			this.dividingline_down_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/MWCanvas_4/dividingline_down') as mw.Image
+		}
+		return this.dividingline_down_Internal
+	}
+	private mBtnSave_Internal: mw.StaleButton
+	public get mBtnSave(): mw.StaleButton {
+		if(!this.mBtnSave_Internal&&this.uiWidgetBase) {
+			this.mBtnSave_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/MWCanvas_4/MWCanvas_2147482460/mBtnSave') as mw.StaleButton
+		}
+		return this.mBtnSave_Internal
+	}
+	private mBtnClose_Internal: mw.StaleButton
+	public get mBtnClose(): mw.StaleButton {
+		if(!this.mBtnClose_Internal&&this.uiWidgetBase) {
+			this.mBtnClose_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/MWCanvas_4/MWCanvas_2147482460/mBtnClose') as mw.StaleButton
+		}
+		return this.mBtnClose_Internal
+	}
+	private mTouch_Internal: mw.Image
+	public get mTouch(): mw.Image {
+		if(!this.mTouch_Internal&&this.uiWidgetBase) {
+			this.mTouch_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/MWCanvas_5/mTouch') as mw.Image
+		}
+		return this.mTouch_Internal
+	}
+	private btnLeft_Internal: mw.StaleButton
+	public get btnLeft(): mw.StaleButton {
+		if(!this.btnLeft_Internal&&this.uiWidgetBase) {
+			this.btnLeft_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/MWCanvas_5/MWCanvas_3/btnLeft') as mw.StaleButton
+		}
+		return this.btnLeft_Internal
+	}
+	private btnRight_Internal: mw.StaleButton
+	public get btnRight(): mw.StaleButton {
+		if(!this.btnRight_Internal&&this.uiWidgetBase) {
+			this.btnRight_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/MWCanvas_5/MWCanvas_3/btnRight') as mw.StaleButton
+		}
+		return this.btnRight_Internal
+	}
+	private btnReset_Internal: mw.StaleButton
+	public get btnReset(): mw.StaleButton {
+		if(!this.btnReset_Internal&&this.uiWidgetBase) {
+			this.btnReset_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/MWCanvas_5/MWCanvas_3/btnReset') as mw.StaleButton
+		}
+		return this.btnReset_Internal
+	}
+	private mBtnBuy_Internal: mw.StaleButton
+	public get mBtnBuy(): mw.StaleButton {
+		if(!this.mBtnBuy_Internal&&this.uiWidgetBase) {
+			this.mBtnBuy_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/MWCanvas_5/MWCanvas_3/mBtnBuy') as mw.StaleButton
+		}
+		return this.mBtnBuy_Internal
+	}
+	private mBtnView_Internal: mw.StaleButton
+	public get mBtnView(): mw.StaleButton {
+		if(!this.mBtnView_Internal&&this.uiWidgetBase) {
+			this.mBtnView_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/MWCanvas_5/MWCanvas_3/mBtnView') as mw.StaleButton
+		}
+		return this.mBtnView_Internal
+	}
+	private mPos_Internal: mw.Image
+	public get mPos(): mw.Image {
+		if(!this.mPos_Internal&&this.uiWidgetBase) {
+			this.mPos_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/MWCanvas_5/MWCanvas_3/mPos') as mw.Image
+		}
+		return this.mPos_Internal
+	}
+	private mGold_Internal: mw.TextBlock
+	public get mGold(): mw.TextBlock {
+		if(!this.mGold_Internal&&this.uiWidgetBase) {
+			this.mGold_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/MWCanvas_5/mGold') as mw.TextBlock
+		}
+		return this.mGold_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

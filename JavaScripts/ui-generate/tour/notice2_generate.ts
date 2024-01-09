@@ -1,7 +1,7 @@
- 
+﻿ 
 
  @UIBind('UI/tour/notice2.ui')
- export default class notice2_Generate extends mw.UIScript {
+ export default class notice2_Generate extends UIScript {
      
 
      protected onAwake() {

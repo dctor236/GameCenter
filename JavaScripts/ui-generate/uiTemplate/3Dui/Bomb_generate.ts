@@ -1,10 +1,15 @@
- 
+﻿ 
 
  @UIBind('UI/uiTemplate/3Dui/Bomb.ui')
- export default class Bomb_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/countDown')
-    public countDown: mw.TextBlock=undefined;
-    
+ export default class Bomb_Generate extends UIScript {
+     	private countDown_Internal: mw.TextBlock
+	public get countDown(): mw.TextBlock {
+		if(!this.countDown_Internal&&this.uiWidgetBase) {
+			this.countDown_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/countDown') as mw.TextBlock
+		}
+		return this.countDown_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

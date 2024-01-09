@@ -1,10 +1,3 @@
-/** 
- * @Author       : xianjie.xia
- * @LastEditors  : xianjie.xia
- * @Date         : 2023-04-25 15:45
- * @LastEditTime : 2023-05-24 14:25
- * @description  : 
- */
 
 import { LogMgr } from "./LogMgr";
 

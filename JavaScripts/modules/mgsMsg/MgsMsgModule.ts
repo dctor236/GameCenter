@@ -3,6 +3,9 @@ import { GameConfig } from "../../config/GameConfig";
 import { MGSMsgHome } from "./MgsmsgHome";
 import { PlayerMgsModuleData } from "./PlayerMgsMsgData";
 
+/**
+ * 管理用户的埋点 客户端
+ */
 export class MgsMsgModuleC extends ModuleC<MgsMsgModuleS, PlayerMgsModuleData> {
 
     private enterAreaTriggerTime: number = 0;
@@ -109,6 +112,10 @@ export class MgsMsgModuleC extends ModuleC<MgsMsgModuleS, PlayerMgsModuleData> {
         this.curMsgStartGameTime = 0;
     }
 }
+
+/**
+ * 管理用户的埋点 服务器
+ */
 export class MgsMsgModuleS extends ModuleS<MgsMsgModuleC, PlayerMgsModuleData>{
 
     /**

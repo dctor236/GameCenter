@@ -1,7 +1,7 @@
 /** 
- * @Author       : 陆江帅
+ * @Author       : meta
  * @Date         : 2023-03-05 11:28:44
- * @LastEditors  : 陆江帅
+ * @LastEditors  : meta
  * @LastEditTime : 2023-05-10 14:57:11
  * @FilePath     : \mollywoodschool\JavaScripts\modules\bag\ui\BagPanel.ts
  * @Description  : 
@@ -13,7 +13,6 @@ import { CloseAllUI, ShowAllUI, Tween, UIManager } from "../../../ExtensionType"
 import BagPanel_Generate from "../../../ui-generate/bag/BagPanel_generate";
 import Tips from "../../../ui/commonUI/P_Tips";
 import { MGSMsgHome } from "../../mgsMsg/MgsmsgHome";
-import { ContractType } from "../../relation/RelationData";
 import { ItemInfo, ItemType, TagType } from "../BagDataHelper";
 import { BagModuleC } from "../BagModuleC";
 import { BagHub } from "./BagHub";
@@ -98,9 +97,6 @@ export class BagPanel extends BagPanel_Generate {
         this._curType = null;
         this.mTypeBtn1.onClicked.broadcast()
         this.initShortcutBar();
-
-        /**消息通知 */
-        this.broadcastNotify()
 
         /**背包动画 */
         const screenWidth = UIManager.canvas.size.x
@@ -331,20 +327,4 @@ export class BagPanel extends BagPanel_Generate {
         this.bagModuleC.refreshShortcutBar(equips);
     }
 
-    broadcastNotify() {
-        const notifyList = this.bagModuleC.notifyList;
-        if (!notifyList.length) {
-            return
-        }
-        for (const type of notifyList) {
-            switch (type) {
-                case ContractType.Ring:
-                    Tips.show("契约之戒已失效，请重新购买签订契约")
-                    break;
-                default:
-                    break;
-            }
-        }
-        notifyList.length = 0
-    }
 }

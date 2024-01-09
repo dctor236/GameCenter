@@ -1,9 +1,3 @@
-/*
- * @Author: 王嵘 rong.wang@appshahe.com
- * @Date: 2022-12-12 11:37:34
- * @LastEditTime: 2023-05-21 01:09:50
- * @Description: Avatar Creator Development
- */
 import { EmTaskState } from "../../../const/GameEnum";
 import TaskMain_Generate from "../../../ui-generate/task/TaskMain_generate";
 import { TaskModuleC } from "../TaskModuleC";
@@ -11,8 +5,9 @@ import { TaskData } from "../TaskModuleDataHelper";
 import { UIMultiScroller } from "../UIMultiScroller";
 import UITaskItem from "./UITaskItem";
 
-
-
+/**
+ * 任务主UI
+ */
 export default class UITaskMain extends TaskMain_Generate {
     private _scrFinish: UIMultiScroller = null;
     private _scrUnAcc: UIMultiScroller = null;

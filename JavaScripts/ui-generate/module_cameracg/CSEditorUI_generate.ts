@@ -1,64 +1,204 @@
- 
+﻿ 
 
  @UIBind('UI/module_cameracg/CSEditorUI.ui')
- export default class CSEditorUI_Generate extends mw.UIScript {
-     @UIWidgetBind('MWCanvas/mCanvasActionBar/mCanvasBtns/CanvasBtnPlay/mBtnPlay')
-    public mBtnPlay: mw.Button=undefined;
-    @UIWidgetBind('MWCanvas/mCanvasActionBar/mCanvasBtns/CanvasBtnRecord/mBtnRecord')
-    public mBtnRecord: mw.Button=undefined;
-    @UIWidgetBind('MWCanvas/mCanvasActionBar/mCanvasBtns/CanvasBtnClear/mBtnClear')
-    public mBtnClear: mw.Button=undefined;
-    @UIWidgetBind('MWCanvas/mCanvasActionBar/mCanvasBtns/CanvasBtnSetting/mBtnSetting')
-    public mBtnSetting: mw.Button=undefined;
-    @UIWidgetBind('MWCanvas/mCanvasActionBar/mCanvasBtns')
-    public mCanvasBtns: mw.Canvas=undefined;
-    @UIWidgetBind('MWCanvas/mCanvasActionBar/mCanvasSetting/CanvasResetFOV/mBtnResetFOV')
-    public mBtnResetFOV: mw.Button=undefined;
-    @UIWidgetBind('MWCanvas/mCanvasActionBar/mCanvasSetting/CanvasCameraSync/mBtnCameraSync')
-    public mBtnCameraSync: mw.Button=undefined;
-    @UIWidgetBind('MWCanvas/mCanvasActionBar/mCanvasSetting/CanvasCameraSync/mTextBtnCameraSync')
-    public mTextBtnCameraSync: mw.TextBlock=undefined;
-    @UIWidgetBind('MWCanvas/mCanvasActionBar/mCanvasSetting/CanvasBtnLoad/mBtnLoad')
-    public mBtnLoad: mw.Button=undefined;
-    @UIWidgetBind('MWCanvas/mCanvasActionBar/mCanvasSetting/CanvasSave/mBtnSave')
-    public mBtnSave: mw.Button=undefined;
-    @UIWidgetBind('MWCanvas/mCanvasActionBar/mCanvasSetting')
-    public mCanvasSetting: mw.Canvas=undefined;
-    @UIWidgetBind('MWCanvas/mCanvasActionBar/mCanvasTimeLine/mCanvasTimePoint')
-    public mCanvasTimePoint: mw.Canvas=undefined;
-    @UIWidgetBind('MWCanvas/mCanvasActionBar/mCanvasTimeLine/mBtnBar')
-    public mBtnBar: mw.Button=undefined;
-    @UIWidgetBind('MWCanvas/mCanvasActionBar/mCanvasTimeLine/mBtnCurrentTime')
-    public mBtnCurrentTime: mw.Button=undefined;
-    @UIWidgetBind('MWCanvas/mCanvasActionBar/mCanvasTimeLine/mCanvasKeyFrame')
-    public mCanvasKeyFrame: mw.Canvas=undefined;
-    @UIWidgetBind('MWCanvas/mCanvasActionBar/mCanvasTimeLine/CanvasBtnAddTime/mBtnAddTime')
-    public mBtnAddTime: mw.Button=undefined;
-    @UIWidgetBind('MWCanvas/mCanvasActionBar/mCanvasTimeLine/CanvasBtnSubTime/mBtnSubTime')
-    public mBtnSubTime: mw.Button=undefined;
-    @UIWidgetBind('MWCanvas/mCanvasActionBar/mCanvasTimeLine')
-    public mCanvasTimeLine: mw.Canvas=undefined;
-    @UIWidgetBind('MWCanvas/mCanvasActionBar/mCanvasFramesEdit/CanvasEditLoc/mInputLocX')
-    public mInputLocX: mw.InputBox=undefined;
-    @UIWidgetBind('MWCanvas/mCanvasActionBar/mCanvasFramesEdit/CanvasEditLoc/mInputLocY')
-    public mInputLocY: mw.InputBox=undefined;
-    @UIWidgetBind('MWCanvas/mCanvasActionBar/mCanvasFramesEdit/CanvasEditLoc/mInputLocZ')
-    public mInputLocZ: mw.InputBox=undefined;
-    @UIWidgetBind('MWCanvas/mCanvasActionBar/mCanvasFramesEdit/CanvasEditRot/mInputRotP')
-    public mInputRotP: mw.InputBox=undefined;
-    @UIWidgetBind('MWCanvas/mCanvasActionBar/mCanvasFramesEdit/CanvasEditRot/mInputRotY')
-    public mInputRotY: mw.InputBox=undefined;
-    @UIWidgetBind('MWCanvas/mCanvasActionBar/mCanvasFramesEdit/CanvasEditRot/mInputRotR')
-    public mInputRotR: mw.InputBox=undefined;
-    @UIWidgetBind('MWCanvas/mCanvasActionBar/mCanvasFramesEdit/CanvasEditOther/mInputFOV')
-    public mInputFOV: mw.InputBox=undefined;
-    @UIWidgetBind('MWCanvas/mCanvasActionBar/mCanvasFramesEdit/CanvasEditOther/CanvasBtnDelKeyFrame/mBtnDelKeyFrame')
-    public mBtnDelKeyFrame: mw.Button=undefined;
-    @UIWidgetBind('MWCanvas/mCanvasActionBar/mCanvasFramesEdit')
-    public mCanvasFramesEdit: mw.Canvas=undefined;
-    @UIWidgetBind('MWCanvas/mCanvasActionBar')
-    public mCanvasActionBar: mw.Canvas=undefined;
-    
+ export default class CSEditorUI_Generate extends UIScript {
+     	private mBtnPlay_Internal: mw.Button
+	public get mBtnPlay(): mw.Button {
+		if(!this.mBtnPlay_Internal&&this.uiWidgetBase) {
+			this.mBtnPlay_Internal = this.uiWidgetBase.findChildByPath('MWCanvas/mCanvasActionBar/mCanvasBtns/CanvasBtnPlay/mBtnPlay') as mw.Button
+		}
+		return this.mBtnPlay_Internal
+	}
+	private mBtnRecord_Internal: mw.Button
+	public get mBtnRecord(): mw.Button {
+		if(!this.mBtnRecord_Internal&&this.uiWidgetBase) {
+			this.mBtnRecord_Internal = this.uiWidgetBase.findChildByPath('MWCanvas/mCanvasActionBar/mCanvasBtns/CanvasBtnRecord/mBtnRecord') as mw.Button
+		}
+		return this.mBtnRecord_Internal
+	}
+	private mBtnClear_Internal: mw.Button
+	public get mBtnClear(): mw.Button {
+		if(!this.mBtnClear_Internal&&this.uiWidgetBase) {
+			this.mBtnClear_Internal = this.uiWidgetBase.findChildByPath('MWCanvas/mCanvasActionBar/mCanvasBtns/CanvasBtnClear/mBtnClear') as mw.Button
+		}
+		return this.mBtnClear_Internal
+	}
+	private mBtnSetting_Internal: mw.Button
+	public get mBtnSetting(): mw.Button {
+		if(!this.mBtnSetting_Internal&&this.uiWidgetBase) {
+			this.mBtnSetting_Internal = this.uiWidgetBase.findChildByPath('MWCanvas/mCanvasActionBar/mCanvasBtns/CanvasBtnSetting/mBtnSetting') as mw.Button
+		}
+		return this.mBtnSetting_Internal
+	}
+	private mCanvasBtns_Internal: mw.Canvas
+	public get mCanvasBtns(): mw.Canvas {
+		if(!this.mCanvasBtns_Internal&&this.uiWidgetBase) {
+			this.mCanvasBtns_Internal = this.uiWidgetBase.findChildByPath('MWCanvas/mCanvasActionBar/mCanvasBtns') as mw.Canvas
+		}
+		return this.mCanvasBtns_Internal
+	}
+	private mBtnResetFOV_Internal: mw.Button
+	public get mBtnResetFOV(): mw.Button {
+		if(!this.mBtnResetFOV_Internal&&this.uiWidgetBase) {
+			this.mBtnResetFOV_Internal = this.uiWidgetBase.findChildByPath('MWCanvas/mCanvasActionBar/mCanvasSetting/CanvasResetFOV/mBtnResetFOV') as mw.Button
+		}
+		return this.mBtnResetFOV_Internal
+	}
+	private mBtnCameraSync_Internal: mw.Button
+	public get mBtnCameraSync(): mw.Button {
+		if(!this.mBtnCameraSync_Internal&&this.uiWidgetBase) {
+			this.mBtnCameraSync_Internal = this.uiWidgetBase.findChildByPath('MWCanvas/mCanvasActionBar/mCanvasSetting/CanvasCameraSync/mBtnCameraSync') as mw.Button
+		}
+		return this.mBtnCameraSync_Internal
+	}
+	private mTextBtnCameraSync_Internal: mw.TextBlock
+	public get mTextBtnCameraSync(): mw.TextBlock {
+		if(!this.mTextBtnCameraSync_Internal&&this.uiWidgetBase) {
+			this.mTextBtnCameraSync_Internal = this.uiWidgetBase.findChildByPath('MWCanvas/mCanvasActionBar/mCanvasSetting/CanvasCameraSync/mTextBtnCameraSync') as mw.TextBlock
+		}
+		return this.mTextBtnCameraSync_Internal
+	}
+	private mBtnLoad_Internal: mw.Button
+	public get mBtnLoad(): mw.Button {
+		if(!this.mBtnLoad_Internal&&this.uiWidgetBase) {
+			this.mBtnLoad_Internal = this.uiWidgetBase.findChildByPath('MWCanvas/mCanvasActionBar/mCanvasSetting/CanvasBtnLoad/mBtnLoad') as mw.Button
+		}
+		return this.mBtnLoad_Internal
+	}
+	private mBtnSave_Internal: mw.Button
+	public get mBtnSave(): mw.Button {
+		if(!this.mBtnSave_Internal&&this.uiWidgetBase) {
+			this.mBtnSave_Internal = this.uiWidgetBase.findChildByPath('MWCanvas/mCanvasActionBar/mCanvasSetting/CanvasSave/mBtnSave') as mw.Button
+		}
+		return this.mBtnSave_Internal
+	}
+	private mCanvasSetting_Internal: mw.Canvas
+	public get mCanvasSetting(): mw.Canvas {
+		if(!this.mCanvasSetting_Internal&&this.uiWidgetBase) {
+			this.mCanvasSetting_Internal = this.uiWidgetBase.findChildByPath('MWCanvas/mCanvasActionBar/mCanvasSetting') as mw.Canvas
+		}
+		return this.mCanvasSetting_Internal
+	}
+	private mCanvasTimePoint_Internal: mw.Canvas
+	public get mCanvasTimePoint(): mw.Canvas {
+		if(!this.mCanvasTimePoint_Internal&&this.uiWidgetBase) {
+			this.mCanvasTimePoint_Internal = this.uiWidgetBase.findChildByPath('MWCanvas/mCanvasActionBar/mCanvasTimeLine/mCanvasTimePoint') as mw.Canvas
+		}
+		return this.mCanvasTimePoint_Internal
+	}
+	private mBtnBar_Internal: mw.Button
+	public get mBtnBar(): mw.Button {
+		if(!this.mBtnBar_Internal&&this.uiWidgetBase) {
+			this.mBtnBar_Internal = this.uiWidgetBase.findChildByPath('MWCanvas/mCanvasActionBar/mCanvasTimeLine/mBtnBar') as mw.Button
+		}
+		return this.mBtnBar_Internal
+	}
+	private mBtnCurrentTime_Internal: mw.Button
+	public get mBtnCurrentTime(): mw.Button {
+		if(!this.mBtnCurrentTime_Internal&&this.uiWidgetBase) {
+			this.mBtnCurrentTime_Internal = this.uiWidgetBase.findChildByPath('MWCanvas/mCanvasActionBar/mCanvasTimeLine/mBtnCurrentTime') as mw.Button
+		}
+		return this.mBtnCurrentTime_Internal
+	}
+	private mCanvasKeyFrame_Internal: mw.Canvas
+	public get mCanvasKeyFrame(): mw.Canvas {
+		if(!this.mCanvasKeyFrame_Internal&&this.uiWidgetBase) {
+			this.mCanvasKeyFrame_Internal = this.uiWidgetBase.findChildByPath('MWCanvas/mCanvasActionBar/mCanvasTimeLine/mCanvasKeyFrame') as mw.Canvas
+		}
+		return this.mCanvasKeyFrame_Internal
+	}
+	private mBtnAddTime_Internal: mw.Button
+	public get mBtnAddTime(): mw.Button {
+		if(!this.mBtnAddTime_Internal&&this.uiWidgetBase) {
+			this.mBtnAddTime_Internal = this.uiWidgetBase.findChildByPath('MWCanvas/mCanvasActionBar/mCanvasTimeLine/CanvasBtnAddTime/mBtnAddTime') as mw.Button
+		}
+		return this.mBtnAddTime_Internal
+	}
+	private mBtnSubTime_Internal: mw.Button
+	public get mBtnSubTime(): mw.Button {
+		if(!this.mBtnSubTime_Internal&&this.uiWidgetBase) {
+			this.mBtnSubTime_Internal = this.uiWidgetBase.findChildByPath('MWCanvas/mCanvasActionBar/mCanvasTimeLine/CanvasBtnSubTime/mBtnSubTime') as mw.Button
+		}
+		return this.mBtnSubTime_Internal
+	}
+	private mCanvasTimeLine_Internal: mw.Canvas
+	public get mCanvasTimeLine(): mw.Canvas {
+		if(!this.mCanvasTimeLine_Internal&&this.uiWidgetBase) {
+			this.mCanvasTimeLine_Internal = this.uiWidgetBase.findChildByPath('MWCanvas/mCanvasActionBar/mCanvasTimeLine') as mw.Canvas
+		}
+		return this.mCanvasTimeLine_Internal
+	}
+	private mInputLocX_Internal: mw.InputBox
+	public get mInputLocX(): mw.InputBox {
+		if(!this.mInputLocX_Internal&&this.uiWidgetBase) {
+			this.mInputLocX_Internal = this.uiWidgetBase.findChildByPath('MWCanvas/mCanvasActionBar/mCanvasFramesEdit/CanvasEditLoc/mInputLocX') as mw.InputBox
+		}
+		return this.mInputLocX_Internal
+	}
+	private mInputLocY_Internal: mw.InputBox
+	public get mInputLocY(): mw.InputBox {
+		if(!this.mInputLocY_Internal&&this.uiWidgetBase) {
+			this.mInputLocY_Internal = this.uiWidgetBase.findChildByPath('MWCanvas/mCanvasActionBar/mCanvasFramesEdit/CanvasEditLoc/mInputLocY') as mw.InputBox
+		}
+		return this.mInputLocY_Internal
+	}
+	private mInputLocZ_Internal: mw.InputBox
+	public get mInputLocZ(): mw.InputBox {
+		if(!this.mInputLocZ_Internal&&this.uiWidgetBase) {
+			this.mInputLocZ_Internal = this.uiWidgetBase.findChildByPath('MWCanvas/mCanvasActionBar/mCanvasFramesEdit/CanvasEditLoc/mInputLocZ') as mw.InputBox
+		}
+		return this.mInputLocZ_Internal
+	}
+	private mInputRotP_Internal: mw.InputBox
+	public get mInputRotP(): mw.InputBox {
+		if(!this.mInputRotP_Internal&&this.uiWidgetBase) {
+			this.mInputRotP_Internal = this.uiWidgetBase.findChildByPath('MWCanvas/mCanvasActionBar/mCanvasFramesEdit/CanvasEditRot/mInputRotP') as mw.InputBox
+		}
+		return this.mInputRotP_Internal
+	}
+	private mInputRotY_Internal: mw.InputBox
+	public get mInputRotY(): mw.InputBox {
+		if(!this.mInputRotY_Internal&&this.uiWidgetBase) {
+			this.mInputRotY_Internal = this.uiWidgetBase.findChildByPath('MWCanvas/mCanvasActionBar/mCanvasFramesEdit/CanvasEditRot/mInputRotY') as mw.InputBox
+		}
+		return this.mInputRotY_Internal
+	}
+	private mInputRotR_Internal: mw.InputBox
+	public get mInputRotR(): mw.InputBox {
+		if(!this.mInputRotR_Internal&&this.uiWidgetBase) {
+			this.mInputRotR_Internal = this.uiWidgetBase.findChildByPath('MWCanvas/mCanvasActionBar/mCanvasFramesEdit/CanvasEditRot/mInputRotR') as mw.InputBox
+		}
+		return this.mInputRotR_Internal
+	}
+	private mInputFOV_Internal: mw.InputBox
+	public get mInputFOV(): mw.InputBox {
+		if(!this.mInputFOV_Internal&&this.uiWidgetBase) {
+			this.mInputFOV_Internal = this.uiWidgetBase.findChildByPath('MWCanvas/mCanvasActionBar/mCanvasFramesEdit/CanvasEditOther/mInputFOV') as mw.InputBox
+		}
+		return this.mInputFOV_Internal
+	}
+	private mBtnDelKeyFrame_Internal: mw.Button
+	public get mBtnDelKeyFrame(): mw.Button {
+		if(!this.mBtnDelKeyFrame_Internal&&this.uiWidgetBase) {
+			this.mBtnDelKeyFrame_Internal = this.uiWidgetBase.findChildByPath('MWCanvas/mCanvasActionBar/mCanvasFramesEdit/CanvasEditOther/CanvasBtnDelKeyFrame/mBtnDelKeyFrame') as mw.Button
+		}
+		return this.mBtnDelKeyFrame_Internal
+	}
+	private mCanvasFramesEdit_Internal: mw.Canvas
+	public get mCanvasFramesEdit(): mw.Canvas {
+		if(!this.mCanvasFramesEdit_Internal&&this.uiWidgetBase) {
+			this.mCanvasFramesEdit_Internal = this.uiWidgetBase.findChildByPath('MWCanvas/mCanvasActionBar/mCanvasFramesEdit') as mw.Canvas
+		}
+		return this.mCanvasFramesEdit_Internal
+	}
+	private mCanvasActionBar_Internal: mw.Canvas
+	public get mCanvasActionBar(): mw.Canvas {
+		if(!this.mCanvasActionBar_Internal&&this.uiWidgetBase) {
+			this.mCanvasActionBar_Internal = this.uiWidgetBase.findChildByPath('MWCanvas/mCanvasActionBar') as mw.Canvas
+		}
+		return this.mCanvasActionBar_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

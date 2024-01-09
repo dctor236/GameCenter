@@ -7,8 +7,8 @@ import { SkillObject } from "./SkillObject";
 import { ESkillEvent, SkillRuntime } from "./SkillRuntime";
 
 /** 
- * @Author       : xianjie.xia
- * @LastEditors  : xianjie.xia
+ * @Author       : meta
+ * @LastEditors  : meta
  * @Date         : 2023-05-05 10:15
  * @LastEditTime : 2023-05-18 14:28
  * @description  : 

@@ -1,12 +1,12 @@
 import { GeneralManager, } from '../Modified027Editor/ModifiedStaticAPI';
-﻿import { EventsName } from "../const/GameEnum";
+import { EventsName } from "../const/GameEnum";
 import { GlobalData } from "../const/GlobalData";
-import { EffectManager, UIManager } from "../ExtensionType";
+import { UIManager } from "../ExtensionType";
 import { BagModuleC } from "../modules/bag/BagModuleC";
 import { MGSMsgHome } from "../modules/mgsMsg/MgsmsgHome";
-import SkillModule_Client from "../modules/skill/SkillModule_Client";
 import { FlyEffect } from "../ui/fly/FlyEffect";
 import GameUtils from "../utils/GameUtils";
+import SkillModule_Client from '../modules/skill/SkillModule_Client';
 
 const Root: string = '2F7DA670'
 
@@ -30,14 +30,9 @@ export default class RainBowRaceMgr {
             if (bool) {
                 const char = Player.localPlayer.character
                 char.maxWalkSpeed = 450 * 6;
-                // const camera = Camera.currentCamera
-                // screenEffID = GeneralManager.rpcPlayEffectOnPlayer('146322', Player.localPlayer,
-                //     mw.HumanoidSlotType.Head, 0,
-                //     new Vector(0, 0, 0), new Rotation(0, 0, 0), new Vector(4, 4, 4))
                 UIManager.show(FlyEffect)
             } else {
                 UIManager.hide(FlyEffect)
-                // EffectService.stop(screenEffID)
             }
         })
 
@@ -54,7 +49,6 @@ export default class RainBowRaceMgr {
                     this._isInEnvir = false
                     UIManager.hide(FlyEffect)
                     //解除滑板
-                    // ModuleService.getModule(BagModuleC).clearShortCutBar()
                     ModuleService.getModule(SkillModule_Client).getSkillUI([])
                     GlobalData.globalPos = new Vector(2475.966, -11234.130, 300)
                 }
@@ -75,10 +69,4 @@ export default class RainBowRaceMgr {
         })
     }
 
-    onEnvirTrigerOut() {
-
-    }
-    onEnvirTrigerIn() {
-
-    }
 }

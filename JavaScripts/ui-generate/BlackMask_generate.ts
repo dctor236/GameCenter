@@ -1,10 +1,15 @@
- 
+﻿ 
 
  @UIBind('UI/BlackMask.ui')
- export default class BlackMask_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/mask')
-    public mask: mw.Image=undefined;
-    
+ export default class BlackMask_Generate extends UIScript {
+     	private mask_Internal: mw.Image
+	public get mask(): mw.Image {
+		if(!this.mask_Internal&&this.uiWidgetBase) {
+			this.mask_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mask') as mw.Image
+		}
+		return this.mask_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

@@ -1,8 +1,8 @@
 import { PlayerManagerExtesion, } from '../../../../Modified027Editor/ModifiedPlayer';
 /** 
-* @Author       : 郝建琦
+* @Author       : meta
 * @Date         : 2023-05-04 16:23:09
-* @LastEditors  : 郝建琦
+* @LastEditors  : meta
 * @LastEditTime : 2023-05-06 10:59:42
 * @FilePath     : \mollywoodschool\JavaScripts\modules\interactModule\interactLogic\rpInteractiveObjs\RP_PlayAniDou.ts
 * @Description  : 

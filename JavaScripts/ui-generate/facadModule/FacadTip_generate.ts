@@ -1,34 +1,99 @@
- 
+﻿ 
 
  @UIBind('UI/facadModule/FacadTip.ui')
- export default class FacadTip_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/mExitTip/mExitYes')
-    public mExitYes: mw.StaleButton=undefined;
-    @UIWidgetBind('RootCanvas/mExitTip/mExitNo')
-    public mExitNo: mw.StaleButton=undefined;
-    @UIWidgetBind('RootCanvas/mExitTip')
-    public mExitTip: mw.Canvas=undefined;
-    @UIWidgetBind('RootCanvas/mConfirmTip/mConfirmYes')
-    public mConfirmYes: mw.StaleButton=undefined;
-    @UIWidgetBind('RootCanvas/mConfirmTip/mConfirmNo')
-    public mConfirmNo: mw.StaleButton=undefined;
-    @UIWidgetBind('RootCanvas/mConfirmTip')
-    public mConfirmTip: mw.Canvas=undefined;
-    @UIWidgetBind('RootCanvas/mBuyTip/mBuyImage')
-    public mBuyImage: mw.Image=undefined;
-    @UIWidgetBind('RootCanvas/mBuyTip/mBuyBtn')
-    public mBuyBtn: mw.StaleButton=undefined;
-    @UIWidgetBind('RootCanvas/mBuyTip')
-    public mBuyTip: mw.Canvas=undefined;
-    @UIWidgetBind('RootCanvas/mGetTip/mGetImage')
-    public mGetImage: mw.Image=undefined;
-    @UIWidgetBind('RootCanvas/mGetTip/mGetBtn')
-    public mGetBtn: mw.StaleButton=undefined;
-    @UIWidgetBind('RootCanvas/mGetTip/mGetTxt')
-    public mGetTxt: mw.TextBlock=undefined;
-    @UIWidgetBind('RootCanvas/mGetTip')
-    public mGetTip: mw.Canvas=undefined;
-    
+ export default class FacadTip_Generate extends UIScript {
+     	private mExitYes_Internal: mw.StaleButton
+	public get mExitYes(): mw.StaleButton {
+		if(!this.mExitYes_Internal&&this.uiWidgetBase) {
+			this.mExitYes_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mExitTip/mExitYes') as mw.StaleButton
+		}
+		return this.mExitYes_Internal
+	}
+	private mExitNo_Internal: mw.StaleButton
+	public get mExitNo(): mw.StaleButton {
+		if(!this.mExitNo_Internal&&this.uiWidgetBase) {
+			this.mExitNo_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mExitTip/mExitNo') as mw.StaleButton
+		}
+		return this.mExitNo_Internal
+	}
+	private mExitTip_Internal: mw.Canvas
+	public get mExitTip(): mw.Canvas {
+		if(!this.mExitTip_Internal&&this.uiWidgetBase) {
+			this.mExitTip_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mExitTip') as mw.Canvas
+		}
+		return this.mExitTip_Internal
+	}
+	private mConfirmYes_Internal: mw.StaleButton
+	public get mConfirmYes(): mw.StaleButton {
+		if(!this.mConfirmYes_Internal&&this.uiWidgetBase) {
+			this.mConfirmYes_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mConfirmTip/mConfirmYes') as mw.StaleButton
+		}
+		return this.mConfirmYes_Internal
+	}
+	private mConfirmNo_Internal: mw.StaleButton
+	public get mConfirmNo(): mw.StaleButton {
+		if(!this.mConfirmNo_Internal&&this.uiWidgetBase) {
+			this.mConfirmNo_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mConfirmTip/mConfirmNo') as mw.StaleButton
+		}
+		return this.mConfirmNo_Internal
+	}
+	private mConfirmTip_Internal: mw.Canvas
+	public get mConfirmTip(): mw.Canvas {
+		if(!this.mConfirmTip_Internal&&this.uiWidgetBase) {
+			this.mConfirmTip_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mConfirmTip') as mw.Canvas
+		}
+		return this.mConfirmTip_Internal
+	}
+	private mBuyImage_Internal: mw.Image
+	public get mBuyImage(): mw.Image {
+		if(!this.mBuyImage_Internal&&this.uiWidgetBase) {
+			this.mBuyImage_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mBuyTip/mBuyImage') as mw.Image
+		}
+		return this.mBuyImage_Internal
+	}
+	private mBuyBtn_Internal: mw.StaleButton
+	public get mBuyBtn(): mw.StaleButton {
+		if(!this.mBuyBtn_Internal&&this.uiWidgetBase) {
+			this.mBuyBtn_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mBuyTip/mBuyBtn') as mw.StaleButton
+		}
+		return this.mBuyBtn_Internal
+	}
+	private mBuyTip_Internal: mw.Canvas
+	public get mBuyTip(): mw.Canvas {
+		if(!this.mBuyTip_Internal&&this.uiWidgetBase) {
+			this.mBuyTip_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mBuyTip') as mw.Canvas
+		}
+		return this.mBuyTip_Internal
+	}
+	private mGetImage_Internal: mw.Image
+	public get mGetImage(): mw.Image {
+		if(!this.mGetImage_Internal&&this.uiWidgetBase) {
+			this.mGetImage_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mGetTip/mGetImage') as mw.Image
+		}
+		return this.mGetImage_Internal
+	}
+	private mGetBtn_Internal: mw.StaleButton
+	public get mGetBtn(): mw.StaleButton {
+		if(!this.mGetBtn_Internal&&this.uiWidgetBase) {
+			this.mGetBtn_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mGetTip/mGetBtn') as mw.StaleButton
+		}
+		return this.mGetBtn_Internal
+	}
+	private mGetTxt_Internal: mw.TextBlock
+	public get mGetTxt(): mw.TextBlock {
+		if(!this.mGetTxt_Internal&&this.uiWidgetBase) {
+			this.mGetTxt_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mGetTip/mGetTxt') as mw.TextBlock
+		}
+		return this.mGetTxt_Internal
+	}
+	private mGetTip_Internal: mw.Canvas
+	public get mGetTip(): mw.Canvas {
+		if(!this.mGetTip_Internal&&this.uiWidgetBase) {
+			this.mGetTip_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mGetTip') as mw.Canvas
+		}
+		return this.mGetTip_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

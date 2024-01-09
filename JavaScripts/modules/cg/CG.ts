@@ -1,20 +1,20 @@
 import { ModifiedCameraSystem, CameraModifid, } from '../../Modified027Editor/ModifiedCamera';
 /*
-* @Author: jiezhong.zhang
+* @Author: meta
 * @Date: 2023-05-24 14:04:57
-* @LastEditors: jiezhong.zhang jiezhong.zhang@appshahe.com
+* @LastEditors: meta meta@appshahe.com
 * @LastEditTime: 2023-05-25 13:12:07
 */
 
 import { GlobalData } from "../../const/GlobalData";
-import { EffectManager, SoundManager, UIManager } from "../../ExtensionType";
+import { SoundManager, UIManager } from "../../ExtensionType";
 import BlackMask_Generate from "../../ui-generate/BlackMask_generate";
-import { DressModuleC } from "../Dress/DressModule";
-import { GameModuleC } from "../gameModule/GameModuleC";
-// import LetterUI from "./LetterUI";
-
 const TRAIN_GUID = "1DB2B656";
 
+
+/**
+ * cg模块
+ */
 export default class CG {
     private static _instance: CG;
     public static get instance(): CG {
@@ -68,8 +68,6 @@ export default class CG {
 
         }
 
-        // UIManager.setAllMiddleAndBottomPanelVisible(false);
-
         this._transformDoor.worldTransform.scale = Vector.zero
         this._train.worldTransform.position = new Vector(11934.990, -24929.990, 4946.570)
         UIManager.showUI(this._maskUI)
@@ -77,28 +75,13 @@ export default class CG {
 
         this.maskFadeOut(this._maskUI.mask, 1800, () => {
             this.setTransfomDoor([0, 30], 2000, () => {
-                // this._camera.rotationLagEnabled = true;
-                // this._camera.rotationLagSpeed = 1.2;
                 setTimeout(() => {
                     SoundManager.playSound('175324', 1, 1)
                     setTimeout(() => {
                         this.setCameraRot(1, this._train.worldTransform.position)
                     }, 1800);
-                    // let tmpRot: Rotation = curCameraRot.clone()
-                    // let inteval = setInterval(() => {
-                    //     if (tmpRot.z - curCameraRot.z <= 90) {
-                    //         tmpRot = tmpRot.set(tmpRot.x, tmpRot.y, tmpRot.z + 10)
-                    //         ModifiedCameraSystem.setOverrideCameraRotation(tmpRot)
-                    //     } else {
-                    //         clearInterval(inteval)
-                    //         inteval = null
-                    //     }
-                    // }, 100)
                 }, 600)
                 this.startTrain()
-                // this.setTransfomDoor([5, 0], 1000, () => {
-                // this._transformDoor.setVisibility(mw.PropertyStatus.Off)
-                // })
                 this._train.setVisibility(PropertyStatus.On)
             })
 
@@ -128,7 +111,12 @@ export default class CG {
             }).easing(easingEff)
     }
 
-
+    /**
+     * 设置传送门大小
+     * @param tmpScale 大小
+     * @param time tween时长
+     * @param cb 完成动画回调
+     */
     public setTransfomDoor(tmpScale: number[], time: number = 2000, cb: () => void = null) {
         let tween = new mw.Tween({ scale: tmpScale[0] })
             .to({ scale: tmpScale[1] }, time)
@@ -141,10 +129,14 @@ export default class CG {
             .start();
     }
 
-
+    /**
+     * 设置镜头旋转
+     * @param index 索引
+     * @param objLoc 位置
+     * @returns 
+     */
     setCameraRot(index: number, objLoc: Vector) {
         ModifiedCameraSystem.setCameraFollowTarget(this._anchor[index])
-        // this._camera.parent = this._anchor[index];
         let tarLocation = this._anchor[index].worldTransform.position;
         let rotation = null
         if (objLoc) {
@@ -156,6 +148,9 @@ export default class CG {
         return rotation.clone()
     }
 
+    /**
+     * 启动火车
+       */
     public startTrain() {
         let tween = new mw.Tween({ position: new Vector(11934.990, -24929.990, 4946.570) })
             .to({ position: new Vector(3039.990, -24929.990, 4946.570) }, 6000)
@@ -168,17 +163,12 @@ export default class CG {
                 this._dustEff.play()
                 setTimeout(() => {
                     setTimeout(() => {
-                        // setTimeout(() => {
-
-                        // }, 1500);
                         ModifiedCameraSystem.setOverrideCameraRotation(Player.localPlayer.character.worldTransform.rotation);
                         setTimeout(() => {
                             this._camera.positionLagEnabled = false;
                             this._camera.rotationLagEnabled = false;
                             ModifiedCameraSystem.cancelCameraFollowTarget()
                             ModifiedCameraSystem.resetOverrideCameraRotation();
-                            // this._camera.worldTransform = this._initWorldTr
-                            // this._camera.localTransform = this._initTransForm
                             this._callBack()
                         }, 32);
                     }, 1500)
@@ -188,6 +178,7 @@ export default class CG {
     }
 
 
+    /**隐藏火车*/
     public hideTrain() {
         let tween = new mw.Tween({ position: new Vector(-12500, 870, 880) })
             .to({ position: new Vector(-12500, 12000.000, 880) }, 300)
@@ -200,22 +191,4 @@ export default class CG {
             .start();
     }
 
-    /** 当脚本被实例后，会在第一帧更新前调用此函数 */
-    protected onStart(): void {
-
-    }
-
-    /**
-     * 周期函数 每帧执行
-     * 此函数执行需要将this.useUpdate赋值为true
-     * @param dt 当前帧与上一帧的延迟 / 秒
-     */
-    protected onUpdate(dt: number): void {
-
-    }
-
-    /** 脚本被销毁时最后一帧执行完调用此函数 */
-    protected onDestroy(): void {
-
-    }
 }

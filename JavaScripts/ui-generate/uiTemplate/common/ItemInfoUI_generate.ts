@@ -1,20 +1,50 @@
- 
+﻿ 
 
  @UIBind('UI/uiTemplate/common/ItemInfoUI.ui')
- export default class ItemInfoUI_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/buttonExit')
-    public buttonExit: mw.Button=undefined;
-    @UIWidgetBind('RootCanvas/imageBG')
-    public imageBG: mw.Image=undefined;
-    @UIWidgetBind('RootCanvas/imageIcon')
-    public imageIcon: mw.Image=undefined;
-    @UIWidgetBind('RootCanvas/textName')
-    public textName: mw.TextBlock=undefined;
-    @UIWidgetBind('RootCanvas/textDescription')
-    public textDescription: mw.TextBlock=undefined;
-    @UIWidgetBind('RootCanvas/txtClose')
-    public txtClose: mw.TextBlock=undefined;
-    
+ export default class ItemInfoUI_Generate extends UIScript {
+     	private buttonExit_Internal: mw.Button
+	public get buttonExit(): mw.Button {
+		if(!this.buttonExit_Internal&&this.uiWidgetBase) {
+			this.buttonExit_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/buttonExit') as mw.Button
+		}
+		return this.buttonExit_Internal
+	}
+	private imageBG_Internal: mw.Image
+	public get imageBG(): mw.Image {
+		if(!this.imageBG_Internal&&this.uiWidgetBase) {
+			this.imageBG_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/imageBG') as mw.Image
+		}
+		return this.imageBG_Internal
+	}
+	private imageIcon_Internal: mw.Image
+	public get imageIcon(): mw.Image {
+		if(!this.imageIcon_Internal&&this.uiWidgetBase) {
+			this.imageIcon_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/imageIcon') as mw.Image
+		}
+		return this.imageIcon_Internal
+	}
+	private textName_Internal: mw.TextBlock
+	public get textName(): mw.TextBlock {
+		if(!this.textName_Internal&&this.uiWidgetBase) {
+			this.textName_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/textName') as mw.TextBlock
+		}
+		return this.textName_Internal
+	}
+	private textDescription_Internal: mw.TextBlock
+	public get textDescription(): mw.TextBlock {
+		if(!this.textDescription_Internal&&this.uiWidgetBase) {
+			this.textDescription_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/textDescription') as mw.TextBlock
+		}
+		return this.textDescription_Internal
+	}
+	private txtClose_Internal: mw.TextBlock
+	public get txtClose(): mw.TextBlock {
+		if(!this.txtClose_Internal&&this.uiWidgetBase) {
+			this.txtClose_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/txtClose') as mw.TextBlock
+		}
+		return this.txtClose_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

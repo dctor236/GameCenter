@@ -1,7 +1,7 @@
 /** 
- * @Author       : 陆江帅
+ * @Author       : meta
  * @Date         : 2023-03-05 11:30:06
- * @LastEditors  : 陆江帅
+ * @LastEditors  : meta
  * @LastEditTime : 2023-05-11 10:21:21
  * @FilePath     : \mollywoodschool\JavaScripts\modules\bag\ui\BagItem.ts
  * @Description  : 

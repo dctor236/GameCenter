@@ -1,10 +1,15 @@
- 
+﻿ 
 
  @UIBind('UI/uiTemplate/Chat/Emoji.ui')
- export default class Emoji_Generate extends mw.UIScript {
-     @UIWidgetBind('Canvas/mBtn_expression')
-    public mBtn_expression: mw.StaleButton=undefined;
-    
+ export default class Emoji_Generate extends UIScript {
+     	private mBtn_expression_Internal: mw.StaleButton
+	public get mBtn_expression(): mw.StaleButton {
+		if(!this.mBtn_expression_Internal&&this.uiWidgetBase) {
+			this.mBtn_expression_Internal = this.uiWidgetBase.findChildByPath('Canvas/mBtn_expression') as mw.StaleButton
+		}
+		return this.mBtn_expression_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

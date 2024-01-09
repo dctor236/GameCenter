@@ -1,28 +1,78 @@
- 
+﻿ 
 
  @UIBind('UI/ts3/PlayerHead.ui')
- export default class PlayerHead_Generate extends mw.UIScript {
-     @UIWidgetBind('Canvas/nameNode/txtName')
-    public txtName: mw.TextBlock=undefined;
-    @UIWidgetBind('Canvas/nameNode')
-    public nameNode: mw.Canvas=undefined;
-    @UIWidgetBind('Canvas/titleNode/txtTitle')
-    public txtTitle: mw.TextBlock=undefined;
-    @UIWidgetBind('Canvas/titleNode')
-    public titleNode: mw.Canvas=undefined;
-    @UIWidgetBind('Canvas/chatNode/txtChat')
-    public txtChat: mw.TextBlock=undefined;
-    @UIWidgetBind('Canvas/chatNode')
-    public chatNode: mw.Canvas=undefined;
-    @UIWidgetBind('Canvas/hpNode/barHp')
-    public barHp: mw.ProgressBar=undefined;
-    @UIWidgetBind('Canvas/hpNode/thumbImage')
-    public thumbImage: mw.Image=undefined;
-    @UIWidgetBind('Canvas/hpNode/txtHp')
-    public txtHp: mw.TextBlock=undefined;
-    @UIWidgetBind('Canvas/hpNode')
-    public hpNode: mw.Canvas=undefined;
-    
+ export default class PlayerHead_Generate extends UIScript {
+     	private nameNode_Internal: mw.Canvas
+	public get nameNode(): mw.Canvas {
+		if(!this.nameNode_Internal&&this.uiWidgetBase) {
+			this.nameNode_Internal = this.uiWidgetBase.findChildByPath('Canvas/nameNode') as mw.Canvas
+		}
+		return this.nameNode_Internal
+	}
+	private txtName_Internal: mw.TextBlock
+	public get txtName(): mw.TextBlock {
+		if(!this.txtName_Internal&&this.uiWidgetBase) {
+			this.txtName_Internal = this.uiWidgetBase.findChildByPath('Canvas/nameNode/txtName') as mw.TextBlock
+		}
+		return this.txtName_Internal
+	}
+	private titleNode_Internal: mw.Canvas
+	public get titleNode(): mw.Canvas {
+		if(!this.titleNode_Internal&&this.uiWidgetBase) {
+			this.titleNode_Internal = this.uiWidgetBase.findChildByPath('Canvas/titleNode') as mw.Canvas
+		}
+		return this.titleNode_Internal
+	}
+	private txtTitle_Internal: mw.TextBlock
+	public get txtTitle(): mw.TextBlock {
+		if(!this.txtTitle_Internal&&this.uiWidgetBase) {
+			this.txtTitle_Internal = this.uiWidgetBase.findChildByPath('Canvas/titleNode/txtTitle') as mw.TextBlock
+		}
+		return this.txtTitle_Internal
+	}
+	private chatNode_Internal: mw.Canvas
+	public get chatNode(): mw.Canvas {
+		if(!this.chatNode_Internal&&this.uiWidgetBase) {
+			this.chatNode_Internal = this.uiWidgetBase.findChildByPath('Canvas/chatNode') as mw.Canvas
+		}
+		return this.chatNode_Internal
+	}
+	private txtChat_Internal: mw.TextBlock
+	public get txtChat(): mw.TextBlock {
+		if(!this.txtChat_Internal&&this.uiWidgetBase) {
+			this.txtChat_Internal = this.uiWidgetBase.findChildByPath('Canvas/chatNode/txtChat') as mw.TextBlock
+		}
+		return this.txtChat_Internal
+	}
+	private hpNode_Internal: mw.Canvas
+	public get hpNode(): mw.Canvas {
+		if(!this.hpNode_Internal&&this.uiWidgetBase) {
+			this.hpNode_Internal = this.uiWidgetBase.findChildByPath('Canvas/hpNode') as mw.Canvas
+		}
+		return this.hpNode_Internal
+	}
+	private barHp_Internal: mw.ProgressBar
+	public get barHp(): mw.ProgressBar {
+		if(!this.barHp_Internal&&this.uiWidgetBase) {
+			this.barHp_Internal = this.uiWidgetBase.findChildByPath('Canvas/hpNode/barHp') as mw.ProgressBar
+		}
+		return this.barHp_Internal
+	}
+	private thumbImage_Internal: mw.Image
+	public get thumbImage(): mw.Image {
+		if(!this.thumbImage_Internal&&this.uiWidgetBase) {
+			this.thumbImage_Internal = this.uiWidgetBase.findChildByPath('Canvas/hpNode/thumbImage') as mw.Image
+		}
+		return this.thumbImage_Internal
+	}
+	private txtHp_Internal: mw.TextBlock
+	public get txtHp(): mw.TextBlock {
+		if(!this.txtHp_Internal&&this.uiWidgetBase) {
+			this.txtHp_Internal = this.uiWidgetBase.findChildByPath('Canvas/hpNode/txtHp') as mw.TextBlock
+		}
+		return this.txtHp_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

@@ -1,20 +1,50 @@
- 
+﻿ 
 
  @UIBind('UI/uiTemplate/UI_Travel_Window.ui')
- export default class UI_Travel_Window_Generate extends mw.UIScript {
-     @UIWidgetBind('MWCanvas_2147482460/mCanvasMain/mImg')
-    public mImg: mw.Image=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/mCanvasMain/mTitleImg')
-    public mTitleImg: mw.Image=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/mCanvasMain/mBtnBack')
-    public mBtnBack: mw.Button=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/mCanvasMain/mBTnJoin')
-    public mBTnJoin: mw.Button=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/mCanvasMain/mTextJoin')
-    public mTextJoin: mw.TextBlock=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/mCanvasMain')
-    public mCanvasMain: mw.Canvas=undefined;
-    
+ export default class UI_Travel_Window_Generate extends UIScript {
+     	private mImg_Internal: mw.Image
+	public get mImg(): mw.Image {
+		if(!this.mImg_Internal&&this.uiWidgetBase) {
+			this.mImg_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/mCanvasMain/mImg') as mw.Image
+		}
+		return this.mImg_Internal
+	}
+	private mTitleImg_Internal: mw.Image
+	public get mTitleImg(): mw.Image {
+		if(!this.mTitleImg_Internal&&this.uiWidgetBase) {
+			this.mTitleImg_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/mCanvasMain/mTitleImg') as mw.Image
+		}
+		return this.mTitleImg_Internal
+	}
+	private mBtnBack_Internal: mw.Button
+	public get mBtnBack(): mw.Button {
+		if(!this.mBtnBack_Internal&&this.uiWidgetBase) {
+			this.mBtnBack_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/mCanvasMain/mBtnBack') as mw.Button
+		}
+		return this.mBtnBack_Internal
+	}
+	private mBTnJoin_Internal: mw.Button
+	public get mBTnJoin(): mw.Button {
+		if(!this.mBTnJoin_Internal&&this.uiWidgetBase) {
+			this.mBTnJoin_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/mCanvasMain/mBTnJoin') as mw.Button
+		}
+		return this.mBTnJoin_Internal
+	}
+	private mTextJoin_Internal: mw.TextBlock
+	public get mTextJoin(): mw.TextBlock {
+		if(!this.mTextJoin_Internal&&this.uiWidgetBase) {
+			this.mTextJoin_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/mCanvasMain/mTextJoin') as mw.TextBlock
+		}
+		return this.mTextJoin_Internal
+	}
+	private mCanvasMain_Internal: mw.Canvas
+	public get mCanvasMain(): mw.Canvas {
+		if(!this.mCanvasMain_Internal&&this.uiWidgetBase) {
+			this.mCanvasMain_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/mCanvasMain') as mw.Canvas
+		}
+		return this.mCanvasMain_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

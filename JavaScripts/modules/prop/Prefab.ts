@@ -1,8 +1,8 @@
 import { SpawnManager,SpawnInfo, } from '../../Modified027Editor/ModifiedSpawn';
 /**
- * @Author       : 田可成
+ * @Author       : meta
  * @Date         : 2023-04-26 09:57:31
- * @LastEditors  : 田可成
+ * @LastEditors  : meta
  * @LastEditTime : 2023-04-27 16:16:58
  * @FilePath     : \mollywoodschool\JavaScripts\modules\Prop\prefabObj.ts
  * @Description  : 

@@ -7,8 +7,8 @@ import { BehaviorType, SkillItemType } from "../../define/SkillDefine";
 import { RunTimeUtil } from "../RunTimeUtil";
 
 /** 
- * @Author       : xianjie.xia
- * @LastEditors  : xianjie.xia
+ * @Author       : meta
+ * @LastEditors  : meta
  * @Date         : 2022-11-16 09:23
  * @LastEditTime : 2022-12-29 15:22
  * @description  : 

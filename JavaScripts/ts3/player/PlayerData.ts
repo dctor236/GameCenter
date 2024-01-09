@@ -1,54 +1,11 @@
-import { Attribute } from "../../modules/fight/attibute/Attribute";
-import FightMgr from "../../modules/fight/FightMgr";
 import { LogMgr } from "../com/LogMgr";
 import TsPlayer from "./TsPlayer";
 
-/** 
- * @Author       : xianjie.xia
- * @LastEditors  : xianjie.xia
- * @Date         : 2023-05-10 10:33
- * @LastEditTime : 2023-06-11 13:12
- * @description  : 角色数据，core外部不要使用
- */
+
 export class PlayerData {
     private map: Map<string, TsPlayer> = new Map();
     public addPlayer(player: TsPlayer) {
         this.map.set(player.userId, player);
-        if (SystemUtil.isServer()) {
-            setTimeout(() => {
-                const att = FightMgr.instance.getPAttibuteList(player.userId)
-                this.setAtt(player.userId, Attribute.EAttType.maxHp, att.getValue(Attribute.EAttType.maxHp))
-                this.setAtt(player.userId, Attribute.EAttType.hp, att.getValue(Attribute.EAttType.hp))
-                this.setAtt(player.userId, Attribute.EAttType.defense, att.getValue(Attribute.EAttType.defense))
-                this.setAtt(player.userId, Attribute.EAttType.crit, att.getValue(Attribute.EAttType.crit))
-                this.setAtt(player.userId, Attribute.EAttType.critDamage, att.getValue(Attribute.EAttType.critDamage))
-            }, 3000);
-        }
-    }
-
-    setAtt(userId: string, type: Attribute.EAttType, val: number) {
-        let tsp = this.map.get(userId);
-        if (tsp)
-            switch (type) {
-                case Attribute.EAttType.atk:
-                    tsp.setAtk(val)
-                    break
-                case Attribute.EAttType.defense:
-                    tsp.setDefence(val)
-                    break
-                case Attribute.EAttType.crit:
-                    tsp.setCritRate(val)
-                    break
-                case Attribute.EAttType.critDamage:
-                    tsp.setCriteDamageRate(val)
-                    break
-                case Attribute.EAttType.hp:
-                    tsp.setHp(val)
-                    break
-                case Attribute.EAttType.maxHp:
-                    tsp.setHpMax(val)
-                    break
-            }
     }
 
     public delPlayer(uid: string) {
@@ -63,15 +20,6 @@ export class PlayerData {
     public hasPlayer(uid: string): boolean {
         return this.map.has(uid);
     }
-    // public setInfo(uid, oid: string, nick: string) {
-    //     let tsp = this.getPlayer(uid);
-    //     if (tsp) {
-    //         tsp.setInfo(oid, nick);
-    //         this.map.set(uid, tsp);
-    //     }
-    //     else
-    //         LogMgr.Inst.error('找不到这个用户,请检查:' + uid)
-    // }
     public getPlayer(uid: string): TsPlayer {
         return this.map.get(uid);
     }
@@ -141,25 +89,5 @@ export class PlayerData {
             return tsp.openId;
         return null;
     }
-    getAtt(userId: string, type: Attribute.EAttType) {
-        let tsp = this.getPlayer(userId);
-        let val: number = 0
-        if (tsp) {
-            val = tsp.getAtt(type)
-        }
-        return val
-    }
-
-    public onDamage(uid: string, num: number): TsPlayer {
-        let obj = this.getPlayer(uid);
-        if (obj) {
-            const defense = this.getAtt(uid, Attribute.EAttType.defense)
-            const final = num - defense >= 0 ? num - defense : 0
-            if (final > 0)
-                obj.onDamage(final);
-        }
-        return obj;
-    }
-
 
 }

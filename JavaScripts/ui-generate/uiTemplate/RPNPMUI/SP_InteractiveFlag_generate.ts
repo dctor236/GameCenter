@@ -1,10 +1,15 @@
- 
+﻿ 
 
  @UIBind('UI/uiTemplate/RPNPMUI/SP_InteractiveFlag.ui')
- export default class SP_InteractiveFlag_Generate extends mw.UIScript {
-     @UIWidgetBind('Canvas/mBtn')
-    public mBtn: mw.StaleButton=undefined;
-    
+ export default class SP_InteractiveFlag_Generate extends UIScript {
+     	private mBtn_Internal: mw.StaleButton
+	public get mBtn(): mw.StaleButton {
+		if(!this.mBtn_Internal&&this.uiWidgetBase) {
+			this.mBtn_Internal = this.uiWidgetBase.findChildByPath('Canvas/mBtn') as mw.StaleButton
+		}
+		return this.mBtn_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

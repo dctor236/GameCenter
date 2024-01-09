@@ -100,7 +100,7 @@ export class StateMachine<T> {
         }
 
         if (!this._states.has(state)) {
-            oTraceError("没有这个状态", state)
+            console.error("没有这个状态", state)
             return
         }
 

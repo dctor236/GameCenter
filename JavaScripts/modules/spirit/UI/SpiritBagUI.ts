@@ -1,7 +1,7 @@
 /*
- * @Author: 代纯 chun.dai@appshahe.com
+ * @Author: meta chun.dai@appshahe.com
  * @Date: 2023-06-10 11:54:57
- * @LastEditors: 代纯 chun.dai@appshahe.com
+ * @LastEditors: meta chun.dai@appshahe.com
  * @LastEditTime: 2023-06-26 21:15:53
  * @FilePath: \vine-valley\JavaScripts\modules\spirit\UI\SpiritBagUI.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE

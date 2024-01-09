@@ -1,5 +1,8 @@
 import FindModuleC from "./FindModuleC";
 
+/**
+ * 寻找模块 服务器端 
+ */
 export default class FindModuleS extends ModuleS<FindModuleC, null> {
 
 

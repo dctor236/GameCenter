@@ -1,6 +1,6 @@
 /** 
- * @Author       : xianjie.xia
- * @LastEditors  : xianjie.xia
+ * @Author       : meta
+ * @LastEditors  : meta
  * @Date         : 2022-12-06 11:24
  * @LastEditTime : 2023-06-27 17:27
  * @description  : 
@@ -24,7 +24,7 @@ import { PutItem } from "./skill-items/PutItem";
 /*
 * @Author: zhaolei
 * @Date: 2022-10-08 11:29:48
- * @LastEditors: xianjie.xia
+ * @LastEditors: meta
 * @Description: $1
 */
 export namespace Parse {

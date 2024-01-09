@@ -1,20 +1,50 @@
- 
+﻿ 
 
  @UIBind('UI/uiTemplate/common/MessageBox.ui')
- export default class MessageBox_Generate extends mw.UIScript {
-     @UIWidgetBind('Canvas/mBodyCanvas/mTitle_txt')
-    public mTitle_txt: mw.TextBlock=undefined;
-    @UIWidgetBind('Canvas/mBodyCanvas/mContent_txt')
-    public mContent_txt: mw.TextBlock=undefined;
-    @UIWidgetBind('Canvas/mBodyCanvas/mYes_btn')
-    public mYes_btn: mw.StaleButton=undefined;
-    @UIWidgetBind('Canvas/mBodyCanvas/mNo_btn')
-    public mNo_btn: mw.StaleButton=undefined;
-    @UIWidgetBind('Canvas/mBodyCanvas/mOK_btn')
-    public mOK_btn: mw.StaleButton=undefined;
-    @UIWidgetBind('Canvas/mBodyCanvas')
-    public mBodyCanvas: mw.Canvas=undefined;
-    
+ export default class MessageBox_Generate extends UIScript {
+     	private mTitle_txt_Internal: mw.TextBlock
+	public get mTitle_txt(): mw.TextBlock {
+		if(!this.mTitle_txt_Internal&&this.uiWidgetBase) {
+			this.mTitle_txt_Internal = this.uiWidgetBase.findChildByPath('Canvas/mBodyCanvas/mTitle_txt') as mw.TextBlock
+		}
+		return this.mTitle_txt_Internal
+	}
+	private mContent_txt_Internal: mw.TextBlock
+	public get mContent_txt(): mw.TextBlock {
+		if(!this.mContent_txt_Internal&&this.uiWidgetBase) {
+			this.mContent_txt_Internal = this.uiWidgetBase.findChildByPath('Canvas/mBodyCanvas/mContent_txt') as mw.TextBlock
+		}
+		return this.mContent_txt_Internal
+	}
+	private mYes_btn_Internal: mw.StaleButton
+	public get mYes_btn(): mw.StaleButton {
+		if(!this.mYes_btn_Internal&&this.uiWidgetBase) {
+			this.mYes_btn_Internal = this.uiWidgetBase.findChildByPath('Canvas/mBodyCanvas/mYes_btn') as mw.StaleButton
+		}
+		return this.mYes_btn_Internal
+	}
+	private mNo_btn_Internal: mw.StaleButton
+	public get mNo_btn(): mw.StaleButton {
+		if(!this.mNo_btn_Internal&&this.uiWidgetBase) {
+			this.mNo_btn_Internal = this.uiWidgetBase.findChildByPath('Canvas/mBodyCanvas/mNo_btn') as mw.StaleButton
+		}
+		return this.mNo_btn_Internal
+	}
+	private mOK_btn_Internal: mw.StaleButton
+	public get mOK_btn(): mw.StaleButton {
+		if(!this.mOK_btn_Internal&&this.uiWidgetBase) {
+			this.mOK_btn_Internal = this.uiWidgetBase.findChildByPath('Canvas/mBodyCanvas/mOK_btn') as mw.StaleButton
+		}
+		return this.mOK_btn_Internal
+	}
+	private mBodyCanvas_Internal: mw.Canvas
+	public get mBodyCanvas(): mw.Canvas {
+		if(!this.mBodyCanvas_Internal&&this.uiWidgetBase) {
+			this.mBodyCanvas_Internal = this.uiWidgetBase.findChildByPath('Canvas/mBodyCanvas') as mw.Canvas
+		}
+		return this.mBodyCanvas_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

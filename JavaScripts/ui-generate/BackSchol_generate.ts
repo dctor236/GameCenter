@@ -1,14 +1,29 @@
- 
+﻿ 
 
  @UIBind('UI/BackSchol.ui')
- export default class BackSchol_Generate extends mw.UIScript {
-     @UIWidgetBind('mRootCanvas/mMask/mText_time')
-    public mText_time: mw.TextBlock=undefined;
-    @UIWidgetBind('mRootCanvas/mMask')
-    public mMask: mw.Canvas=undefined;
-    @UIWidgetBind('mRootCanvas')
-    public mRootCanvas: mw.Canvas=undefined;
-    
+ export default class BackSchol_Generate extends UIScript {
+     	private mText_time_Internal: mw.TextBlock
+	public get mText_time(): mw.TextBlock {
+		if(!this.mText_time_Internal&&this.uiWidgetBase) {
+			this.mText_time_Internal = this.uiWidgetBase.findChildByPath('mRootCanvas/mMask/mText_time') as mw.TextBlock
+		}
+		return this.mText_time_Internal
+	}
+	private mMask_Internal: mw.Canvas
+	public get mMask(): mw.Canvas {
+		if(!this.mMask_Internal&&this.uiWidgetBase) {
+			this.mMask_Internal = this.uiWidgetBase.findChildByPath('mRootCanvas/mMask') as mw.Canvas
+		}
+		return this.mMask_Internal
+	}
+	private mRootCanvas_Internal: mw.Canvas
+	public get mRootCanvas(): mw.Canvas {
+		if(!this.mRootCanvas_Internal&&this.uiWidgetBase) {
+			this.mRootCanvas_Internal = this.uiWidgetBase.findChildByPath('mRootCanvas') as mw.Canvas
+		}
+		return this.mRootCanvas_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

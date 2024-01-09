@@ -1,16 +1,36 @@
- 
+﻿ 
 
  @UIBind('UI/tour/JumpGameUI.ui')
- export default class JumpGameUI_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/imageBG')
-    public imageBG: mw.Image=undefined;
-    @UIWidgetBind('RootCanvas/buttonYes')
-    public buttonYes: mw.StaleButton=undefined;
-    @UIWidgetBind('RootCanvas/buttonNo')
-    public buttonNo: mw.StaleButton=undefined;
-    @UIWidgetBind('RootCanvas/text')
-    public text: mw.TextBlock=undefined;
-    
+ export default class JumpGameUI_Generate extends UIScript {
+     	private imageBG_Internal: mw.Image
+	public get imageBG(): mw.Image {
+		if(!this.imageBG_Internal&&this.uiWidgetBase) {
+			this.imageBG_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/imageBG') as mw.Image
+		}
+		return this.imageBG_Internal
+	}
+	private buttonYes_Internal: mw.StaleButton
+	public get buttonYes(): mw.StaleButton {
+		if(!this.buttonYes_Internal&&this.uiWidgetBase) {
+			this.buttonYes_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/buttonYes') as mw.StaleButton
+		}
+		return this.buttonYes_Internal
+	}
+	private buttonNo_Internal: mw.StaleButton
+	public get buttonNo(): mw.StaleButton {
+		if(!this.buttonNo_Internal&&this.uiWidgetBase) {
+			this.buttonNo_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/buttonNo') as mw.StaleButton
+		}
+		return this.buttonNo_Internal
+	}
+	private text_Internal: mw.TextBlock
+	public get text(): mw.TextBlock {
+		if(!this.text_Internal&&this.uiWidgetBase) {
+			this.text_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/text') as mw.TextBlock
+		}
+		return this.text_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

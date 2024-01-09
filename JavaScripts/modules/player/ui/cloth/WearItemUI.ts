@@ -1,7 +1,7 @@
 /**
- * @Author       : 田可成
+ * @Author       : meta
  * @Date         : 2023-05-30 11:13:56
- * @LastEditors  : 田可成
+ * @LastEditors  : meta
  * @LastEditTime : 2023-06-02 16:22:44
  * @FilePath     : \mollywoodschool\JavaScripts\modules\player\ui\cloth\WearItemUI.ts
  * @Description  : 

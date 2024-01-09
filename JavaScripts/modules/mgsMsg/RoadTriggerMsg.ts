@@ -1,7 +1,7 @@
 /**
- * @Author       : songxing
+ * @Author       : meta
  * @Date         : 2023-03-24 13:40:44
- * @LastEditors  : songxing
+ * @LastEditors  : meta
  * @LastEditTime : 2023-05-19 13:42:27
  * @FilePath     : \mollywoodschool\JavaScripts\modules\mgsMsg\RoadTriggerMsg.ts
  * @Description  : 

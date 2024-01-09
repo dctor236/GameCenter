@@ -1,14 +1,29 @@
- 
+﻿ 
 
  @UIBind('UI/uiTemplate/Camera/SettingItem.ui')
- export default class SettingItem_Generate extends mw.UIScript {
-     @UIWidgetBind('mCanvas/mButton_1')
-    public mButton_1: mw.StaleButton=undefined;
-    @UIWidgetBind('mCanvas/mPic_Choose')
-    public mPic_Choose: mw.Image=undefined;
-    @UIWidgetBind('mCanvas')
-    public mCanvas: mw.Canvas=undefined;
-    
+ export default class SettingItem_Generate extends UIScript {
+     	private mButton_1_Internal: mw.StaleButton
+	public get mButton_1(): mw.StaleButton {
+		if(!this.mButton_1_Internal&&this.uiWidgetBase) {
+			this.mButton_1_Internal = this.uiWidgetBase.findChildByPath('mCanvas/mButton_1') as mw.StaleButton
+		}
+		return this.mButton_1_Internal
+	}
+	private mPic_Choose_Internal: mw.Image
+	public get mPic_Choose(): mw.Image {
+		if(!this.mPic_Choose_Internal&&this.uiWidgetBase) {
+			this.mPic_Choose_Internal = this.uiWidgetBase.findChildByPath('mCanvas/mPic_Choose') as mw.Image
+		}
+		return this.mPic_Choose_Internal
+	}
+	private mCanvas_Internal: mw.Canvas
+	public get mCanvas(): mw.Canvas {
+		if(!this.mCanvas_Internal&&this.uiWidgetBase) {
+			this.mCanvas_Internal = this.uiWidgetBase.findChildByPath('mCanvas') as mw.Canvas
+		}
+		return this.mCanvas_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

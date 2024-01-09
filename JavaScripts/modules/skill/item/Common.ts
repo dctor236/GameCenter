@@ -2,8 +2,8 @@ import { getMyPlayerID } from "../../../ExtensionType";
 import { BehaviorType, ISkillEntity, SkillItemType } from "../define/SkillDefine";
 
 /** 
- * @Author       : xianjie.xia
- * @LastEditors  : xianjie.xia
+ * @Author       : meta
+ * @LastEditors  : meta
  * @Date         : 2023-03-06 13:41
  * @LastEditTime : 2023-03-06 14:53
  * @description  : 

@@ -8,9 +8,9 @@ import ItemInfoUI from "../../../ui/commonUI/ItemInfoUI";
 import { ShopItemType } from "../../shop/ShopModuleC";
 
 /*
- * @Author: jiezhong.zhang
+ * @Author: meta
  * @Date: 2023-04-25 13:59:41
- * @LastEditors: jiezhong.zhang jiezhong.zhang@appshahe.com
+ * @LastEditors: meta meta@appshahe.com
  * @LastEditTime: 2023-04-27 15:30:17
  */
 export default class GiftItem extends GiftItem_Generate {

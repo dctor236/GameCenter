@@ -36,33 +36,21 @@ export default class GuidePoint extends GuidePoint_Generate {
     private _target: mw.GameObject[] = [];
     /**目标点 */
     private _targetPos: mw.Vector[] = [];
-    /**UI3D到2D位置缓存 */
-    // private _iconUIPos: mw.Vector2 = mw.Vector2.zero;
-    /**UI 只显示在屏幕内的缓存 */
-    // private _iconInScreenPos: mw.Vector2 = mw.Vector2.zero;
-    /**图标大小 */
     private _iconSize: mw.Vector2 = null;
     /**箭头大小 */
     private _arrowSize: mw.Vector2 = mw.Vector2.zero;
-    /**箭头位置缓存 */
-    // private _arrowPos: mw.Vector2 = mw.Vector2.zero;
     /**屏幕视口大小 */
     private _screenSize: mw.Vector2 = mw.Vector2.zero;
     /**箭头方向 */
     private _arrowDirction: mw.Vector2 = new mw.Vector2(0, -1);
     /**箭头位置偏移 */
     private _arrowPosOff: mw.Vector2 = mw.Vector2.zero;
-    /**是否在屏幕内 */
-    // private _isInScreen: boolean = true;
 
     /**
      * 构造UI文件成功后，在合适的时机最先初始化一次
      */
     protected onStart() {
-        //设置能否每帧触发onUpdate
-
         this.layer = mw.UILayerBottom;
-
     }
 
     /**
@@ -128,16 +116,6 @@ export default class GuidePoint extends GuidePoint_Generate {
         cell.setDistance(dis + "m");
     }
 
-    // setPointShow(point?: Vector) {
-    //     if (!point) {
-    //         this._targetPos = null;
-    //         this.canvas_move.visibility = mw.SlateVisibility.Hidden;
-    //         return
-    //     }
-    //     this._targetPos = point;
-    //     this.canvas_move.visibility = mw.SlateVisibility.SelfHitTestInvisible;
-    // }
-
     protected timerTween: Tween<{ x: number; }>[] = [];
     /**有几个坐标传进来 */
     protected posLen: number = 0
@@ -166,11 +144,9 @@ export default class GuidePoint extends GuidePoint_Generate {
         if (pos[0] instanceof mw.GameObject) {
             this._target = pos as mw.GameObject[]
             this.posLen = this._target.length
-            // console.log("_target", this.posLen)
         } else {
             this._targetPos = pos as Vector[]
             this.posLen = this._targetPos.length
-            // console.log("_targetPos", this.posLen)
         }
         this.changeIcon()
     }

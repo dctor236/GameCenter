@@ -1,12 +1,4 @@
 import { PlayerManagerExtesion, } from '../../Modified027Editor/ModifiedPlayer';
-/*
-* @Author: 代纯 chun.dai@appshahe.com
-* @Date: 2023-05-27 14:41:20
-* @LastEditors: 代纯 chun.dai@appshahe.com
-* @LastEditTime: 2023-06-24 10:11:28
-* @FilePath: \vine-valley\JavaScripts\modules\tour\TourModuleS.ts
-* @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
-*/
 import { GlobalData } from "../../const/GlobalData";
 import { MountPoint } from "./MountRoutine";
 import TourModuleC from "./TourModuleC";
@@ -134,6 +126,10 @@ export const MountName = [
     'kljklj',
     'fasfas'
 ]
+
+/**
+ * 熊猫向导模块服务器端 控制向导的行为
+ */
 
 export default class TourModuleS extends ModuleS<TourModuleC, null>{
     private _petMap: Map<MountType, TourMount> = new Map()

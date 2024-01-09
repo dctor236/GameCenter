@@ -1,16 +1,36 @@
- 
+﻿ 
 
  @UIBind('UI/beautybattle/battleitem.ui')
- export default class battleitem_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/mBg')
-    public mBg: mw.Image=undefined;
-    @UIWidgetBind('RootCanvas/mBtn')
-    public mBtn: mw.StaleButton=undefined;
-    @UIWidgetBind('RootCanvas/mIcon')
-    public mIcon: mw.Image=undefined;
-    @UIWidgetBind('RootCanvas/mSelect')
-    public mSelect: mw.Image=undefined;
-    
+ export default class battleitem_Generate extends UIScript {
+     	private mBg_Internal: mw.Image
+	public get mBg(): mw.Image {
+		if(!this.mBg_Internal&&this.uiWidgetBase) {
+			this.mBg_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mBg') as mw.Image
+		}
+		return this.mBg_Internal
+	}
+	private mBtn_Internal: mw.StaleButton
+	public get mBtn(): mw.StaleButton {
+		if(!this.mBtn_Internal&&this.uiWidgetBase) {
+			this.mBtn_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mBtn') as mw.StaleButton
+		}
+		return this.mBtn_Internal
+	}
+	private mIcon_Internal: mw.Image
+	public get mIcon(): mw.Image {
+		if(!this.mIcon_Internal&&this.uiWidgetBase) {
+			this.mIcon_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mIcon') as mw.Image
+		}
+		return this.mIcon_Internal
+	}
+	private mSelect_Internal: mw.Image
+	public get mSelect(): mw.Image {
+		if(!this.mSelect_Internal&&this.uiWidgetBase) {
+			this.mSelect_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mSelect') as mw.Image
+		}
+		return this.mSelect_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

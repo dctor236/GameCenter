@@ -1,6 +1,5 @@
 import { GeneralManager, } from '../../Modified027Editor/ModifiedStaticAPI';
 import { GameConfig } from "../../config/GameConfig";
-import { GlobalModule } from "../../const/GlobalModule";
 import { PlayerMgr } from "../../ts3/player/PlayerMgr";
 import Emoji_Generate from "../../ui-generate/uiTemplate/Chat/Emoji_generate";
 import Word_Generate from "../../ui-generate/uiTemplate/Chat/Word_generate";
@@ -9,6 +8,9 @@ import { GameModuleC } from "../gameModule/GameModuleC";
 import P_GameHUD from "../gameModule/P_GameHUD";
 import { MGSMsgHome } from "../mgsMsg/MgsmsgHome";
 
+/**
+ * 玩家气泡控制模块 客户端
+ */
 export class Chat_Client extends ModuleC<Chat_Server, null>{
 	private main: P_GameHUD;					// 主画布
 	private layout_emoji: GridLayout<Emoji_Generate>;	// 存放聊天表情的滚动框
@@ -57,7 +59,6 @@ export class Chat_Client extends ModuleC<Chat_Server, null>{
 				this.addWordBtnEvents();
 				this.layout_emoji.invalidate();
 				this.layout_word.invalidate();
-
 				this.firstClickFlag = false;
 			}
 		});
@@ -102,7 +103,6 @@ export class Chat_Client extends ModuleC<Chat_Server, null>{
 			btn.onClicked.add(() => {
 				this.main.canvas_emoji.visibility = (1);
 				if (config[index].ExpressionVfx == null) {
-					// console.log("fmxs:表格ChatExpression中ExpressionVfx字段值错误！id = " + index);
 				}
 				else {
 					let player = Player.localPlayer;
@@ -124,7 +124,6 @@ export class Chat_Client extends ModuleC<Chat_Server, null>{
 				this.main.canvas_word.visibility = (1);
 				PlayerMgr.Inst.sendChat(string)
 				MGSMsgHome.playerCommunication();
-				// GlobalModule.MyPlayerC.HeadUI.chatBack(string);
 			});
 			index++;
 		});
@@ -138,6 +137,10 @@ export class Chat_Client extends ModuleC<Chat_Server, null>{
 	}
 }
 
+
+/**
+ * 玩家气泡控制模块 服务器端
+ */
 export class Chat_Server extends ModuleS<Chat_Client, null>{
 	public net_playEmoji(player: mw.Player, guid: string) {
 		this.getAllClient().net_PlayEmoji(player, guid);

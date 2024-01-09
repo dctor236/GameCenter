@@ -1,10 +1,15 @@
- 
+﻿ 
 
  @UIBind('UI/uiTemplate/Chat/Word.ui')
- export default class Word_Generate extends mw.UIScript {
-     @UIWidgetBind('Canvas/mBtn_word')
-    public mBtn_word: mw.StaleButton=undefined;
-    
+ export default class Word_Generate extends UIScript {
+     	private mBtn_word_Internal: mw.StaleButton
+	public get mBtn_word(): mw.StaleButton {
+		if(!this.mBtn_word_Internal&&this.uiWidgetBase) {
+			this.mBtn_word_Internal = this.uiWidgetBase.findChildByPath('Canvas/mBtn_word') as mw.StaleButton
+		}
+		return this.mBtn_word_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

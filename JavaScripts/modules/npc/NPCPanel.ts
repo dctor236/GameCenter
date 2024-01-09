@@ -1,7 +1,7 @@
 /**
- * @Author       : songxing
+ * @Author       : meta
  * @Date         : 2023-04-10 14:17:36
- * @LastEditors  : songxing
+ * @LastEditors  : meta
  * @LastEditTime : 2023-05-18 11:09:29
  * @FilePath     : \Projiecttest\JavaScripts\npc\NPCPanel.ts
  * @Description  : 
@@ -20,6 +20,7 @@ import { NPC_Events } from "./NPC";
 import NPCItem from "./NPCItem";
 import NPCModule_C from "./NPCModule_C";
 
+/**npcUI 显示npc对话*/
 export class P_NPCPanel extends NPCPanel_Generate {
 	private static _Instance: P_NPCPanel = null;
 	public static get instance() {

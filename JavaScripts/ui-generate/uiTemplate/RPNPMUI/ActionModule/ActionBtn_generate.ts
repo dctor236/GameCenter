@@ -1,16 +1,36 @@
- 
+﻿ 
 
  @UIBind('UI/uiTemplate/RPNPMUI/ActionModule/ActionBtn.ui')
- export default class ActionBtn_Generate extends mw.UIScript {
-     @UIWidgetBind('Canvas/nameText')
-    public nameText: mw.TextBlock=undefined;
-    @UIWidgetBind('Canvas/descText')
-    public descText: mw.TextBlock=undefined;
-    @UIWidgetBind('Canvas/yesBtn')
-    public yesBtn: mw.StaleButton=undefined;
-    @UIWidgetBind('Canvas/noBtn')
-    public noBtn: mw.StaleButton=undefined;
-    
+ export default class ActionBtn_Generate extends UIScript {
+     	private nameText_Internal: mw.TextBlock
+	public get nameText(): mw.TextBlock {
+		if(!this.nameText_Internal&&this.uiWidgetBase) {
+			this.nameText_Internal = this.uiWidgetBase.findChildByPath('Canvas/nameText') as mw.TextBlock
+		}
+		return this.nameText_Internal
+	}
+	private descText_Internal: mw.TextBlock
+	public get descText(): mw.TextBlock {
+		if(!this.descText_Internal&&this.uiWidgetBase) {
+			this.descText_Internal = this.uiWidgetBase.findChildByPath('Canvas/descText') as mw.TextBlock
+		}
+		return this.descText_Internal
+	}
+	private yesBtn_Internal: mw.StaleButton
+	public get yesBtn(): mw.StaleButton {
+		if(!this.yesBtn_Internal&&this.uiWidgetBase) {
+			this.yesBtn_Internal = this.uiWidgetBase.findChildByPath('Canvas/yesBtn') as mw.StaleButton
+		}
+		return this.yesBtn_Internal
+	}
+	private noBtn_Internal: mw.StaleButton
+	public get noBtn(): mw.StaleButton {
+		if(!this.noBtn_Internal&&this.uiWidgetBase) {
+			this.noBtn_Internal = this.uiWidgetBase.findChildByPath('Canvas/noBtn') as mw.StaleButton
+		}
+		return this.noBtn_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

@@ -1,30 +1,24 @@
 /*
- * @Author: jiezhong.zhang
+ * @Author: meta
  * @Date: 2023-04-16 18:07:42
- * @LastEditors: 代纯 chun.dai@appshahe.com
+ * @LastEditors: meta chun.dai@appshahe.com
  * @LastEditTime: 2023-06-18 19:13:48
  */
 import { GameConfig } from "../../../config/GameConfig";
 import { IItemElement } from "../../../config/Item";
 import { EventsName, ShowItemType } from "../../../const/GameEnum";
-import { GlobalModule } from "../../../const/GlobalModule";
 import { UIManager } from "../../../ExtensionType";
 import GetItem_Generate from "../../../ui-generate/bag/GetItem_generate";
-import Tips from "../../../ui/commonUI/P_Tips";
-import { CoinType } from "../../shop/ShopDataInfo";
-import { BagModuleC } from "../BagModuleC";
 import GiftItem from "./GiftItem";
 
 const ITEM_SIZE: Vector2 = new Vector2(150, 150);
 
+/**获取物品的UI  */
 export class GetItem extends GetItem_Generate {
 
     /** 礼包道具item数组 */
     private _itemArr: GiftItem[] = [];
-
     private _defaultSize: Vector2;
-    isCoin: boolean;
-
 
     protected onStart(): void {
         super.onStart();
@@ -39,7 +33,6 @@ export class GetItem extends GetItem_Generate {
         })
     }
 
-    private coinsMap: Map<number, CoinType> = new Map([[90001, CoinType.PeaCoin], [90002, CoinType.GoldCoin]])
 
     //Map<itemID，数量 >
     onShow(itemMap: Map<number, number>, showType: ShowItemType, noAdd: boolean = false) {
@@ -93,13 +86,6 @@ export class GetItem extends GetItem_Generate {
             item.uiObject.visibility = mw.SlateVisibility.Collapsed
         }
     }
-
-
-
-
-
-
-
 
     /**
      * 创建礼物Item

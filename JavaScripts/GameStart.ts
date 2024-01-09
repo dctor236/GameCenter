@@ -1,7 +1,6 @@
 import { GameConfig } from "./config/GameConfig";
 import { GlobalData } from "./const/GlobalData";
 import { setMyCharacterGuid, setMyPlayerID } from "./ExtensionType";
-import { LogManager } from "./LogManager";
 import { BagModuleDataHelper } from "./modules/bag/BagDataHelper";
 import { BagModuleC } from "./modules/bag/BagModuleC";
 import { BagModuleS } from "./modules/bag/BagModuleS";
@@ -16,21 +15,11 @@ import { PlayerMgsModuleData } from "./modules/mgsMsg/PlayerMgsMsgData";
 import { NPCDataHelper } from "./modules/npc/NPCData";
 import NPCModule_C from "./modules/npc/NPCModule_C";
 import NPCModule_S from "./modules/npc/NPCModule_S";
-import PetModuleC from "./modules/pets/PetModuleC";
-import PetModuleS from "./modules/pets/PetModuleS";
 import PlayerModuleClient from "./modules/player/PlayerModuleClient";
 import PlayerModuleServer from "./modules/player/PlayerModuleServer";
 import { PropModuleC } from "./modules/prop/PropModuleC";
 import { PropModuleS } from "./modules/prop/PropModuleS";
-import SkillModule_Client from "./modules/skill/SkillModule_Client";
-import SkillModule_Server from "./modules/skill/SkillModule_Server";
 import GameUtils from "./utils/GameUtils";
-import RelationModuleC from "./modules/relation/RelationModuleC";
-import RelationModuleS from "./modules/relation/RelationModuleS";
-import RelationData from "./modules/relation/RelationData";
-import { TaskModuleS } from "./modules/taskModule/TaskModuleS";
-import { TaskModuleC } from "./modules/taskModule/TaskModuleC";
-import TaskModuleDataHelper from "./modules/taskModule/TaskModuleDataHelper";
 import ShopModuleS from "./modules/shop/ShopModuleS";
 import ShopModuleC from "./modules/shop/ShopModuleC";
 import ShopDataInfo from "./modules/shop/ShopDataInfo";
@@ -43,31 +32,19 @@ import FindModuleC from "./modules/find/FindModuleC";
 import SpiritModuleS from "./modules/spirit/SpiritModuleS";
 import SpiritModuleC from "./modules/spirit/SpiritModuleC";
 import { TS3 } from "./ts3/TS3";
-import MonsterSkillMS from "./modules/fight/monsterSkill/MonsterSkillMS";
-import MonsterSkillMC from "./modules/fight/monsterSkill/MonsterSkillMC";
-import { BuffModuleS } from "./modules/buff/BuffModuleS";
-import { BuffModuleC } from "./modules/buff/BuffModuleC";
-import FightMS from "./modules/fight/FightMS";
-import FightMC from "./modules/fight/FightMC";
-import GuideMS from "./modules/guide/GuideMS";
-import GuideMC from "./modules/guide/GuideMC";
-import SkyModuleS from "./modules/sky/SkyModuleS";
-import SkyModuleC from "./modules/sky/SkyModuleC";
+import SkillModule_Server from "./modules/skill/SkillModule_Server";
+import SkillModule_Client from "./modules/skill/SkillModule_Client";
+import { TaskModuleC } from "./modules/taskModule/TaskModuleC";
+import { TaskModuleS } from "./modules/taskModule/TaskModuleS";
 
 @Component
 class GameStart extends mw.Script {
-	// @mw.Property({ group: "全局设置", displayName: "预加载资源", onChangedInEditor: "getPreloadAssetsID" })
-	// public preloadAssets: string = '';
 	@mw.Property()
 	private isOnline: boolean = false;
 	@mw.Property({ displayName: "是否打开GM" })
 	private isOpenGM = false;
-	@mw.Property({ displayName: "是否打开日志" })
-	private isOpenLog = false;
 	@mw.Property({ displayName: "是否开启cg" })
 	private openCG = false;
-	private foreceToMain = false;
-
 	@mw.Property({ displayName: "多语言", selectOptions: { default: "-1", en: "0", zh: "1" } })
 	private language: string = "-1";
 
@@ -75,29 +52,6 @@ class GameStart extends mw.Script {
 
 	onStart() {
 		super.onStart();
-		// GameInitializer["getService"]("NetManager").logVisible = true;
-		// GameInitializer["getService"]("NetManager").debug = true;
-		this.isOpenLog &&
-			mwext['GameInitializer']["openLog"](
-				(type: number, content: string) => {
-					switch (type) {
-						case 1:
-							console.log(content);
-							break;
-						case 2:
-							console.warn(content);
-							break;
-						case 3:
-							console.error(content);
-							break;
-						default:
-							break;
-					}
-				},
-				true,
-				true
-			);
-		this.isOnline && LogManager.instance.setLogLevel(2);
 		DataStorage.setTemporaryStorage(!this.isOnline);
 		GameUtils.systemLanguageIndex = Number(this.language);
 		if (GameUtils.systemLanguageIndex == -1) {
@@ -129,7 +83,6 @@ class GameStart extends mw.Script {
 		GlobalData.isOpenGM = this.isOpenGM;
 		GlobalData.openCG = this.openCG;
 		GlobalData.globalPos = this.gameObject.worldTransform.position;
-		GlobalData.forceToMain = this.foreceToMain;
 		this.useUpdate = true;
 		this.onRegisterModule();
 	}
@@ -167,7 +120,7 @@ class GameStart extends mw.Script {
 	//当注册模块
 	onRegisterModule(): void {
 		TS3.init()
-		// //注册模块
+		//注册模块
 		ModuleService.registerModule(PlayerModuleServer, PlayerModuleClient, PlayerData); //整体角色管理
 		ModuleService.registerModule(GameModuleS, GameModuleC, GameModuleData); //负责大厅的一些UI点击
 		ModuleService.registerModule(BagModuleS, BagModuleC, BagModuleDataHelper); //背包 和广场那边一样
@@ -175,25 +128,14 @@ class GameStart extends mw.Script {
 		ModuleService.registerModule(CameraModuleS, CameraModuleC, null); //拍照 相机视角切换
 		ModuleService.registerModule(PropModuleS, PropModuleC, null); //背包中那些道具的使用
 		ModuleService.registerModule(NPCModule_S, NPCModule_C, NPCDataHelper);//npc
-		ModuleService.registerModule(InteractModuleServer, InteractModuleClient, null);//人&&物交互
 		ModuleService.registerModule(SkillModule_Server, SkillModule_Client, null);//技能
-		ModuleService.registerModule(PetModuleS, PetModuleC, null);//宠物
-		ModuleService.registerModule(RelationModuleS, RelationModuleC, RelationData);//关系系统
-		ModuleService.registerModule(TaskModuleS, TaskModuleC, TaskModuleDataHelper);//任务
+		ModuleService.registerModule(InteractModuleServer, InteractModuleClient, null);//人&&物交互
+		ModuleService.registerModule(TaskModuleS, TaskModuleC, null);//任务
 		ModuleService.registerModule(ShopModuleS, ShopModuleC, ShopDataInfo);//服装
-		// ModuleService.registerModule(ClothRaceS, ClothRaceC, null);//选美大赛
-		// ModuleService.registerModule(DressModuleS, DressModuleC, null);
-
 		ModuleService.registerModule(TourModuleS, TourModuleC, null);//向导
 		ModuleService.registerModule(MgsMsgModuleS, MgsMsgModuleC, PlayerMgsModuleData); //埋点
 		ModuleService.registerModule(FindModuleS, FindModuleC, null);//find物品
 		ModuleService.registerModule(SpiritModuleS, SpiritModuleC, null);//精灵
-		ModuleService.registerModule(MonsterSkillMS, MonsterSkillMC, null)
-		ModuleService.registerModule(BuffModuleS, BuffModuleC, null)
-		ModuleService.registerModule(FightMS, FightMC, null)
-		ModuleService.registerModule(GuideMS, GuideMC, null)
-		ModuleService.registerModule(SkyModuleS, SkyModuleC, null)
-
 	}
 }
 export default GameStart;

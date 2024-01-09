@@ -1,7 +1,7 @@
 /*
- * @Author: jiezhong.zhang
+ * @Author: meta
  * @Date: 2023-04-26 09:24:17
- * @LastEditors: jiezhong.zhang jiezhong.zhang@appshahe.com
+ * @LastEditors: meta meta@appshahe.com
  * @LastEditTime: 2023-04-26 09:28:57
  */
 import { UIManager } from "../../ExtensionType";

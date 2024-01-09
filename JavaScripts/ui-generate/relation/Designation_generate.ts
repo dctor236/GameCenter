@@ -1,20 +1,50 @@
- 
+﻿ 
 
  @UIBind('UI/relation/Designation.ui')
- export default class Designation_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/close')
-    public close: mw.Button=undefined;
-    @UIWidgetBind('RootCanvas/relationInfo/designation')
-    public designation: mw.TextBlock=undefined;
-    @UIWidgetBind('RootCanvas/relationInfo/remainTime')
-    public remainTime: mw.TextBlock=undefined;
-    @UIWidgetBind('RootCanvas/relationInfo/transmit')
-    public transmit: mw.StaleButton=undefined;
-    @UIWidgetBind('RootCanvas/relationInfo/cancel')
-    public cancel: mw.StaleButton=undefined;
-    @UIWidgetBind('RootCanvas/relationInfo')
-    public relationInfo: mw.Canvas=undefined;
-    
+ export default class Designation_Generate extends UIScript {
+     	private close_Internal: mw.Button
+	public get close(): mw.Button {
+		if(!this.close_Internal&&this.uiWidgetBase) {
+			this.close_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/close') as mw.Button
+		}
+		return this.close_Internal
+	}
+	private designation_Internal: mw.TextBlock
+	public get designation(): mw.TextBlock {
+		if(!this.designation_Internal&&this.uiWidgetBase) {
+			this.designation_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/relationInfo/designation') as mw.TextBlock
+		}
+		return this.designation_Internal
+	}
+	private remainTime_Internal: mw.TextBlock
+	public get remainTime(): mw.TextBlock {
+		if(!this.remainTime_Internal&&this.uiWidgetBase) {
+			this.remainTime_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/relationInfo/remainTime') as mw.TextBlock
+		}
+		return this.remainTime_Internal
+	}
+	private transmit_Internal: mw.StaleButton
+	public get transmit(): mw.StaleButton {
+		if(!this.transmit_Internal&&this.uiWidgetBase) {
+			this.transmit_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/relationInfo/transmit') as mw.StaleButton
+		}
+		return this.transmit_Internal
+	}
+	private cancel_Internal: mw.StaleButton
+	public get cancel(): mw.StaleButton {
+		if(!this.cancel_Internal&&this.uiWidgetBase) {
+			this.cancel_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/relationInfo/cancel') as mw.StaleButton
+		}
+		return this.cancel_Internal
+	}
+	private relationInfo_Internal: mw.Canvas
+	public get relationInfo(): mw.Canvas {
+		if(!this.relationInfo_Internal&&this.uiWidgetBase) {
+			this.relationInfo_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/relationInfo') as mw.Canvas
+		}
+		return this.relationInfo_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

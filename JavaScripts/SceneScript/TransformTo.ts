@@ -1,6 +1,6 @@
 import { GeneralManager, } from '../Modified027Editor/ModifiedStaticAPI';
 import { ModifiedCameraSystem,CameraModifid, } from '../Modified027Editor/ModifiedCamera';
-﻿import { EffectManager, SoundManager } from "../ExtensionType";
+import { EffectManager, SoundManager } from "../ExtensionType";
 import GameUtils from "../utils/GameUtils";
 
 @Component

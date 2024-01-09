@@ -1,29 +1,19 @@
 /** 
  * @Author       : pengwei.shi
  * @Date         : 2023-04-25 13:25:53
- * @LastEditors  : 陆江帅
+ * @LastEditors  : meta
  * @LastEditTime : 2023-05-11 16:48:48
  * @FilePath     : \mollywoodschool\JavaScripts\ui\SettingUI.ts
  * @Description  : 
  */
 import { GameConfig } from "../config/GameConfig";
-import { GlobalModule } from "../const/GlobalModule";
 import { SoundManager, UIManager } from "../ExtensionType";
-import { HeadUIModuleC } from "../modules/player/modules/HeadUIModule";
 import { PlayerMgr } from "../ts3/player/PlayerMgr";
 import SettingUI_Generate from "../ui-generate/SettingUI_generate";
 import Tips from "./commonUI/P_Tips";
 
 export class SettingUI extends SettingUI_Generate {
     private _curState: SettingState;
-    private _headUIModule: HeadUIModuleC;
-    private get titleModule() {
-        if (this._headUIModule == null) {
-            this._headUIModule = GlobalModule.MyPlayerC.HeadUI;
-        }
-        return this._headUIModule;
-    }
-
     protected onStart(): void {
         this.mBtn_Exit.onClicked.add(() => {
             this.changeState(SettingState.None);
@@ -59,12 +49,10 @@ export class SettingUI extends SettingUI_Generate {
                 return;
             }
             PlayerMgr.Inst.setTitle(1, text)
-            // this.titleModule.changeTitle(text);
             this.changeState(SettingState.None);
         });
 
         this.mBtn_ResetTitle.onClicked.add(() => {
-            // this.titleModule.resetTitle();
             PlayerMgr.Inst.resetTitle(1)
             this.playSound(31);
         });

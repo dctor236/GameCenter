@@ -1,20 +1,50 @@
- 
+﻿ 
 
  @UIBind('UI/bag/BagTips.ui')
- export default class BagTips_Generate extends mw.UIScript {
-     @UIWidgetBind('Canvas/close')
-    public close: mw.Button=undefined;
-    @UIWidgetBind('Canvas/mDescription/mDescText')
-    public mDescText: mw.TextBlock=undefined;
-    @UIWidgetBind('Canvas/mDescription/mIcon')
-    public mIcon: mw.Image=undefined;
-    @UIWidgetBind('Canvas/mDescription/closeBtn')
-    public closeBtn: mw.Button=undefined;
-    @UIWidgetBind('Canvas/mDescription/nameText')
-    public nameText: mw.TextBlock=undefined;
-    @UIWidgetBind('Canvas/mDescription')
-    public mDescription: mw.Canvas=undefined;
-    
+ export default class BagTips_Generate extends UIScript {
+     	private close_Internal: mw.Button
+	public get close(): mw.Button {
+		if(!this.close_Internal&&this.uiWidgetBase) {
+			this.close_Internal = this.uiWidgetBase.findChildByPath('Canvas/close') as mw.Button
+		}
+		return this.close_Internal
+	}
+	private mDescText_Internal: mw.TextBlock
+	public get mDescText(): mw.TextBlock {
+		if(!this.mDescText_Internal&&this.uiWidgetBase) {
+			this.mDescText_Internal = this.uiWidgetBase.findChildByPath('Canvas/mDescription/mDescText') as mw.TextBlock
+		}
+		return this.mDescText_Internal
+	}
+	private mIcon_Internal: mw.Image
+	public get mIcon(): mw.Image {
+		if(!this.mIcon_Internal&&this.uiWidgetBase) {
+			this.mIcon_Internal = this.uiWidgetBase.findChildByPath('Canvas/mDescription/mIcon') as mw.Image
+		}
+		return this.mIcon_Internal
+	}
+	private closeBtn_Internal: mw.Button
+	public get closeBtn(): mw.Button {
+		if(!this.closeBtn_Internal&&this.uiWidgetBase) {
+			this.closeBtn_Internal = this.uiWidgetBase.findChildByPath('Canvas/mDescription/closeBtn') as mw.Button
+		}
+		return this.closeBtn_Internal
+	}
+	private nameText_Internal: mw.TextBlock
+	public get nameText(): mw.TextBlock {
+		if(!this.nameText_Internal&&this.uiWidgetBase) {
+			this.nameText_Internal = this.uiWidgetBase.findChildByPath('Canvas/mDescription/nameText') as mw.TextBlock
+		}
+		return this.nameText_Internal
+	}
+	private mDescription_Internal: mw.Canvas
+	public get mDescription(): mw.Canvas {
+		if(!this.mDescription_Internal&&this.uiWidgetBase) {
+			this.mDescription_Internal = this.uiWidgetBase.findChildByPath('Canvas/mDescription') as mw.Canvas
+		}
+		return this.mDescription_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

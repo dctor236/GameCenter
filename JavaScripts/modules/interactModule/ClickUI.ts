@@ -4,9 +4,9 @@ import SP_InteractiveUI_Generate from "../../ui-generate/uiTemplate/RPNPMUI/SP_I
 
 
 /**
- * @Author       : 田可成
+ * @Author       : meta
  * @Date         : 2023-01-13 12:00:28
- * @LastEditors  : songxing
+ * @LastEditors  : meta
  * @LastEditTime : 2023-04-19 09:52:12
  * @FilePath     : \mollywoodschool\JavaScripts\modules\interactModule\ClickUI.ts
  * @Description  : 

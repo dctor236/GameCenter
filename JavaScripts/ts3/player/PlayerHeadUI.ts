@@ -1,14 +1,6 @@
 import { Tween } from "../../ExtensionType";
 import { getStrLen } from "../com/Tool";
 
-/** 
- * @Author       : xianjie.xia
- * @LastEditors  : xianjie.xia
- * @Date         : 2023-05-24 10:38
- * @LastEditTime : 2023-06-11 13:14
- * @description  : 头顶UI，包括名字、聊天、称号、血条
- * 可继承复写来扩展
- */
 export default class PlayerHeadUI {
     private widget: mw.UIWidget = null;
     private root: mw.UserWidget = null;

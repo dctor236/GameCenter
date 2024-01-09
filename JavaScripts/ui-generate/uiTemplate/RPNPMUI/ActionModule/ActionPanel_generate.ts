@@ -1,22 +1,57 @@
- 
+﻿ 
 
  @UIBind('UI/uiTemplate/RPNPMUI/ActionModule/ActionPanel.ui')
- export default class ActionPanel_Generate extends mw.UIScript {
-     @UIWidgetBind('Canvas/mCon/mTypeBar1')
-    public mTypeBar1: mw.StaleButton=undefined;
-    @UIWidgetBind('Canvas/mCon/mTypeBar2')
-    public mTypeBar2: mw.StaleButton=undefined;
-    @UIWidgetBind('Canvas/mCon/mListCon/mScr/mContent')
-    public mContent: mw.Canvas=undefined;
-    @UIWidgetBind('Canvas/mCon/mListCon/mScr')
-    public mScr: mw.ScrollBox=undefined;
-    @UIWidgetBind('Canvas/mCon/mListCon')
-    public mListCon: mw.Canvas=undefined;
-    @UIWidgetBind('Canvas/mCon/mCloseBtn')
-    public mCloseBtn: mw.StaleButton=undefined;
-    @UIWidgetBind('Canvas/mCon')
-    public mCon: mw.Canvas=undefined;
-    
+ export default class ActionPanel_Generate extends UIScript {
+     	private mTypeBar1_Internal: mw.StaleButton
+	public get mTypeBar1(): mw.StaleButton {
+		if(!this.mTypeBar1_Internal&&this.uiWidgetBase) {
+			this.mTypeBar1_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCon/mTypeBar1') as mw.StaleButton
+		}
+		return this.mTypeBar1_Internal
+	}
+	private mTypeBar2_Internal: mw.StaleButton
+	public get mTypeBar2(): mw.StaleButton {
+		if(!this.mTypeBar2_Internal&&this.uiWidgetBase) {
+			this.mTypeBar2_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCon/mTypeBar2') as mw.StaleButton
+		}
+		return this.mTypeBar2_Internal
+	}
+	private mContent_Internal: mw.Canvas
+	public get mContent(): mw.Canvas {
+		if(!this.mContent_Internal&&this.uiWidgetBase) {
+			this.mContent_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCon/mListCon/mScr/mContent') as mw.Canvas
+		}
+		return this.mContent_Internal
+	}
+	private mScr_Internal: mw.ScrollBox
+	public get mScr(): mw.ScrollBox {
+		if(!this.mScr_Internal&&this.uiWidgetBase) {
+			this.mScr_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCon/mListCon/mScr') as mw.ScrollBox
+		}
+		return this.mScr_Internal
+	}
+	private mListCon_Internal: mw.Canvas
+	public get mListCon(): mw.Canvas {
+		if(!this.mListCon_Internal&&this.uiWidgetBase) {
+			this.mListCon_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCon/mListCon') as mw.Canvas
+		}
+		return this.mListCon_Internal
+	}
+	private mCloseBtn_Internal: mw.StaleButton
+	public get mCloseBtn(): mw.StaleButton {
+		if(!this.mCloseBtn_Internal&&this.uiWidgetBase) {
+			this.mCloseBtn_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCon/mCloseBtn') as mw.StaleButton
+		}
+		return this.mCloseBtn_Internal
+	}
+	private mCon_Internal: mw.Canvas
+	public get mCon(): mw.Canvas {
+		if(!this.mCon_Internal&&this.uiWidgetBase) {
+			this.mCon_Internal = this.uiWidgetBase.findChildByPath('Canvas/mCon') as mw.Canvas
+		}
+		return this.mCon_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

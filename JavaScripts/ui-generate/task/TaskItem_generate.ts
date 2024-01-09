@@ -1,32 +1,92 @@
- 
+﻿ 
 
  @UIBind('UI/task/TaskItem.ui')
- export default class TaskItem_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/Canvas/img_Icon')
-    public img_Icon: mw.Image=undefined;
-    @UIWidgetBind('RootCanvas/Canvas/txt_num')
-    public txt_num: mw.TextBlock=undefined;
-    @UIWidgetBind('RootCanvas/Canvas_1/txt_Name')
-    public txt_Name: mw.TextBlock=undefined;
-    @UIWidgetBind('RootCanvas/Canvas_1/txt_Des')
-    public txt_Des: mw.TextBlock=undefined;
-    @UIWidgetBind('RootCanvas/mGuidState/btn_Guide')
-    public btn_Guide: mw.StaleButton=undefined;
-    @UIWidgetBind('RootCanvas/mGuidState/guideCanvas/btn_To')
-    public btn_To: mw.StaleButton=undefined;
-    @UIWidgetBind('RootCanvas/mGuidState/guideCanvas/mGuideTex')
-    public mGuideTex: mw.TextBlock=undefined;
-    @UIWidgetBind('RootCanvas/mGuidState/guideCanvas')
-    public guideCanvas: mw.Canvas=undefined;
-    @UIWidgetBind('RootCanvas/mGuidState/mStateText')
-    public mStateText: mw.TextBlock=undefined;
-    @UIWidgetBind('RootCanvas/mGuidState/mMask')
-    public mMask: mw.Image=undefined;
-    @UIWidgetBind('RootCanvas/mGuidState/mFinish')
-    public mFinish: mw.Image=undefined;
-    @UIWidgetBind('RootCanvas/mGuidState')
-    public mGuidState: mw.Canvas=undefined;
-    
+ export default class TaskItem_Generate extends UIScript {
+     	private img_Icon_Internal: mw.Image
+	public get img_Icon(): mw.Image {
+		if(!this.img_Icon_Internal&&this.uiWidgetBase) {
+			this.img_Icon_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/Canvas/img_Icon') as mw.Image
+		}
+		return this.img_Icon_Internal
+	}
+	private txt_num_Internal: mw.TextBlock
+	public get txt_num(): mw.TextBlock {
+		if(!this.txt_num_Internal&&this.uiWidgetBase) {
+			this.txt_num_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/Canvas/txt_num') as mw.TextBlock
+		}
+		return this.txt_num_Internal
+	}
+	private txt_Name_Internal: mw.TextBlock
+	public get txt_Name(): mw.TextBlock {
+		if(!this.txt_Name_Internal&&this.uiWidgetBase) {
+			this.txt_Name_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/Canvas_1/txt_Name') as mw.TextBlock
+		}
+		return this.txt_Name_Internal
+	}
+	private txt_Des_Internal: mw.TextBlock
+	public get txt_Des(): mw.TextBlock {
+		if(!this.txt_Des_Internal&&this.uiWidgetBase) {
+			this.txt_Des_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/Canvas_1/txt_Des') as mw.TextBlock
+		}
+		return this.txt_Des_Internal
+	}
+	private btn_Guide_Internal: mw.StaleButton
+	public get btn_Guide(): mw.StaleButton {
+		if(!this.btn_Guide_Internal&&this.uiWidgetBase) {
+			this.btn_Guide_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mGuidState/btn_Guide') as mw.StaleButton
+		}
+		return this.btn_Guide_Internal
+	}
+	private btn_To_Internal: mw.StaleButton
+	public get btn_To(): mw.StaleButton {
+		if(!this.btn_To_Internal&&this.uiWidgetBase) {
+			this.btn_To_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mGuidState/guideCanvas/btn_To') as mw.StaleButton
+		}
+		return this.btn_To_Internal
+	}
+	private mGuideTex_Internal: mw.TextBlock
+	public get mGuideTex(): mw.TextBlock {
+		if(!this.mGuideTex_Internal&&this.uiWidgetBase) {
+			this.mGuideTex_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mGuidState/guideCanvas/mGuideTex') as mw.TextBlock
+		}
+		return this.mGuideTex_Internal
+	}
+	private guideCanvas_Internal: mw.Canvas
+	public get guideCanvas(): mw.Canvas {
+		if(!this.guideCanvas_Internal&&this.uiWidgetBase) {
+			this.guideCanvas_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mGuidState/guideCanvas') as mw.Canvas
+		}
+		return this.guideCanvas_Internal
+	}
+	private mStateText_Internal: mw.TextBlock
+	public get mStateText(): mw.TextBlock {
+		if(!this.mStateText_Internal&&this.uiWidgetBase) {
+			this.mStateText_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mGuidState/mStateText') as mw.TextBlock
+		}
+		return this.mStateText_Internal
+	}
+	private mMask_Internal: mw.Image
+	public get mMask(): mw.Image {
+		if(!this.mMask_Internal&&this.uiWidgetBase) {
+			this.mMask_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mGuidState/mMask') as mw.Image
+		}
+		return this.mMask_Internal
+	}
+	private mFinish_Internal: mw.Image
+	public get mFinish(): mw.Image {
+		if(!this.mFinish_Internal&&this.uiWidgetBase) {
+			this.mFinish_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mGuidState/mFinish') as mw.Image
+		}
+		return this.mFinish_Internal
+	}
+	private mGuidState_Internal: mw.Canvas
+	public get mGuidState(): mw.Canvas {
+		if(!this.mGuidState_Internal&&this.uiWidgetBase) {
+			this.mGuidState_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mGuidState') as mw.Canvas
+		}
+		return this.mGuidState_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

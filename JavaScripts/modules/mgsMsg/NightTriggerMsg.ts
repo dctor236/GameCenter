@@ -1,7 +1,7 @@
 /**
- * @Author       : songxing
+ * @Author       : meta
  * @Date         : 2023-03-31 13:58:35
- * @LastEditors  : 田可成
+ * @LastEditors  : meta
  * @LastEditTime : 2023-04-14 11:48:28
  * @FilePath     : \mollywoodschool\JavaScripts\modules\mgsMsg\NightTriggerMsg.ts
  * @Description  : 夜晚的区域埋点时长

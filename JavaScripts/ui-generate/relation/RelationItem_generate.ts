@@ -1,14 +1,29 @@
- 
+﻿ 
 
  @UIBind('UI/relation/RelationItem.ui')
- export default class RelationItem_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/icon')
-    public icon: mw.Image=undefined;
-    @UIWidgetBind('RootCanvas/name')
-    public name: mw.TextBlock=undefined;
-    @UIWidgetBind('RootCanvas/sureBtn')
-    public sureBtn: mw.StaleButton=undefined;
-    
+ export default class RelationItem_Generate extends UIScript {
+     	private icon_Internal: mw.Image
+	public get icon(): mw.Image {
+		if(!this.icon_Internal&&this.uiWidgetBase) {
+			this.icon_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/icon') as mw.Image
+		}
+		return this.icon_Internal
+	}
+	private name_Internal: mw.TextBlock
+	public get name(): mw.TextBlock {
+		if(!this.name_Internal&&this.uiWidgetBase) {
+			this.name_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/name') as mw.TextBlock
+		}
+		return this.name_Internal
+	}
+	private sureBtn_Internal: mw.StaleButton
+	public get sureBtn(): mw.StaleButton {
+		if(!this.sureBtn_Internal&&this.uiWidgetBase) {
+			this.sureBtn_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/sureBtn') as mw.StaleButton
+		}
+		return this.sureBtn_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

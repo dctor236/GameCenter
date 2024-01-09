@@ -1,12 +1,22 @@
- 
+﻿ 
 
  @UIBind('UI/shop/shopbuy.ui')
- export default class shopbuy_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/mClothName')
-    public mClothName: mw.TextBlock=undefined;
-    @UIWidgetBind('RootCanvas/mBtnTry')
-    public mBtnTry: mw.Button=undefined;
-    
+ export default class shopbuy_Generate extends UIScript {
+     	private mClothName_Internal: mw.TextBlock
+	public get mClothName(): mw.TextBlock {
+		if(!this.mClothName_Internal&&this.uiWidgetBase) {
+			this.mClothName_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mClothName') as mw.TextBlock
+		}
+		return this.mClothName_Internal
+	}
+	private mBtnTry_Internal: mw.Button
+	public get mBtnTry(): mw.Button {
+		if(!this.mBtnTry_Internal&&this.uiWidgetBase) {
+			this.mBtnTry_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mBtnTry') as mw.Button
+		}
+		return this.mBtnTry_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

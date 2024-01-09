@@ -21,6 +21,9 @@ export enum ShopItemType {
     Cloth
 }
 
+/**
+ * 场景中的服装实例
+ */
 export class ClothItem {
     tri: mw.Trigger
     wui: mw.UIWidget
@@ -33,13 +36,11 @@ export class ClothItem {
         const shopElem = GameConfig.Shop.getElement(id)
         let triUI = this.wui.getTargetUIWidget()
         this.wui.widgetSpace = mw.WidgetSpaceMode.World
-        // this.wui.drawSize.set(new Vector2(0.5, 0.5))
         this.wui.headUIMaxVisibleDistance = 1000;
         this.wui.scaledByDistanceEnable = false
         this.wui.pivot = new mw.Vector2(0.5, 0.5);
         this.wui.selfOcclusion = true
         this.wui.occlusionEnable = true
-        // this.wui.interaction = true
         const mBtnTry = triUI.findChildByPath('RootCanvas/mBtnTry') as mw.Button
         const mClothTex = triUI.findChildByPath('RootCanvas/mClothName') as mw.TextBlock
         mBtnTry.onClicked.add(async () => {
@@ -80,8 +81,11 @@ export class ClothItem {
     }
 
 }
-
 const RoomItrm = "24B13492"
+
+/**
+ * 商店模块客户端 管理玩家买卖操作
+ */
 export default class ShopModuleC extends ModuleC<ShopModuleS, ShopDataInfo> {
     public itemList: ClothItem[] = []
 
@@ -116,9 +120,6 @@ export default class ShopModuleC extends ModuleC<ShopModuleS, ShopDataInfo> {
                 allShopElems.push(e)
             })
 
-            // //获取主游戏数据并覆盖当前金币
-            this.setCoin()
-
             GameObject.asyncFindGameObjectById(RoomItrm).then(o => {
                 const triGroup = o.getChildByName('triGroup').getChildren()
                 const wuiGroup = o.getChildByName('wordUIGroup').getChildren()
@@ -134,13 +135,6 @@ export default class ShopModuleC extends ModuleC<ShopModuleS, ShopDataInfo> {
                 }
             })
         })
-
-    }
-
-
-    public async setCoin() {
-        await TS3.userMgr.dataReady();
-        this.req_setCoin(CoinType.PeaCoin, TS3.userMgr.getItemCount(110009))
     }
 
     getAllClothPos(): Vector[] {
@@ -159,23 +153,27 @@ export default class ShopModuleC extends ModuleC<ShopModuleS, ShopDataInfo> {
         this.server.net_AddCoin(type, num);
     }
 
+    getCoin(type: CoinType) {
+        return this.data.getCoin(type)
+    }
+
     net_onAddCoin(type: CoinType, num: number, showUI: boolean = true) {
         if (type == CoinType.GoldCoin) {
             if (num < 0) {
-                TS3.userMgr.costCoin(1, num)
+                ModuleService.getModule(BagModuleC).addMoney(-num, 1)
             } else {
-                TS3.userMgr.addCoin(1, num)
+                ModuleService.getModule(BagModuleC).addMoney(num, 1)
             }
         } else if (type == CoinType.PeaCoin) {
             if (num < 0) {
-                ModuleService.getModule(BagModuleC).useItem(110009, num)
+                ModuleService.getModule(BagModuleC).addMoney(num, 2)
             } else {
                 if (showUI) {
                     let gitfMap = new Map([[110009, num]]);
                     UIManager.hide(GetItem)
                     mw.UIService.show(GetItem, gitfMap, ShowItemType.Get);
                 }
-                TS3.userMgr.addItem(110009, num)
+                ModuleService.getModule(BagModuleC).addItem(110009, num)
             }
         }
         this.data.addCoin(type, num);
@@ -212,14 +210,13 @@ export default class ShopModuleC extends ModuleC<ShopModuleS, ShopDataInfo> {
         }
         if (this.data.getCoin(coinType) >= cost) {
             if (coinType == CoinType.GoldCoin) {
-                TS3.userMgr.costCoin(1, cost)
+                ModuleService.getModule(BagModuleC).addMoney(-cost, 1)
                 MGSMsgHome.uploadMGS('ts_game_result', '玩家每次使用魔莱坞金币成功购买服饰，打一个点', { record: 'buy_success_gold' })
             } else if (coinType == CoinType.PeaCoin) {
                 //消耗主游戏豌豆道具数量
                 ModuleService.getModule(BagModuleC).useItem(110009, cost)
                 MGSMsgHome.uploadMGS('ts_game_result', '玩家每次使用神奇豌豆成功购买服饰，打一个点', { record: 'buy_success_diamond' })
             }
-            // this.data.addCoin(coinType, -cost);
             GlobalModule.MyPlayerC.Cloth.buyCurSelect(clothID, false, false)
             let gitfMap = new Map([[clothID, 1]]);
             UIManager.show(GetItem, gitfMap, ShowItemType.Cloth);

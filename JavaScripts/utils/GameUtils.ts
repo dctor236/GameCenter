@@ -1,12 +1,5 @@
 import { SpawnManager, SpawnInfo, } from '../Modified027Editor/ModifiedSpawn';
 import { PlayerManagerExtesion, } from '../Modified027Editor/ModifiedPlayer';
-/** 
-* @Author       : xianjie.xia
-* @LastEditors  : xianjie.xia
-* @Date         : 2023-06-27 16:34
-* @LastEditTime : 2023-06-29 10:22
-* @description  : 
-*/
 import { GameConfig } from "../config/GameConfig";
 import { GlobalData } from "../const/GlobalData";
 import { getMyCharacterGuid, getMyPlayerID, Tween } from "../ExtensionType";

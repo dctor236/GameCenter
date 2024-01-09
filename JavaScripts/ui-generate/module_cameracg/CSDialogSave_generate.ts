@@ -1,12 +1,22 @@
- 
+﻿ 
 
  @UIBind('UI/module_cameracg/CSDialogSave.ui')
- export default class CSDialogSave_Generate extends mw.UIScript {
-     @UIWidgetBind('MWCanvas_2147482460/mBtnClose')
-    public mBtnClose: mw.Button=undefined;
-    @UIWidgetBind('MWCanvas_2147482460/CanvasDialog/mInput')
-    public mInput: mw.InputBox=undefined;
-    
+ export default class CSDialogSave_Generate extends UIScript {
+     	private mBtnClose_Internal: mw.Button
+	public get mBtnClose(): mw.Button {
+		if(!this.mBtnClose_Internal&&this.uiWidgetBase) {
+			this.mBtnClose_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/mBtnClose') as mw.Button
+		}
+		return this.mBtnClose_Internal
+	}
+	private mInput_Internal: mw.InputBox
+	public get mInput(): mw.InputBox {
+		if(!this.mInput_Internal&&this.uiWidgetBase) {
+			this.mInput_Internal = this.uiWidgetBase.findChildByPath('MWCanvas_2147482460/CanvasDialog/mInput') as mw.InputBox
+		}
+		return this.mInput_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

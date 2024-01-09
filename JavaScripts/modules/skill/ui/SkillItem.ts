@@ -1,20 +1,9 @@
-/**
- * @Author       : 郝建琦
- * @Date         : 2023-03-20 17:01:32
- * @LastEditors  : 田可成
- * @LastEditTime : 2023-05-09 14:16:55
- * @FilePath     : \mollywoodschool\JavaScripts\modules\skill\ui\SkillItem.ts
- * @Description  :
- */
 
 import { GameConfig } from "../../../config/GameConfig";
 import { SkillState } from "../../../const/GameEnum";
-import { CloseAllUI, UIManager } from "../../../ExtensionType";
+import { UIManager } from "../../../ExtensionType";
 import GameUtils from "../../../utils/GameUtils";
-import { Designation } from "../../relation/ui/Designation";
-import { Relationship } from "../../relation/ui/Relationship";
 import SkillBase from "../logic/SkillBase";
-import MakePropUI from "./MakePropUI";
 
 export class skillItem {
 	public uiObject: mw.Canvas = undefined;
@@ -101,16 +90,6 @@ export class skillItem {
 			this.maskBtn.normalImageColor = mw.LinearColor.red;
 		} else {
 			this.maskBtn.normalImageColor = mw.LinearColor.white;
-		}
-		if (state == SkillState.Creation) {
-			UIManager.show(MakePropUI, this.uiObject.position.clone(), params[0], params[1])
-		}
-		if (state == SkillState.Relation) {
-			CloseAllUI()
-			UIManager.show(Relationship, params[0])
-		}
-		if (state == SkillState.Designation) {
-			UIManager.show(Designation, params[0])
 		}
 		if (state < 0) {
 			this.dis.visibility = mw.SlateVisibility.SelfHitTestInvisible;

@@ -1,18 +1,43 @@
- 
+﻿ 
 
  @UIBind('UI/task/TaskFinish.ui')
- export default class TaskFinish_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/CenterAnchor/anchor/canvas_Task/img_BG')
-    public img_BG: mw.Image=undefined;
-    @UIWidgetBind('RootCanvas/CenterAnchor/anchor/canvas_Task/txt_Task')
-    public txt_Task: mw.TextBlock=undefined;
-    @UIWidgetBind('RootCanvas/CenterAnchor/anchor/canvas_Task')
-    public canvas_Task: mw.Canvas=undefined;
-    @UIWidgetBind('RootCanvas/CenterAnchor/anchor')
-    public anchor: mw.Canvas=undefined;
-    @UIWidgetBind('RootCanvas/CenterAnchor/img_Icon')
-    public img_Icon: mw.Image=undefined;
-    
+ export default class TaskFinish_Generate extends UIScript {
+     	private img_BG_Internal: mw.Image
+	public get img_BG(): mw.Image {
+		if(!this.img_BG_Internal&&this.uiWidgetBase) {
+			this.img_BG_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/CenterAnchor/anchor/canvas_Task/img_BG') as mw.Image
+		}
+		return this.img_BG_Internal
+	}
+	private txt_Task_Internal: mw.TextBlock
+	public get txt_Task(): mw.TextBlock {
+		if(!this.txt_Task_Internal&&this.uiWidgetBase) {
+			this.txt_Task_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/CenterAnchor/anchor/canvas_Task/txt_Task') as mw.TextBlock
+		}
+		return this.txt_Task_Internal
+	}
+	private canvas_Task_Internal: mw.Canvas
+	public get canvas_Task(): mw.Canvas {
+		if(!this.canvas_Task_Internal&&this.uiWidgetBase) {
+			this.canvas_Task_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/CenterAnchor/anchor/canvas_Task') as mw.Canvas
+		}
+		return this.canvas_Task_Internal
+	}
+	private anchor_Internal: mw.Canvas
+	public get anchor(): mw.Canvas {
+		if(!this.anchor_Internal&&this.uiWidgetBase) {
+			this.anchor_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/CenterAnchor/anchor') as mw.Canvas
+		}
+		return this.anchor_Internal
+	}
+	private img_Icon_Internal: mw.Image
+	public get img_Icon(): mw.Image {
+		if(!this.img_Icon_Internal&&this.uiWidgetBase) {
+			this.img_Icon_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/CenterAnchor/img_Icon') as mw.Image
+		}
+		return this.img_Icon_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

@@ -1,22 +1,57 @@
- 
+﻿ 
 
  @UIBind('UI/uiTemplate/NPC/NPCPanel.ui')
- export default class NPCPanel_Generate extends mw.UIScript {
-     @UIWidgetBind('Canvas/talkCanvas/click')
-    public click: mw.Button=undefined;
-    @UIWidgetBind('Canvas/talkCanvas/talkTxt')
-    public talkTxt: mw.TextBlock=undefined;
-    @UIWidgetBind('Canvas/talkCanvas/mGoodWillTxt')
-    public mGoodWillTxt: mw.TextBlock=undefined;
-    @UIWidgetBind('Canvas/talkCanvas')
-    public talkCanvas: mw.Canvas=undefined;
-    @UIWidgetBind('Canvas/guideBtn')
-    public guideBtn: mw.Button=undefined;
-    @UIWidgetBind('Canvas/scroll/mBtnCon')
-    public mBtnCon: mw.Canvas=undefined;
-    @UIWidgetBind('Canvas/scroll')
-    public scroll: mw.ScrollBox=undefined;
-    
+ export default class NPCPanel_Generate extends UIScript {
+     	private click_Internal: mw.Button
+	public get click(): mw.Button {
+		if(!this.click_Internal&&this.uiWidgetBase) {
+			this.click_Internal = this.uiWidgetBase.findChildByPath('Canvas/talkCanvas/click') as mw.Button
+		}
+		return this.click_Internal
+	}
+	private talkTxt_Internal: mw.TextBlock
+	public get talkTxt(): mw.TextBlock {
+		if(!this.talkTxt_Internal&&this.uiWidgetBase) {
+			this.talkTxt_Internal = this.uiWidgetBase.findChildByPath('Canvas/talkCanvas/talkTxt') as mw.TextBlock
+		}
+		return this.talkTxt_Internal
+	}
+	private mGoodWillTxt_Internal: mw.TextBlock
+	public get mGoodWillTxt(): mw.TextBlock {
+		if(!this.mGoodWillTxt_Internal&&this.uiWidgetBase) {
+			this.mGoodWillTxt_Internal = this.uiWidgetBase.findChildByPath('Canvas/talkCanvas/mGoodWillTxt') as mw.TextBlock
+		}
+		return this.mGoodWillTxt_Internal
+	}
+	private talkCanvas_Internal: mw.Canvas
+	public get talkCanvas(): mw.Canvas {
+		if(!this.talkCanvas_Internal&&this.uiWidgetBase) {
+			this.talkCanvas_Internal = this.uiWidgetBase.findChildByPath('Canvas/talkCanvas') as mw.Canvas
+		}
+		return this.talkCanvas_Internal
+	}
+	private guideBtn_Internal: mw.Button
+	public get guideBtn(): mw.Button {
+		if(!this.guideBtn_Internal&&this.uiWidgetBase) {
+			this.guideBtn_Internal = this.uiWidgetBase.findChildByPath('Canvas/guideBtn') as mw.Button
+		}
+		return this.guideBtn_Internal
+	}
+	private mBtnCon_Internal: mw.Canvas
+	public get mBtnCon(): mw.Canvas {
+		if(!this.mBtnCon_Internal&&this.uiWidgetBase) {
+			this.mBtnCon_Internal = this.uiWidgetBase.findChildByPath('Canvas/scroll/mBtnCon') as mw.Canvas
+		}
+		return this.mBtnCon_Internal
+	}
+	private scroll_Internal: mw.ScrollBox
+	public get scroll(): mw.ScrollBox {
+		if(!this.scroll_Internal&&this.uiWidgetBase) {
+			this.scroll_Internal = this.uiWidgetBase.findChildByPath('Canvas/scroll') as mw.ScrollBox
+		}
+		return this.scroll_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

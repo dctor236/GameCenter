@@ -5,7 +5,8 @@ export default class WUIFollow extends mw.Script {
     distance: number = 16000 * 100
 
     private _wuiLoc: Vector
-    protected onStart(): void {
+    protected async onStart() {
+        await this.gameObject.asyncReady()
         if (SystemUtil.isServer())
             return
         this.useUpdate = true

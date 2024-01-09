@@ -1,7 +1,7 @@
- 
+﻿ 
 
  @UIBind('UI/tour/transform3.ui')
- export default class transform3_Generate extends mw.UIScript {
+ export default class transform3_Generate extends UIScript {
      
 
      protected onAwake() {

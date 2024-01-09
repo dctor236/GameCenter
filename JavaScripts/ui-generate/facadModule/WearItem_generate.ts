@@ -1,22 +1,57 @@
- 
+﻿ 
 
  @UIBind('UI/facadModule/WearItem.ui')
- export default class WearItem_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/mWearItem/mImgBG')
-    public mImgBG: mw.Image=undefined;
-    @UIWidgetBind('RootCanvas/mWearItem/mWearImg')
-    public mWearImg: mw.Image=undefined;
-    @UIWidgetBind('RootCanvas/mWearItem/mPrice')
-    public mPrice: mw.TextBlock=undefined;
-    @UIWidgetBind('RootCanvas/mWearItem/mGoldImg')
-    public mGoldImg: mw.Image=undefined;
-    @UIWidgetBind('RootCanvas/mWearItem/mCloseBtn')
-    public mCloseBtn: mw.Button=undefined;
-    @UIWidgetBind('RootCanvas/mWearItem/mGetTip')
-    public mGetTip: mw.TextBlock=undefined;
-    @UIWidgetBind('RootCanvas/mWearItem')
-    public mWearItem: mw.Canvas=undefined;
-    
+ export default class WearItem_Generate extends UIScript {
+     	private mImgBG_Internal: mw.Image
+	public get mImgBG(): mw.Image {
+		if(!this.mImgBG_Internal&&this.uiWidgetBase) {
+			this.mImgBG_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mWearItem/mImgBG') as mw.Image
+		}
+		return this.mImgBG_Internal
+	}
+	private mWearImg_Internal: mw.Image
+	public get mWearImg(): mw.Image {
+		if(!this.mWearImg_Internal&&this.uiWidgetBase) {
+			this.mWearImg_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mWearItem/mWearImg') as mw.Image
+		}
+		return this.mWearImg_Internal
+	}
+	private mPrice_Internal: mw.TextBlock
+	public get mPrice(): mw.TextBlock {
+		if(!this.mPrice_Internal&&this.uiWidgetBase) {
+			this.mPrice_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mWearItem/mPrice') as mw.TextBlock
+		}
+		return this.mPrice_Internal
+	}
+	private mGoldImg_Internal: mw.Image
+	public get mGoldImg(): mw.Image {
+		if(!this.mGoldImg_Internal&&this.uiWidgetBase) {
+			this.mGoldImg_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mWearItem/mGoldImg') as mw.Image
+		}
+		return this.mGoldImg_Internal
+	}
+	private mCloseBtn_Internal: mw.Button
+	public get mCloseBtn(): mw.Button {
+		if(!this.mCloseBtn_Internal&&this.uiWidgetBase) {
+			this.mCloseBtn_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mWearItem/mCloseBtn') as mw.Button
+		}
+		return this.mCloseBtn_Internal
+	}
+	private mGetTip_Internal: mw.TextBlock
+	public get mGetTip(): mw.TextBlock {
+		if(!this.mGetTip_Internal&&this.uiWidgetBase) {
+			this.mGetTip_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mWearItem/mGetTip') as mw.TextBlock
+		}
+		return this.mGetTip_Internal
+	}
+	private mWearItem_Internal: mw.Canvas
+	public get mWearItem(): mw.Canvas {
+		if(!this.mWearItem_Internal&&this.uiWidgetBase) {
+			this.mWearItem_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mWearItem') as mw.Canvas
+		}
+		return this.mWearItem_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

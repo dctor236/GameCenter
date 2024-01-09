@@ -1,12 +1,22 @@
- 
+﻿ 
 
  @UIBind('UI/fly/FlyEffect.ui')
- export default class FlyEffect_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/mPic_BG')
-    public mPic_BG: mw.Image=undefined;
-    @UIWidgetBind('RootCanvas/mPic_BG_1')
-    public mPic_BG_1: mw.Image=undefined;
-    
+ export default class FlyEffect_Generate extends UIScript {
+     	private mPic_BG_Internal: mw.Image
+	public get mPic_BG(): mw.Image {
+		if(!this.mPic_BG_Internal&&this.uiWidgetBase) {
+			this.mPic_BG_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mPic_BG') as mw.Image
+		}
+		return this.mPic_BG_Internal
+	}
+	private mPic_BG_1_Internal: mw.Image
+	public get mPic_BG_1(): mw.Image {
+		if(!this.mPic_BG_1_Internal&&this.uiWidgetBase) {
+			this.mPic_BG_1_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mPic_BG_1') as mw.Image
+		}
+		return this.mPic_BG_1_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

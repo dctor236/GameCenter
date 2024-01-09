@@ -9,14 +9,18 @@ import { IItemRender } from "../../../taskModule/UIMultiScroller";
 import FacadMainUI from "./FacadMainUI";
 
 /**
- * @Author       : 田可成
+ * @Author       : meta
  * @Date         : 2023-05-25 13:48:33
- * @LastEditors  : 田可成
+ * @LastEditors  : meta
  * @LastEditTime : 2023-06-09 16:10:50
  * @FilePath     : \mollywoodschool\JavaScripts\modules\player\ui\cloth\FacadItemUI.ts
  * @Description  : 
  */
 export const FacadSelectEvent = "FacadSelectEvent"
+
+/**
+ * 服装UI主界面的服装图标子UI
+ */
 export default class FacadItemUI extends FacadItem_Generate implements IItemRender {
     private _isHave: boolean = false;
     private _isSelect: boolean = false;
@@ -46,12 +50,16 @@ export default class FacadItemUI extends FacadItem_Generate implements IItemRend
         })
     }
 
-    private selectClick = async () => {
+    private selectClick = () => {
         MGSMsgHome.setBtnClick("dressicon_btn")
         this.module.changeRoleAvatar(this._config.ID, true)
         Event.dispatchToLocal(FacadSelectEvent, this._config.ID)
     }
 
+    /**
+     * 设置数据
+     * @param config 配置表
+     */
     setData(config: IRoleAvatarElement): void {
         if (config.icon) {
             this.mImgIcon.imageGuid = config.icon
@@ -61,7 +69,7 @@ export default class FacadItemUI extends FacadItem_Generate implements IItemRend
         this.mItemName.text = config.name
         this.mTextDesc.text = config.desc
         this.mImgGold.imageGuid = config.priceIcon
-        this.mImgGold.imageSize = new mw.Vector(55, 55)
+        this.mImgGold.imageSize = new mw.Vector2(55, 55)
         this.mPrice.text = config.price.toString()
         this.mQuality.visibility = mw.SlateVisibility.Collapsed
 
@@ -71,18 +79,21 @@ export default class FacadItemUI extends FacadItem_Generate implements IItemRend
         this.mHDHDtxt.visibility = mw.SlateVisibility.Collapsed
         if (!this._isHave) {
             if (this._config.priceType == 2) {
-                this.mWHHD.visibility = mw.SlateVisibility.Collapsed
                 this.mHDHDtxt.visibility = mw.SlateVisibility.SelfHitTestInvisible
+                this.mWHHD.visibility = mw.SlateVisibility.Collapsed
                 this.mPrice.visibility = mw.SlateVisibility.Collapsed
                 this.mImgGold.visibility = mw.SlateVisibility.Collapsed
-            } else if (this._config.priceType == 4) {
+            }
+            else if (this._config.priceType == 3) {
+                this.mWHHD.visibility = mw.SlateVisibility.Collapsed
+            }
+            else if (this._config.priceType == 4) {
                 this.mHDHDtxt.visibility = mw.SlateVisibility.Collapsed
                 this.mPrice.visibility = mw.SlateVisibility.Collapsed
                 this.mImgGold.visibility = mw.SlateVisibility.Collapsed
                 this.mWHHD.visibility = mw.SlateVisibility.SelfHitTestInvisible
             }
         }
-
 
         if (this._isSelect) {
             this.mainUI.curSelect = !this._isHave ? this._config.ID : -1
@@ -112,6 +123,10 @@ export default class FacadItemUI extends FacadItem_Generate implements IItemRend
         return this.mbtnUse
     }
 
+    /**
+     * 设置服装的拥有状态
+     * @param bool 
+     */
     public setHave(bool: boolean) {
         if (bool) {
             this.mPrice.visibility = mw.SlateVisibility.Collapsed
@@ -125,6 +140,10 @@ export default class FacadItemUI extends FacadItem_Generate implements IItemRend
         this._isHave = bool
     }
 
+    /**
+     * 设置选中状态
+     * @param bool 
+     */
     public setSelect(bool: boolean): void {
         if (bool) {
             this.mSelect.visibility = mw.SlateVisibility.SelfHitTestInvisible

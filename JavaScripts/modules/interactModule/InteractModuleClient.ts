@@ -1,6 +1,10 @@
 import InteractObject, { InteractiveHelper } from "./interactLogic/InteractObject";
 import InteractMgr from "./InteractMgr";
 import { InteractModuleServer } from "./InteractModuleServer";
+
+/**
+ *交互物模块客户端 控制场景中所要使用的交互物 
+ */
 export class InteractModuleClient extends ModuleC<InteractModuleServer, null>  {
     private _updateIndex: number = 0;
     private _playerLocation: mw.Vector
@@ -23,6 +27,12 @@ export class InteractModuleClient extends ModuleC<InteractModuleServer, null>  {
         }
     }
 
+    /**
+     * 进行或者解除交互
+     * @param interact 交互物
+     * @param flag 是否进行交互
+     * @returns 
+     */
     public activeHandle = async (interact: InteractObject, flag: boolean) => {
         if (!interact) return
         let err = null
@@ -52,12 +62,23 @@ export class InteractModuleClient extends ModuleC<InteractModuleServer, null>  {
         }
     }
 
+    /**
+     *进行下一步交互动作  
+     * @param interact 
+     * @param flag 
+     */
     public activeNextHandle = (interact: InteractObject, flag: boolean) => {
         if (interact.nextInteractGuid != "") {
             this.activeHandle(InteractMgr.instance.getInteract(interact.nextInteractGuid), flag)
         }
     }
 
+    /**
+     * 交互中进行的动作
+     * @param interact 
+     * @param playerId 
+     * @param active 
+     */
     public playerAction(interact: InteractObject, playerId: number, active: boolean) {
         interact.logic.onPlayerAction(playerId, active)
         if (interact.nextInteractGuid != "" && !interact.blockInteractNext) {

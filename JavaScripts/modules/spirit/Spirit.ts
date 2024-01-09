@@ -3,19 +3,17 @@ import { PlayerManagerExtesion, } from '../../Modified027Editor/ModifiedPlayer';
 import { GameConfig } from "../../config/GameConfig";
 import { GlobalData } from "../../const/GlobalData";
 import { getMyPlayerID, UIManager } from "../../ExtensionType";
-import { MonsterMgr } from "../../ts3/monster/MonsterMgr";
-import { GamePlayerState } from "../../ts3/player/PlayerDefine";
-import { PlayerMgr } from "../../ts3/player/PlayerMgr";
 import Tips from "../../ui/commonUI/P_Tips";
 import GameUtils from "../../utils/GameUtils";
 import { StateMachine } from "../../utils/StateMachine";
-import { Attribute } from "../fight/attibute/Attribute";
-import MonsterSkillMC from "../fight/monsterSkill/MonsterSkillMC";
 import { NPCHead } from "../npc/NPCHead";
 import SpiritHeadMgr from "./SpiritHeadMgr";
 import SpiritManager from "./SpiritManager";
 import SpiritBubble from "./UI/SpiritBubble";
 
+/**
+ * 精灵实例
+ */
 export default class Spirit {
     private _walkInteval = null
     public type: SpiritType
@@ -31,7 +29,6 @@ export default class Spirit {
     /**换装资源 */
     public asset: string = ''
     public skill: number = 1001
-    public att: Attribute.AttributeValueObject = new Attribute.AttributeValueObject()
     public life: number
     private _lifeInteval = null
     constructor() {
@@ -71,18 +68,13 @@ export default class Spirit {
             await this.initHeadUI()
         }
         const elem = GameConfig.Spirt.getElement(this.id)
-        const attElem = GameConfig.BaseAttribute.getElement(elem.att)
-        if (attElem) {
-            for (let i = 0; i < attElem.AttrType.length; i++) {
-                const attType = attElem.AttrType[i]
-                const ran = attElem.AttrValueFactor[i]
-                const val = MathUtil.randomInt(ran[0], ran[1])
-                this.att.addValue(attType, val);
-            }
-        }
         this.skill = elem.skill
     }
 
+    /**
+     *切换精灵外貌 
+     * @param type 
+     */
     public changeAppear(type: SpiritType) {
         this.asset = SpritGuid[type - 1]
         this.type = type
@@ -90,8 +82,6 @@ export default class Spirit {
         const rot = this.obj.worldTransform.rotation
         SpiritManager.instance.unSpawn(this.obj)
         SpiritManager.instance.spawn(this.asset, pos, rot)
-        // const humanV1 = this.obj.getAppearance() as mw.HumanoidV1;
-        // humanV1.description.base.wholeBody = (type, false)
     }
 
     private onTriggerIn = (obj: mw.GameObject) => {
@@ -196,32 +186,7 @@ export default class Spirit {
                 this.playerPos.set(Player.getPlayer(this._host).character.worldTransform.position);
                 this.playerPos.set(this.playerPos.x + MathUtil.randomInt(-300, 300), this.playerPos.y + MathUtil.randomInt(-300, 300), this.playerPos.z + 50)
             }
-            //     const playerPos = Player.getPlayer(this._host).character.worldTransform.position;
-            //     const npcPos = this.obj.worldTransform.position;
-            //     if (Vector.squaredDistance(playerPos, npcPos) > 400 * 400) {
-            //         if (Vector.squaredDistance(playerPos, npcPos) > 1000 * 1000) {
-            //             this.obj.worldTransform.position = new Vector(playerPos.x + MathUtil.randomInt(-120, 120), playerPos.y + MathUtil.randomInt(-120, 120), playerPos.z + MathUtil.randomInt(0, 50))
-            //             let dir = playerPos.subtract(this.obj.worldTransform.position.clone()).normalized
-            //             this.obj.worldTransform.rotation = new Rotation(this.obj.worldTransform.rotation.x, this.obj.worldTransform.rotation.y, dir.z)
-            //         } else {
-            //             let dir = playerPos.subtract(npcPos).normalized
-            //             this.obj.addMovement(dir.multiply(5))
-            //         }
-            //     }
-        }, this.att.getValue(Attribute.EAttType.atkFreq) * 1000)
-
-        if (this._atkInteval) {
-            clearInterval(this._atkInteval)
-            this._atkInteval = null
-        }
-        this._atkInteval = setInterval(() => {
-            const nearMonster = MonsterMgr.Inst.getNearMonster(3000, this.obj.worldTransform.position)
-            if (nearMonster) {
-                const dir = nearMonster.pos.subtract(this.obj.worldTransform.position).normalized
-                let tmpDit = this.obj.worldTransform.transformDirection(dir)
-                ModuleService.getModule(MonsterSkillMC).useSkill(this.skill, this.obj.gameObjectId, tmpDit, this.obj.worldTransform.position, false)
-            }
-        }, this.att.getValue(Attribute.EAttType.atkFreq) * 1000)
+        }, 0.8 * 1000)
     }
 
     private playerPos: Vector = Vector.zero
@@ -249,14 +214,9 @@ export default class Spirit {
     }
 
     protected state_followExit() {
-        if (this._atkInteval) {
-            clearInterval(this._atkInteval)
-            this._atkInteval = null
-        }
 
     }
 
-    private _atkInteval = null
     protected state_attack(...data: any) {
 
     }

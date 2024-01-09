@@ -1,12 +1,22 @@
- 
+﻿ 
 
  @UIBind('UI/spirit/SpiritBubble.ui')
- export default class SpiritBubble_Generate extends mw.UIScript {
-     @UIWidgetBind('RootCanvas/mAcc/mAccTex')
-    public mAccTex: mw.TextBlock=undefined;
-    @UIWidgetBind('RootCanvas/mAcc')
-    public mAcc: mw.Button=undefined;
-    
+ export default class SpiritBubble_Generate extends UIScript {
+     	private mAcc_Internal: mw.Button
+	public get mAcc(): mw.Button {
+		if(!this.mAcc_Internal&&this.uiWidgetBase) {
+			this.mAcc_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mAcc') as mw.Button
+		}
+		return this.mAcc_Internal
+	}
+	private mAccTex_Internal: mw.TextBlock
+	public get mAccTex(): mw.TextBlock {
+		if(!this.mAccTex_Internal&&this.uiWidgetBase) {
+			this.mAccTex_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mAcc/mAccTex') as mw.TextBlock
+		}
+		return this.mAccTex_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

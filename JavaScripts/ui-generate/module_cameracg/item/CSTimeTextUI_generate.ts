@@ -1,10 +1,15 @@
- 
+﻿ 
 
  @UIBind('UI/module_cameracg/item/CSTimeTextUI.ui')
- export default class CSTimeTextUI_Generate extends mw.UIScript {
-     @UIWidgetBind('Canvas/mTextTime')
-    public mTextTime: mw.TextBlock=undefined;
-    
+ export default class CSTimeTextUI_Generate extends UIScript {
+     	private mTextTime_Internal: mw.TextBlock
+	public get mTextTime(): mw.TextBlock {
+		if(!this.mTextTime_Internal&&this.uiWidgetBase) {
+			this.mTextTime_Internal = this.uiWidgetBase.findChildByPath('Canvas/mTextTime') as mw.TextBlock
+		}
+		return this.mTextTime_Internal
+	}
+
 
      protected onAwake() {
          this.canUpdate = false;

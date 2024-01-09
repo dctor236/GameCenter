@@ -1,7 +1,7 @@
 /**
- * @Author       : 陆江帅
+ * @Author       : meta
  * @Date         : 2023-03-05 11:03:27
- * @LastEditors  : 陆江帅
+ * @LastEditors  : meta
  * @LastEditTime : 2023-04-28 13:21:55
  * @FilePath     : \mollywoodschool\JavaScripts\modules\Bag\BagDataHelper.ts
  * @Description  : 背包数据模块
@@ -327,17 +327,5 @@ export class BagModuleDataHelper extends Subdata {
 		this.curEquip = id;
 		console.log("更换选中快捷栏物品", this.curEquip);
 		this.save(false);
-	}
-
-	public getCurEquips() {
-		return this.equipSlots;
-	}
-
-	/**
-	 * 找到当前空着的快捷栏位置
-	 */
-	public getCurEmptyEquipIndex() {
-		const res = this.equipSlots.findIndex(v => v === "");
-		return res;
 	}
 }

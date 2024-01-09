@@ -7,7 +7,3 @@ export class MountPoint {
         this.pos = pos
     }
 }
-
-// export default class MountRoutine {
-
-// }
